@@ -267,6 +267,57 @@ Use the **sweep aggregator** + **τ‑curves** to find the desired profit/covera
 
 ---
 
+## 📚 Datasets & Acknowledgements
+
+This project relies on large-scale public cryptocurrency datasets combining macro-level market data and high-frequency order book microstructure.
+
+### Datasets
+
+- **Top 100 Cryptocurrencies Dataset (2020–2025)**  
+  Daily OHLCV data across major cryptocurrencies:  
+  https://www.kaggle.com/datasets/imtkaggleteam/top-100-cryptocurrency-2020-2025  
+
+- **Cryptocurrency Order Book Data (Asks & Bids)**  
+  High-frequency order book snapshots capturing market microstructure:  
+  https://www.kaggle.com/datasets/ilyazawilsiv/cryptocurrency-order-book-data-asks-and-bids  
+
+Due to their size and licensing constraints, these datasets are **not included in this repository** and must be downloaded directly from the original sources.
+
+### Acknowledgements
+
+We gratefully acknowledge the dataset creators and the Kaggle community for providing access to high-quality financial and microstructure data, which made this research possible.
+
+---
+
+## 📄 Related Publications
+
+This repository is directly connected to the following research works:
+
+Kuznetsov, O., Adilzhanova, S., Florov, S., Bushkov, V., Peremetchyk, D.  
+*Privacy-Preserving Federated Learning for Distributed Financial IoT: A Blockchain-Based Framework for Secure Cryptocurrency Market Analytics.*  
+IoT, 2025.  
+https://doi.org/10.3390/iot6040078  
+
+Kuznetsov, O., Kostenko, O., Klymenko, K., Hbur, Z., Kovalskyi, R.  
+*Machine Learning Analytics for Blockchain-Based Financial Markets: A Confidence-Threshold Framework for Cryptocurrency Price Direction Prediction.*  
+Applied Sciences, 2025.  
+https://doi.org/10.3390/app152011145  
+
+Kuznetsov, O., Prokopovych-Tkachenko, D., Bilan, M., Khruskov, B., Cherkaskyi, O.  
+*Blockchain-Native Asset Direction Prediction: A Confidence-Threshold Approach to Decentralized Financial Analytics Using Multi-Scale Feature Integration.*  
+Algorithms, 2025.  
+https://doi.org/10.3390/a18120758  
+
+These works introduce the core ideas implemented in this repository, including:
+- confidence-based selective execution
+- multi-scale feature integration (macro + microstructure)
+- blockchain-oriented financial analytics
+- federated and privacy-preserving learning
+
+If you use this repository, please consider citing the above papers.
+
+---
+
 ## 🧭 CLI Cheat‑Sheet
 
 ```bash

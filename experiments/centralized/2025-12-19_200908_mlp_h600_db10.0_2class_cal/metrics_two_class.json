@@ -1,0 +1,20 @@
+{
+  "coverage": 0.011941960254904623,
+  "n_executed": 9589,
+  "n_total": 802967,
+  "direction_accuracy": 0.5860882260923975,
+  "avg_profit_bps": 42.95890282164414,
+  "median_profit_bps": 27.634395194258033,
+  "win_rate": 0.5860882260923975,
+  "avg_confidence": 0.907216207220737,
+  "profit_std_bps": 139.7150220694001,
+  "profit_sharpe": 0.3074751890117483,
+  "max_profit_bps": 645.1151495168438,
+  "min_profit_bps": -284.19552114996816,
+  "profit_p25_bps": -49.5542116475246,
+  "profit_p75_bps": 106.40072069459484,
+  "profit_p90_bps": 199.95254482526826,
+  "profit_p10_bps": -110.73494162693464,
+  "confidence_tau": 0.6,
+  "profit_cost_bps": 1.0
+}

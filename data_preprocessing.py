@@ -327,7 +327,7 @@ class DataValidator:
                                                symbol_col: Optional[str] = None,
                                                max_gap_minutes: int = 60,
                                                duplicate_threshold: float = 0.05) -> Dict[str, Any]:
-        """FIXED: Temporal validation with gap flagging instead of just warnings."""
+        """Temporal validation with gap flagging instead of just warnings."""
         results = {'status': 'passed', 'issues': [], 'statistics': {}}
         
         if timestamp_col not in df.columns:
@@ -356,7 +356,7 @@ class DataValidator:
             elif duplicates > 0:
                 results['issues'].append(f"Found {duplicates:,} duplicate entries ({duplicate_ratio:.2%})")
         
-        # FIXED: Check for gaps and FLAG them in the dataframe
+        # Check for gaps and FLAG them in the dataframe
         df_sorted = df.sort_values([symbol_col, timestamp_col] if symbol_col else [timestamp_col])
         
         total_gaps = 0
@@ -490,7 +490,7 @@ class DataValidator:
                                     symbol_col: Optional[str] = None,
                                     max_gap_minutes: int = 60,
                                     duplicate_threshold: float = 0.05) -> Dict[str, Any]:
-        """Fixed temporal consistency validation with configurable duplicate threshold."""
+ 
         results = {'status': 'passed', 'issues': [], 'statistics': {}}
         
         if timestamp_col not in df.columns:
@@ -549,7 +549,6 @@ class DataValidator:
     
     @staticmethod
     def _find_temporal_gaps_fixed(timestamps: pd.Series, max_gap_minutes: int) -> List[Tuple]:
-        """Fixed gap detection using proper position-based indexing."""
         if len(timestamps) < 2:
             return []
         
@@ -1823,7 +1822,7 @@ class FeatureEngineeringPipeline:
     def create_unified_dataset(self, 
                              macro_data: Optional[pd.DataFrame] = None,
                              micro_data: Optional[pd.DataFrame] = None) -> pd.DataFrame:
-        """FIXED: Create unified dataset with proper symbol column handling and timezone alignment."""
+        """Create unified dataset with proper symbol column handling and timezone alignment."""
         logger.info("Creating unified dataset...")
         
         if macro_data is None:
@@ -1849,7 +1848,27 @@ class FeatureEngineeringPipeline:
         
         if macro_daily['date'].dtype != 'object':
             macro_daily['date'] = pd.to_datetime(macro_daily['date']).dt.date
-        
+
+        # CRITICAL INVARIANT: Shift macro dates +1 day to prevent look-ahead bias.
+        # This ensures daily features for date D (OHLC, ATR, RSI, etc.) are only
+        # available starting from date D+1, matching real-world data availability
+        # where end-of-day metrics are known only after market close.
+        #
+        # Implementation: Convert to datetime, shift, convert back to date objects.
+        # Result: Intraday observations on date D+1 use completed daily stats from date D.
+        #
+        # Note: This shift is applied AFTER any macro_alignment_offset_hours adjustment
+        # to micro timestamps, ensuring consistent "D+1 gets D" semantics regardless
+        # of timezone handling.
+        original_min = macro_daily['date'].min()
+        macro_daily['date'] = pd.to_datetime(macro_daily['date']) + pd.Timedelta(days=1)
+        macro_daily['date'] = macro_daily['date'].dt.date
+        logger.info("Applied macro date shift (+1 day) to prevent look-ahead bias (INVARIANT)")
+        logger.info(f"  Original range: {original_min} to {pd.to_datetime(original_min) + pd.Timedelta(days=len(macro_daily['date'].unique())-1)}")
+        logger.info(f"  After shift: {macro_daily['date'].min()} to {macro_daily['date'].max()}")
+        logger.info(f"  → Intraday obs on date D will use daily features from D-1")
+ 
+
         # Prepare micro data for merging with timezone-aware date extraction
         micro_minute = micro_data.copy()
         
@@ -1861,7 +1880,7 @@ class FeatureEngineeringPipeline:
         else:
             micro_minute['date'] = micro_minute['timestamp'].dt.date
         
-        # CRITICAL FIX: Ensure symbol columns have same name before merge
+        # Ensure symbol columns have same name before merge
         symbol_col_macro = 'symbol' if 'symbol' in macro_daily.columns else 'Symbol'
         symbol_col_micro = 'symbol' if 'symbol' in micro_minute.columns else 'Symbol'
         
@@ -2220,15 +2239,14 @@ if __name__ == "__main__":
         macro_path="./data/macro/top_100_cryptos_with_correct_network.csv",
         micro_dir="./data/micro/",
         output_dir="./data/processed/",
-        
-        # CRITICAL FIXES:
+
         # 1. Symbol assignment from filename - handled in MicroDataProcessor.load_data()
         # 2. Minute aggregation to prevent intra-minute duplicates
         minute_aggregation_method='last',
         
         # 3. BTC-friendly spread filtering 
         adaptive_spread_threshold=True,
-        global_min_spread_bps=0.001,  # FIXED: Much lower for BTC (0.001 bps vs 0.01)
+        global_min_spread_bps=0.001,  # Much lower for BTC (0.001 bps vs 0.01)
         global_max_spread_bps=200.0,  # More reasonable for crypto
         
         # 4. Configurable duplicate threshold (was hardcoded)
@@ -2262,19 +2280,10 @@ if __name__ == "__main__":
     
     # Run preprocessing with comprehensive error handling and diagnostics
     try:
-        logger.info("Starting cryptocurrency data preprocessing pipeline v2.2 - CRITICAL FIXES")
-        logger.info("Key fixes applied:")
-        logger.info("  • Symbol assignment from filenames (fixes 1-symbol bug)")
-        logger.info("  • BTC-friendly spread thresholds (0.001 bps minimum)")  
-        logger.info("  • Compact order book features (drops raw 200+ columns)")
-        logger.info("  • Gap flagging instead of warnings")
-        logger.info("  • Per-symbol quality statistics")
         
         results = run_preprocessing_pipeline(config)
         
         print("\n" + "="*70)
-        print("CRYPTOCURRENCY PREPROCESSING RESULTS v2.2 - CRITICAL FIXES")
-        print("="*70)
         
         # Enhanced validation and reporting
         success_count = 0
@@ -2338,11 +2347,7 @@ if __name__ == "__main__":
         print(f"\nSuccessfully processed: {success_count}/{len(results)} datasets")
         print(f"Files saved to: {config.output_dir}")
         
-        # Critical fixes validation
-        print("\n" + "="*50)
-        print("CRITICAL FIXES VALIDATION")
-        print("="*50)
-        
+       
         issues_found = []
         
         if 'micro' in results and results['micro'] is not None:
@@ -2384,23 +2389,8 @@ if __name__ == "__main__":
                         print(f"  {reason}: {count:,}")
                 
                 if btc_rejected > 100000:  # Large BTC rejection
-                    issues_found.append(f"Large BTC rejection: {btc_rejected:,} observations")
-        
-        # Final assessment
-        if issues_found:
-            print(f"\n⚠️ Issues detected: {len(issues_found)}")
-            for issue in issues_found:
-                print(f"  - {issue}")
-        else:
-            print("\n🎯 All critical fixes validated successfully!")
-        
-        print("\nPipeline completed with fixes:")
-        print("  ✓ Symbol assignment from filenames")
-        print("  ✓ BTC-friendly spread filtering (0.001 bps minimum)")
-        print("  ✓ Memory-efficient compact features") 
-        print("  ✓ Gap flagging with per-row metadata")
-        print("  ✓ Per-symbol quality statistics")
-        print("  ✓ Vectorized RSI (no warnings)")
+                    issues_found.append(f"Large BTC rejection: {btc_rejected:,} observations")      
+       
         
     except Exception as e:
         logger.error(f"Preprocessing pipeline failed: {e}")

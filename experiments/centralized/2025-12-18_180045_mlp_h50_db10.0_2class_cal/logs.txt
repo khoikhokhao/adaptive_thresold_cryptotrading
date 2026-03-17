@@ -1,0 +1,149 @@
+2025-12-18 18:00:45,746 - __main__ - INFO - Logging to experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal\logs.txt
+2025-12-18 18:00:45,751 - __main__ - INFO - Random seed set to 42
+2025-12-18 18:00:45,751 - __main__ - INFO - Starting centralized training pipeline
+2025-12-18 18:00:45,751 - __main__ - INFO - TWO-CLASS MODE ENABLED: Training binary direction classifier only
+2025-12-18 18:00:45,751 - __main__ - INFO - ============================================================
+2025-12-18 18:00:45,751 - __main__ - INFO - LOADING AND PREPARING DATA
+2025-12-18 18:00:45,751 - __main__ - INFO - ============================================================
+2025-12-18 18:00:45,751 - __main__ - INFO - Loading data from data\processed\unified_dataset.parquet
+2025-12-18 18:00:51,110 - __main__ - INFO - Loaded dataset: 5,672,947 rows, 296 columns
+2025-12-18 18:00:51,258 - __main__ - INFO - Symbols: 11
+2025-12-18 18:00:51,280 - __main__ - INFO - Date range: 2023-10-07 11:21:00+00:00 to 2024-10-13 05:36:00+00:00
+2025-12-18 18:00:51,280 - __main__ - INFO - Creating classification targets: horizon=50min, deadband=10.0bps
+2025-12-18 18:00:57,613 - __main__ - INFO - Input memory usage: 13873.5 MB
+2025-12-18 18:00:58,276 - __main__ - INFO - Data sorted by symbol and timestamp
+2025-12-18 18:01:00,416 - __main__ - INFO - Valid samples: 5,672,397 / 5,672,947 (100.0%)
+2025-12-18 18:01:08,942 - __main__ - INFO - Classification target distribution:
+2025-12-18 18:01:08,942 - __main__ - INFO -   Down: 2,180,729 (38.4%)
+2025-12-18 18:01:08,942 - __main__ - INFO -   Up: 2,290,234 (40.4%)
+2025-12-18 18:01:08,942 - __main__ - INFO -   No-trade: 1,201,434 (21.2%)
+2025-12-18 18:01:08,969 - __main__ - INFO - Binary target distribution (trade vs no-trade):
+2025-12-18 18:01:08,969 - __main__ - INFO -   No-trade: 1,201,434 (21.2%)
+2025-12-18 18:01:08,969 - __main__ - INFO -   Trade: 4,470,963 (78.8%)
+2025-12-18 18:01:09,006 - __main__ - INFO - Direction distribution (trade samples only):
+2025-12-18 18:01:09,009 - __main__ - INFO -   Down: 2,180,729 (48.8%)
+2025-12-18 18:01:09,016 - __main__ - INFO -   Up: 2,290,234 (51.2%)
+2025-12-18 18:01:15,257 - __main__ - INFO - Output memory usage: 14002.6 MB
+2025-12-18 18:01:15,337 - __main__ - INFO - Class distribution (two_class mode):
+2025-12-18 18:01:15,337 - __main__ - INFO -   Down: 2,180,729 (48.8%)
+2025-12-18 18:01:15,337 - __main__ - INFO -   Up: 2,290,234 (51.2%)
+2025-12-18 18:01:15,337 - __main__ - INFO - Creating symbol-wise temporal splits: train=70.0%, val=15.0%, test=15.0%
+2025-12-18 18:01:57,089 - __main__ - INFO - Symbol-wise temporal split statistics:
+2025-12-18 18:02:03,952 - __main__ - INFO -   Train: 3,970,673 samples, 11 symbols, 9819.9 MB
+2025-12-18 18:02:03,956 - __main__ - INFO -     Date range: 2023-10-07 11:21:00+00:00 to 2024-06-26 21:15:00+00:00
+2025-12-18 18:02:05,426 - __main__ - INFO -   Validation: 850,854 samples, 11 symbols, 2151.6 MB
+2025-12-18 18:02:05,426 - __main__ - INFO -     Date range: 2024-06-24 06:01:00+00:00 to 2024-08-19 22:30:00+00:00
+2025-12-18 18:02:06,967 - __main__ - INFO -   Test: 850,870 samples, 11 symbols, 2151.6 MB
+2025-12-18 18:02:06,967 - __main__ - INFO -     Date range: 2024-08-16 05:23:00+00:00 to 2024-10-13 04:46:00+00:00
+2025-12-18 18:02:08,411 - __main__ - INFO - Filtering for trade-only samples (two-class mode)
+2025-12-18 18:02:14,081 - __main__ - INFO - Trade-only filtering results:
+2025-12-18 18:02:14,081 - __main__ - INFO -   Train: 3,970,673 -> 3,114,512 (78.4%)
+2025-12-18 18:02:14,081 - __main__ - INFO -   Val: 850,854 -> 683,181 (80.3%)
+2025-12-18 18:02:14,081 - __main__ - INFO -   Test: 850,870 -> 673,270 (79.1%)
+2025-12-18 18:02:14,940 - __main__ - INFO - ============================================================
+2025-12-18 18:02:14,940 - __main__ - INFO - FEATURE PROCESSING
+2025-12-18 18:02:14,940 - __main__ - INFO - ============================================================
+2025-12-18 18:02:14,940 - __main__ - INFO - Capping training data: 3,114,512 -> 1,500,000 rows
+2025-12-18 18:02:27,951 - __main__ - INFO - After capping: 1,499,993 rows using proportional random sampling
+2025-12-18 18:02:45,832 - __main__ - WARNING - Removing feature bids_levels_depth_1: all NaN or constant
+2025-12-18 18:02:46,013 - __main__ - WARNING - Removing feature bids_levels_depth_5: all NaN or constant
+2025-12-18 18:02:46,226 - __main__ - WARNING - Removing feature bids_levels_available: all NaN or constant
+2025-12-18 18:02:46,364 - __main__ - WARNING - Removing feature asks_levels_depth_1: all NaN or constant
+2025-12-18 18:02:46,536 - __main__ - WARNING - Removing feature asks_levels_depth_5: all NaN or constant
+2025-12-18 18:02:46,693 - __main__ - WARNING - Removing feature asks_levels_available: all NaN or constant
+2025-12-18 18:02:51,275 - __main__ - WARNING - Removing feature volume_ratio: all NaN or constant
+2025-12-18 18:02:56,510 - __main__ - INFO - Selecting top 64 features using mutual_info
+2025-12-18 18:05:32,886 - __main__ - INFO - mutual_info selection done in 156.4s on sample 100,000 rows, picked 64 features
+2025-12-18 18:05:32,886 - __main__ - INFO - Selected 64 features
+2025-12-18 18:05:32,886 - __main__ - INFO -   spread: 1 features
+2025-12-18 18:05:32,886 - __main__ - INFO -   other: 63 features
+2025-12-18 18:05:33,286 - __main__ - INFO - Feature matrix shapes:
+2025-12-18 18:05:33,286 - __main__ - INFO -   Train: (1499993, 64)
+2025-12-18 18:05:33,286 - __main__ - INFO -   Val: (683181, 64)
+2025-12-18 18:05:33,286 - __main__ - INFO -   Test: (673270, 64)
+2025-12-18 18:05:33,286 - __main__ - INFO - Fitting preprocessors on training data
+2025-12-18 18:05:33,286 - __main__ - INFO - Using imputer strategy: median
+2025-12-18 18:05:33,291 - __main__ - INFO - Large dataset detected - using memory-efficient median computation
+2025-12-18 18:05:35,143 - __main__ - INFO - Fitting RobustScaler
+2025-12-18 18:05:36,401 - __main__ - INFO - Scaler fitted: center range [1.528, 70.100]
+2025-12-18 18:05:36,401 - __main__ - INFO - Scale range: [2.543, 1445.806]
+2025-12-18 18:05:39,844 - __main__ - INFO - Saved preprocessors to experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal
+2025-12-18 18:05:39,846 - __main__ - INFO - Final feature shapes: Train (1499993, 64), Val (683181, 64), Test (673270, 64)
+2025-12-18 18:05:39,846 - __main__ - INFO - Target mode: direction (0/1)
+2025-12-18 18:05:40,289 - __main__ - INFO - ============================================================
+2025-12-18 18:05:40,289 - __main__ - INFO - MODEL TRAINING
+2025-12-18 18:05:40,289 - __main__ - INFO - ============================================================
+2025-12-18 18:05:40,289 - __main__ - INFO - Training MLP model with architecture: [256, 128, 64]
+2025-12-18 18:05:40,316 - __main__ - INFO - Using two-class mode: binary direction classifier (Up vs Down)
+2025-12-18 18:05:40,333 - __main__ - INFO - Direction distribution: Down=728341, Up=771652
+2025-12-18 18:05:40,333 - __main__ - INFO - Class balance: 0.514 Up ratio
+2025-12-18 18:05:40,556 - __main__ - INFO - Sample weights: mean=1.0000, std=0.0289
+2025-12-18 18:06:03,900 - __main__ - INFO - Training two-class MLP for 15 epochs...
+2025-12-18 18:06:53,565 - __main__ - INFO - Epoch 1/15: Train Loss=0.6929, Acc=0.5092 | Val Loss=0.6930, Acc=0.5074 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.506
+2025-12-18 18:08:06,535 - __main__ - INFO - Epoch 2/15: Train Loss=0.6930, Acc=0.5051 | Val Loss=0.6931, Acc=0.5064 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.507
+2025-12-18 18:09:30,409 - __main__ - INFO - Epoch 3/15: Train Loss=0.6930, Acc=0.5069 | Val Loss=0.6931, Acc=0.5064 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.508
+2025-12-18 18:10:45,702 - __main__ - INFO - Epoch 4/15: Train Loss=0.6929, Acc=0.5061 | Val Loss=0.6931, Acc=0.5087 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.508
+2025-12-18 18:11:11,882 - __main__ - INFO - Epoch 5/15: Train Loss=0.6928, Acc=0.5088 | Val Loss=0.6930, Acc=0.5090 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:11:38,586 - __main__ - INFO - Epoch 6/15: Train Loss=0.6928, Acc=0.5092 | Val Loss=0.6930, Acc=0.5086 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:12:05,417 - __main__ - INFO - Epoch 7/15: Train Loss=0.6928, Acc=0.5091 | Val Loss=0.6930, Acc=0.5085 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:12:32,460 - __main__ - INFO - Epoch 8/15: Train Loss=0.6928, Acc=0.5088 | Val Loss=0.6930, Acc=0.5085 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:12:59,229 - __main__ - INFO - Epoch 9/15: Train Loss=0.6928, Acc=0.5094 | Val Loss=0.6930, Acc=0.5086 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:13:27,172 - __main__ - INFO - Epoch 10/15: Train Loss=0.6928, Acc=0.5092 | Val Loss=0.6930, Acc=0.5106 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:13:54,886 - __main__ - INFO - Epoch 11/15: Train Loss=0.6928, Acc=0.5089 | Val Loss=0.6930, Acc=0.5107 || [2-class] cov=0.000, dirAcc=0.000, profit=-1.0bps, win=0.000, conf=0.509
+2025-12-18 18:13:54,886 - __main__ - INFO - Early stopping at epoch 11 (patience=10)
+2025-12-18 18:13:54,920 - __main__ - INFO - Loaded best model from early stopping
+2025-12-18 18:13:54,920 - __main__ - INFO - Two-class MLP finished: iters=11, final_loss=0.6928
+2025-12-18 18:13:55,188 - __main__ - INFO - Saved sklearn MLP loss curve: sk_mlp_loss_curve.csv, sk_mlp_loss_curve.png
+2025-12-18 18:13:55,201 - __main__ - INFO - Saved per-epoch metrics to epoch_metrics_two_class.csv
+2025-12-18 18:13:55,201 - __main__ - INFO - Calibrating two-class probabilities using isotonic method
+2025-12-18 18:13:55,201 - __main__ - INFO - Calibrating two-class probabilities using isotonic method
+2025-12-18 18:13:56,144 - __main__ - INFO - Two-class probability calibration completed
+2025-12-18 18:13:56,144 - __main__ - INFO - Using provided confidence tau: 0.600
+2025-12-18 18:13:57,721 - __main__ - INFO - Saved decision threshold config to experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/decision_threshold.json
+2025-12-18 18:13:57,722 - __main__ - INFO - Validation profit with tau=0.600: 1.39 bps (coverage: 0.7%)
+2025-12-18 18:13:59,368 - __main__ - INFO - Saved two-class model to experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal
+2025-12-18 18:13:59,368 - __main__ - INFO - ============================================================
+2025-12-18 18:13:59,368 - __main__ - INFO - EVALUATION AND SAVING
+2025-12-18 18:13:59,368 - __main__ - INFO - ============================================================
+2025-12-18 18:13:59,368 - __main__ - INFO - Evaluating model performance...
+2025-12-18 18:14:01,622 - __main__ - INFO - ============================================================
+2025-12-18 18:14:01,622 - __main__ - INFO - CENTRALIZED TRAINING FINAL RESULTS
+2025-12-18 18:14:01,622 - __main__ - INFO - ============================================================
+2025-12-18 18:14:01,623 - __main__ - INFO - TEST METRICS:
+2025-12-18 18:14:01,623 - __main__ - INFO -   Direction Accuracy: 0.5000
+2025-12-18 18:14:01,623 - __main__ - INFO -   Coverage: 0.0000 (4/673270 samples)
+2025-12-18 18:14:01,623 - __main__ - INFO -   Avg Confidence: 0.6129
+2025-12-18 18:14:01,623 - __main__ - INFO -   Avg Profit: 59.66 bps
+2025-12-18 18:14:01,623 - __main__ - INFO -   Median Profit: 55.86 bps
+2025-12-18 18:14:01,625 - __main__ - INFO -   Win Rate: 0.500
+2025-12-18 18:14:01,625 - __main__ - INFO -   Sharpe Ratio: 0.789
+2025-12-18 18:14:01,625 - __main__ - INFO -   Profit Range: [-15.7, 142.7] bps
+2025-12-18 18:14:01,625 - __main__ - INFO -   Profit Percentiles:
+2025-12-18 18:14:01,625 - __main__ - INFO -     P10: -15.74 bps
+2025-12-18 18:14:01,625 - __main__ - INFO -     P25: -15.74 bps
+2025-12-18 18:14:01,626 - __main__ - INFO -     P75: 131.25 bps
+2025-12-18 18:14:01,626 - __main__ - INFO -     P90: 138.10 bps
+2025-12-18 18:14:01,626 - __main__ - INFO - ============================================================
+2025-12-18 18:14:13,005 - __main__ - INFO - Two-class artifacts saved to experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal
+2025-12-18 18:14:13,007 - __main__ - INFO - Results saved successfully
+2025-12-18 18:14:13,007 - __main__ - INFO - Training pipeline completed successfully
+2025-12-18 18:14:14,388 - __main__ - INFO - Saved progress plots: loss_progress.png, acc_progress.png, val_coverage.png, val_dir_acc.png, val_profit.png, val_winrate.png, val_conf.png
+2025-12-18 18:14:17,866 - __main__ - INFO - ================================================================================
+2025-12-18 18:14:17,881 - __main__ - INFO - TRAINING COMPLETED SUCCESSFULLY
+2025-12-18 18:14:17,881 - __main__ - INFO - ================================================================================
+2025-12-18 18:14:17,881 - __main__ - INFO - Results saved to: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal
+2025-12-18 18:14:17,881 - __main__ - INFO - Key files:
+2025-12-18 18:14:17,881 - __main__ - INFO -   - Model: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/model.pth (or model.joblib)
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Two-class metrics: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/metrics_two_class.json
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Two-class model: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/two_class_model.joblib
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Decision threshold: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/decision_threshold.json
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Predictions: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/test_predictions_two_class.csv
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Config: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/config.yaml
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Logs: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/logs.txt
+2025-12-18 18:14:17,884 - __main__ - INFO -   - Preprocessors: experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/imputer.joblib, experiments\centralized\2025-12-18_180045_mlp_h50_db10.0_2class_cal/scaler.joblib
+2025-12-18 18:14:17,884 - __main__ - INFO - Final two-class test performance:
+2025-12-18 18:14:17,887 - __main__ - INFO -   Coverage: 0.0% (4 trades)
+2025-12-18 18:14:17,887 - __main__ - INFO -   Direction Accuracy: 0.5000
+2025-12-18 18:14:17,887 - __main__ - INFO -   Average Profit: 59.66 bps
+2025-12-18 18:14:17,889 - __main__ - INFO -   Win Rate: 50.0%
+2025-12-18 18:14:17,889 - __main__ - INFO - ================================================================================

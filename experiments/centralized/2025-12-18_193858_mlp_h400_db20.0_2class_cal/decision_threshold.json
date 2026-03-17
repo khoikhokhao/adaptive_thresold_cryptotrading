@@ -1,0 +1,11 @@
+{
+  "mode": "two_class",
+  "confidence_tau": 0.6,
+  "cost_bps": 1.0,
+  "val_profit_bps": 208.08840622471322,
+  "val_coverage": 0.0031730679609289834,
+  "val_n_executed": 2349,
+  "tau_grid_start": 0.5,
+  "tau_grid_end": 0.95,
+  "tau_grid_step": 0.01
+}
