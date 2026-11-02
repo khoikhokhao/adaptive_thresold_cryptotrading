@@ -1,0 +1,42 @@
+{
+  "normalization": {
+    "BTC_USDT": {
+      "median": 0.0005484452121891081,
+      "iqr": 0.0003821828795480542,
+      "n_fit": 19606
+    },
+    "ETH_USDT": {
+      "median": 0.0005848858854733407,
+      "iqr": 0.0004265461175236851,
+      "n_fit": 16805
+    }
+  },
+  "inputs_sha256": {
+    "data\\btc_eth_1pct\\training\\validation_predictions_complete.parquet": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+    "data\\join_full_btc_eth_20261102\\unified_dataset.parquet": "9b021ece5a7ae37b7c988c1d0a83e00329527127fe5ebda661d9986845238827",
+    "data\\btc_eth_1pct\\coverage_10pct\\selection.json": "a5c6ec1a2d074e2f342c0e9be547f4ffe569ce0cb3255ec077214aa71a10830e"
+  },
+  "beta_grid": [
+    -0.1,
+    -0.08,
+    -0.06,
+    -0.04,
+    -0.02,
+    0.0,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.1
+  ],
+  "tau_fixed": 0.6400000000000001,
+  "split_bounds": [
+    "2024-06-23 23:34:00+00:00",
+    "2024-07-21 03:24:00+00:00",
+    "2024-08-03 17:19:00.000000001+00:00",
+    "2024-08-17 07:14:00.000000001+00:00"
+  ],
+  "coverage_scope": "pooled",
+  "minimum_coverage": 0.1,
+  "minimum_selected_each_symbol": null
+}

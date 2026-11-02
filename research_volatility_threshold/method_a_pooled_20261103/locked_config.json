@@ -1,0 +1,295 @@
+{
+  "beta": 0.0,
+  "tau_fixed": 0.6400000000000001,
+  "normalization": {
+    "BTC_USDT": {
+      "median": 0.0005484452121891081,
+      "iqr": 0.0003821828795480542,
+      "n_fit": 19606
+    },
+    "ETH_USDT": {
+      "median": 0.0005848858854733407,
+      "iqr": 0.0004265461175236851,
+      "n_fit": 16805
+    }
+  },
+  "beta_grid": [
+    -0.1,
+    -0.08,
+    -0.06,
+    -0.04,
+    -0.02,
+    0.0,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.1
+  ],
+  "cost_bps": 1,
+  "constraints": {
+    "coverage_scope": "pooled",
+    "min_coverage": 0.1,
+    "min_selected_each_symbol": null
+  },
+  "split_bounds": [
+    "2024-06-23 23:34:00+00:00",
+    "2024-07-21 03:24:00+00:00",
+    "2024-08-03 17:19:00.000000001+00:00",
+    "2024-08-17 07:14:00.000000001+00:00"
+  ],
+  "matched_rules": [
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.8125,
+      "fit_coverage": 0.055086301872934264,
+      "lower_coverage": 0.055086301872934264,
+      "upper_coverage": 0.15738943392266933,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.2011436965531714,
+      "lower_coverage": 0.19841561303184513,
+      "upper_coverage": 0.2011436965531714,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.20492104296731545,
+      "lower_coverage": 0.20492104296731545,
+      "upper_coverage": 0.9987933476732596,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.20492104296731545,
+      "lower_coverage": 0.20492104296731545,
+      "upper_coverage": 0.9987933476732596,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "adaptive_score",
+      "target": 0.1,
+      "cutoff": 0.8125,
+      "fit_coverage": 0.055086301872934264,
+      "lower_coverage": 0.055086301872934264,
+      "upper_coverage": 0.15738943392266933,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "adaptive_score",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.2011436965531714,
+      "lower_coverage": 0.19841561303184513,
+      "upper_coverage": 0.2011436965531714,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "adaptive_score",
+      "target": 0.255,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.20492104296731545,
+      "lower_coverage": 0.20492104296731545,
+      "upper_coverage": 0.9987933476732596,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "adaptive_score",
+      "target": 0.4,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.20492104296731545,
+      "lower_coverage": 0.20492104296731545,
+      "upper_coverage": 0.9987933476732596,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.8411037176847458,
+      "fit_coverage": 0.10844663312279199,
+      "lower_coverage": 0.0,
+      "upper_coverage": 0.10844663312279199,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.7490842342376709,
+      "fit_coverage": 0.26560325446954286,
+      "lower_coverage": 0.10844663312279199,
+      "upper_coverage": 0.26560325446954286,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.7490842342376709,
+      "fit_coverage": 0.26560325446954286,
+      "lower_coverage": 0.10844663312279199,
+      "upper_coverage": 0.26560325446954286,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.35221068408093353,
+      "lower_coverage": 0.35221068408093353,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "adaptive_score",
+      "target": 0.1,
+      "cutoff": 0.8411037176847458,
+      "fit_coverage": 0.10844663312279199,
+      "lower_coverage": 0.0,
+      "upper_coverage": 0.10844663312279199,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "adaptive_score",
+      "target": 0.2,
+      "cutoff": 0.7490842342376709,
+      "fit_coverage": 0.26560325446954286,
+      "lower_coverage": 0.10844663312279199,
+      "upper_coverage": 0.26560325446954286,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "adaptive_score",
+      "target": 0.255,
+      "cutoff": 0.7490842342376709,
+      "fit_coverage": 0.26560325446954286,
+      "lower_coverage": 0.10844663312279199,
+      "upper_coverage": 0.26560325446954286,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "adaptive_score",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.35221068408093353,
+      "lower_coverage": 0.35221068408093353,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "adaptive_score",
+      "target": 0.1,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "adaptive_score",
+      "target": 0.2,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "adaptive_score",
+      "target": 0.255,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "adaptive_score",
+      "target": 0.4,
+      "cutoff": 0.572181224822998,
+      "fit_coverage": 0.06337448559670782,
+      "lower_coverage": 0.06337448559670782,
+      "upper_coverage": 0.9976337448559671,
+      "attainable": false
+    }
+  ],
+  "inputs_sha256": {
+    "data\\btc_eth_1pct\\training\\validation_predictions_complete.parquet": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+    "data\\join_full_btc_eth_20261102\\unified_dataset.parquet": "9b021ece5a7ae37b7c988c1d0a83e00329527127fe5ebda661d9986845238827",
+    "data\\btc_eth_1pct\\coverage_10pct\\selection.json": "a5c6ec1a2d074e2f342c0e9be547f4ffe569ce0cb3255ec077214aa71a10830e"
+  },
+  "clipping": [
+    0.5,
+    0.95
+  ],
+  "coverage_tolerance": 0.01,
+  "selection_objective": "mean net bps per selected sample",
+  "limitations": "Oracle-filtered; original calibrator/model/fixed threshold already used validation; retrospective only."
+}

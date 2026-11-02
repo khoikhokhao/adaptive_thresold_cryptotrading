@@ -1,0 +1,87 @@
+{
+  "acf": [
+    [
+      60,
+      1
+    ],
+    [
+      60,
+      5
+    ],
+    [
+      360,
+      1
+    ],
+    [
+      360,
+      5
+    ],
+    [
+      1440,
+      1
+    ],
+    [
+      1440,
+      5
+    ],
+    [
+      360,
+      15
+    ]
+  ],
+  "variance_ratio": [
+    [
+      360,
+      5
+    ],
+    [
+      360,
+      15
+    ],
+    [
+      1440,
+      5
+    ]
+  ],
+  "er_windows": [
+    60,
+    360,
+    1440
+  ],
+  "features": [
+    "acf_1_60",
+    "acf_5_60",
+    "acf_1_360",
+    "acf_5_360",
+    "acf_1_1440",
+    "acf_5_1440",
+    "acf_15_360",
+    "vr_5_360",
+    "vr_15_360",
+    "vr_5_1440",
+    "er_60",
+    "er_360",
+    "er_1440",
+    "abs_acf_1_60",
+    "abs_acf_5_60",
+    "abs_acf_1_360",
+    "abs_acf_5_360",
+    "abs_acf_1_1440",
+    "abs_acf_5_1440",
+    "abs_acf_15_360"
+  ],
+  "near_zero_acf_band": [
+    -0.05,
+    0.05
+  ],
+  "inputs_sha256": {
+    "data\\join_full_btc_eth_20261102\\unified_dataset.parquet": "9b021ece5a7ae37b7c988c1d0a83e00329527127fe5ebda661d9986845238827",
+    "research_regime_analysis\\validation_20261103\\validation_regime_rows.parquet": "ff1986397323406d481fe5605ba6556f0e2a293d7e9621e55aa9e6b06c7ecbfa",
+    "data\\btc_eth_1pct\\training\\validation_predictions_complete.parquet": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+    "data\\btc_eth_1pct\\coverage_10pct\\selection.json": "a5c6ec1a2d074e2f342c0e9be547f4ffe569ce0cb3255ec077214aa71a10830e",
+    "centralized_training_two_classes.py": "cdd6bf69bead0aace15b438217f1a7f08b8704aec08e3f77ce5fa01947de1908",
+    "data_preprocessing.py": "e2f984e74ccd3e3c4659605a649a0baaf03e94327553f24460611d5d810ea49d"
+  },
+  "threshold_fixed": 0.6400000000000001,
+  "no_test_predictions": true
+}

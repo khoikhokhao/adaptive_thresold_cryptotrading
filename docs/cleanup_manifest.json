@@ -1,0 +1,29 @@
+{
+  "upstream_commit": "21904283bb7631e1d9e9ec0d254ce318ae0861ab",
+  "upstream_source_status": "preserved; restored missing original source files; CRLF/LF differences excluded",
+  "cleanup_policy": "Archive unused files outside the project; no permanent dataset deletion",
+  "local_only": [
+    "raw/processed datasets",
+    "cached feature matrices",
+    "models and checkpoints",
+    "virtual environment",
+    "prediction parquet files",
+    "resource logs"
+  ],
+  "retained_methods": [
+    "Volatility-B",
+    "Regime-B",
+    "ACF-A",
+    "Shift-A"
+  ],
+  "path_only_script_changes": [
+    "research_autocorrelation_threshold\\run_acf_a.py",
+    "research_distribution_shift_threshold\\run_shift_a.py",
+    "research_regime_threshold\\run_regime_a.py",
+    "research_regime_threshold\\run_regime_b.py",
+    "research_autocorrelation_analysis\\write_report.py",
+    "research_distribution_shift\\write_report.py",
+    "research_regime_analysis\\write_report.py"
+  ],
+  "experiments_run_during_cleanup": false
+}

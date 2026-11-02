@@ -1,0 +1,21 @@
+{
+  "cache_recomputed_max_abs_difference": 0.0,
+  "audits": [
+    {
+      "symbol": "BTC_USDT",
+      "n_audit": 2048,
+      "orthogonality_max_error": 2.4424906541753444e-15,
+      "spectral_direct_max_abs_difference": 2.34783980451736e-16,
+      "rank_spearman": 1.0
+    },
+    {
+      "symbol": "ETH_USDT",
+      "n_audit": 2048,
+      "orthogonality_max_error": 1.887379141862766e-15,
+      "spectral_direct_max_abs_difference": 2.3512956989421574e-16,
+      "rank_spearman": 1.0
+    }
+  ],
+  "status": "PASS",
+  "caveat": "No alternative eigensolver/float32-reference refits or economic validity proven"
+}

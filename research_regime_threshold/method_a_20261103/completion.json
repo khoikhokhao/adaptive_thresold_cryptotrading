@@ -1,0 +1,19 @@
+{
+  "beta": -0.04,
+  "tau_star": 0.64,
+  "elapsed_sec": 10.855993599980138,
+  "memory": {
+    "ws_gib": 0.3231163024902344,
+    "peak_ws_gib": 0.3641242980957031,
+    "private_commit_gib": 0.9097099304199219,
+    "available_gib": 10.397468566894531,
+    "commit_headroom_gib": 9.480823516845703
+  },
+  "locked_config_sha256": "10640bc77b075c35235a0e2961b4de994edd4c9c99d2a722ecbd8e6b347ddc96",
+  "test_predictions_sha256": "98fdd46674f90b999eee090f611c2f506f173bf572516d5ea7bc9ef1ed528a68",
+  "baseline_equivalence": "PASS",
+  "source_and_prior_artifacts_unchanged": true,
+  "validation_fallback": 0,
+  "test_fallback": 0,
+  "label": "Retrospective/exploratory; oracle-filtered; not portfolio PnL"
+}

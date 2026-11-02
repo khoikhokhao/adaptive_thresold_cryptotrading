@@ -1,0 +1,18 @@
+{
+  "beta": null,
+  "normalization": {
+    "BTC_USDT": {
+      "median": 0.048576468903822355,
+      "iqr": 0.06369609856711118,
+      "n": 19606
+    },
+    "ETH_USDT": {
+      "median": 0.06336539001817838,
+      "iqr": 0.08466525527908009,
+      "n": 16805
+    }
+  },
+  "status": "infeasible_on_past_prefix",
+  "train_n": 36411,
+  "eval_n": 19061
+}

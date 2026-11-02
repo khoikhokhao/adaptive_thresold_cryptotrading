@@ -1,0 +1,2247 @@
+{
+  "models": {
+    "regime_b": [
+      -0.02,
+      0.0,
+      0.02
+    ],
+    "b_no_interaction": [
+      -0.02,
+      0.0,
+      0.02
+    ],
+    "b_direction_only": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "b_alignment_only": [
+      0.0,
+      -0.04,
+      0.0
+    ]
+  },
+  "coefficients_order": [
+    "beta",
+    "gamma",
+    "eta"
+  ],
+  "grid_step": 0.02,
+  "each_coefficient_bound": 0.1,
+  "total_abs_coefficient_budget": 0.16,
+  "lambda_bps": 100.0,
+  "grid_counts": {
+    "regime_b": {
+      "candidates": 719,
+      "feasible": 629
+    },
+    "b_no_interaction": {
+      "candidates": 109,
+      "feasible": 90
+    },
+    "b_direction_only": {
+      "candidates": 11,
+      "feasible": 6
+    },
+    "b_alignment_only": {
+      "candidates": 11,
+      "feasible": 11
+    }
+  },
+  "objective": "mean net bps/selected sample - 100*(beta^2+gamma^2+eta^2)",
+  "minimum_validation_pooled_coverage": 0.1,
+  "validation_n": 80260,
+  "cost_bps": 1.0,
+  "tau_fixed": 0.6400000000000001,
+  "tau_star": 0.64,
+  "regime_a_beta": -0.04,
+  "feature": "z=tanh(trend_360/2), d=2*pred_direction-1",
+  "threshold": "clip(tau_fixed+beta*z+gamma*d*z+eta*d,0.5,0.95)",
+  "fallback": "fixed 0.64 if trend unavailable",
+  "coverage_rules": [
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.08570894592574134,
+      "lower_coverage": 0.08570894592574134,
+      "upper_coverage": 0.25495888362820834,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.25495888362820834,
+      "lower_coverage": 0.08570894592574134,
+      "upper_coverage": 0.25495888362820834,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.25495888362820834,
+      "lower_coverage": 0.25495888362820834,
+      "upper_coverage": 0.25726389234986297,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5396825671195984,
+      "fit_coverage": 0.3465611761774234,
+      "lower_coverage": 0.3465611761774234,
+      "upper_coverage": 0.9730750062297533,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.6692620894887973,
+      "fit_coverage": 0.1,
+      "lower_coverage": 0.1,
+      "upper_coverage": 0.1,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.6384052886732159,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.6178295393427244,
+      "fit_coverage": 0.25499626214801896,
+      "lower_coverage": 0.25499626214801896,
+      "upper_coverage": 0.25500872165462246,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.5526213934442311,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.640857277994374,
+      "fit_coverage": 0.1,
+      "lower_coverage": 0.1,
+      "upper_coverage": 0.1,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.6242236556946134,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.6143404419577111,
+      "fit_coverage": 0.25499626214801896,
+      "lower_coverage": 0.25499626214801896,
+      "upper_coverage": 0.25500872165462246,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.5605143276412248,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.640857277994374,
+      "fit_coverage": 0.1,
+      "lower_coverage": 0.1,
+      "upper_coverage": 0.1,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.6242236556946134,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.6143404419577111,
+      "fit_coverage": 0.25499626214801896,
+      "lower_coverage": 0.25499626214801896,
+      "upper_coverage": 0.25500872165462246,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.5605143276412248,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.08570894592574134,
+      "lower_coverage": 0.08570894592574134,
+      "upper_coverage": 0.25495888362820834,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.25495888362820834,
+      "lower_coverage": 0.08570894592574134,
+      "upper_coverage": 0.25495888362820834,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.25495888362820834,
+      "lower_coverage": 0.25495888362820834,
+      "upper_coverage": 0.25726389234986297,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.5396825671195984,
+      "fit_coverage": 0.3465611761774234,
+      "lower_coverage": 0.3465611761774234,
+      "upper_coverage": 0.9730750062297533,
+      "attainable": false
+    },
+    {
+      "scope": "pooled",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.6692620894887973,
+      "fit_coverage": 0.1,
+      "lower_coverage": 0.1,
+      "upper_coverage": 0.1,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.6385939925744031,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.6183329673153204,
+      "fit_coverage": 0.25499626214801896,
+      "lower_coverage": 0.25499626214801896,
+      "upper_coverage": 0.25500872165462246,
+      "attainable": true
+    },
+    {
+      "scope": "pooled",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.5542298598178467,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.7061605453491211,
+      "fit_coverage": 0.09293939167847995,
+      "lower_coverage": 0.09293939167847995,
+      "upper_coverage": 0.1120644631798851,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.24546743266432888,
+      "lower_coverage": 0.1120644631798851,
+      "upper_coverage": 0.24546743266432888,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.6105263233184814,
+      "fit_coverage": 0.25690765748961675,
+      "lower_coverage": 0.250018652540476,
+      "upper_coverage": 0.25690765748961675,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5396825671195984,
+      "fit_coverage": 0.35156308289188987,
+      "lower_coverage": 0.35156308289188987,
+      "upper_coverage": 0.9891815265239126,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.678877280292377,
+      "fit_coverage": 0.1000024870053968,
+      "lower_coverage": 0.09997761695142879,
+      "upper_coverage": 0.1000024870053968,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.6391918753082041,
+      "fit_coverage": 0.2000049740107936,
+      "lower_coverage": 0.19998010395682558,
+      "upper_coverage": 0.2000049740107936,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.6032320431739403,
+      "fit_coverage": 0.25499266333407944,
+      "lower_coverage": 0.25499266333407944,
+      "upper_coverage": 0.25501753338804745,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.5526854726609108,
+      "fit_coverage": 0.4000099480215872,
+      "lower_coverage": 0.3999850779676192,
+      "upper_coverage": 0.4000099480215872,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.6578468253185792,
+      "fit_coverage": 0.1000024870053968,
+      "lower_coverage": 0.09997761695142879,
+      "upper_coverage": 0.1000024870053968,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.6253502157749203,
+      "fit_coverage": 0.2000049740107936,
+      "lower_coverage": 0.19998010395682558,
+      "upper_coverage": 0.2000049740107936,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.6130371893707902,
+      "fit_coverage": 0.25499266333407944,
+      "lower_coverage": 0.25499266333407944,
+      "upper_coverage": 0.25501753338804745,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.5605140908095058,
+      "fit_coverage": 0.4000099480215872,
+      "lower_coverage": 0.3999850779676192,
+      "upper_coverage": 0.4000099480215872,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.6578468253185792,
+      "fit_coverage": 0.1000024870053968,
+      "lower_coverage": 0.09997761695142879,
+      "upper_coverage": 0.1000024870053968,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.6253502157749203,
+      "fit_coverage": 0.2000049740107936,
+      "lower_coverage": 0.19998010395682558,
+      "upper_coverage": 0.2000049740107936,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.6130371893707902,
+      "fit_coverage": 0.25499266333407944,
+      "lower_coverage": 0.25499266333407944,
+      "upper_coverage": 0.25501753338804745,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.5605140908095058,
+      "fit_coverage": 0.4000099480215872,
+      "lower_coverage": 0.3999850779676192,
+      "upper_coverage": 0.4000099480215872,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.7061605453491211,
+      "fit_coverage": 0.09293939167847995,
+      "lower_coverage": 0.09293939167847995,
+      "upper_coverage": 0.1120644631798851,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.24546743266432888,
+      "lower_coverage": 0.1120644631798851,
+      "upper_coverage": 0.24546743266432888,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.6105263233184814,
+      "fit_coverage": 0.25690765748961675,
+      "lower_coverage": 0.250018652540476,
+      "upper_coverage": 0.25690765748961675,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.5396825671195984,
+      "fit_coverage": 0.35156308289188987,
+      "lower_coverage": 0.35156308289188987,
+      "upper_coverage": 0.9891815265239126,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.678877280292377,
+      "fit_coverage": 0.1000024870053968,
+      "lower_coverage": 0.09997761695142879,
+      "upper_coverage": 0.1000024870053968,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.6394378227719224,
+      "fit_coverage": 0.2000049740107936,
+      "lower_coverage": 0.19998010395682558,
+      "upper_coverage": 0.2000049740107936,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.6115928778554982,
+      "fit_coverage": 0.25499266333407944,
+      "lower_coverage": 0.25499266333407944,
+      "upper_coverage": 0.25501753338804745,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.5546735083821658,
+      "fit_coverage": 0.4000099480215872,
+      "lower_coverage": 0.3999850779676192,
+      "upper_coverage": 0.4000099480215872,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.05924945694239844,
+      "lower_coverage": 0.05924945694239844,
+      "upper_coverage": 0.26448777808294427,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.26448777808294427,
+      "lower_coverage": 0.05924945694239844,
+      "upper_coverage": 0.26448777808294427,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.26448777808294427,
+      "lower_coverage": 0.05924945694239844,
+      "upper_coverage": 0.26448777808294427,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5396825671195984,
+      "fit_coverage": 0.34153953709020995,
+      "lower_coverage": 0.34153953709020995,
+      "upper_coverage": 0.9569049461936031,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.6641412739814399,
+      "fit_coverage": 0.09999750318344111,
+      "lower_coverage": 0.09999750318344111,
+      "upper_coverage": 0.10002247134902999,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.6376861682122158,
+      "fit_coverage": 0.19999500636688222,
+      "lower_coverage": 0.19999500636688222,
+      "upper_coverage": 0.2000199745324711,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.621308118229536,
+      "fit_coverage": 0.25499987515917205,
+      "lower_coverage": 0.25499987515917205,
+      "upper_coverage": 0.25502484332476094,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.5525306215551375,
+      "fit_coverage": 0.39999001273376444,
+      "lower_coverage": 0.39999001273376444,
+      "upper_coverage": 0.40001498089935333,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.6375471258063645,
+      "fit_coverage": 0.09999750318344111,
+      "lower_coverage": 0.09999750318344111,
+      "upper_coverage": 0.10002247134902999,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.6232247793432235,
+      "fit_coverage": 0.19999500636688222,
+      "lower_coverage": 0.19999500636688222,
+      "upper_coverage": 0.2000199745324711,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.6150153513005028,
+      "fit_coverage": 0.25499987515917205,
+      "lower_coverage": 0.25499987515917205,
+      "upper_coverage": 0.25502484332476094,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.5605148943957395,
+      "fit_coverage": 0.39999001273376444,
+      "lower_coverage": 0.39999001273376444,
+      "upper_coverage": 0.40001498089935333,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.6375471258063645,
+      "fit_coverage": 0.09999750318344111,
+      "lower_coverage": 0.09999750318344111,
+      "upper_coverage": 0.10002247134902999,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.6232247793432235,
+      "fit_coverage": 0.19999500636688222,
+      "lower_coverage": 0.19999500636688222,
+      "upper_coverage": 0.2000199745324711,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.6150153513005028,
+      "fit_coverage": 0.25499987515917205,
+      "lower_coverage": 0.25499987515917205,
+      "upper_coverage": 0.25502484332476094,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.5605148943957395,
+      "fit_coverage": 0.39999001273376444,
+      "lower_coverage": 0.39999001273376444,
+      "upper_coverage": 0.40001498089935333,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.05924945694239844,
+      "lower_coverage": 0.05924945694239844,
+      "upper_coverage": 0.26448777808294427,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.26448777808294427,
+      "lower_coverage": 0.05924945694239844,
+      "upper_coverage": 0.26448777808294427,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.26448777808294427,
+      "lower_coverage": 0.05924945694239844,
+      "upper_coverage": 0.26448777808294427,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.5396825671195984,
+      "fit_coverage": 0.34153953709020995,
+      "lower_coverage": 0.34153953709020995,
+      "upper_coverage": 0.9569049461936031,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.6641412739814399,
+      "fit_coverage": 0.09999750318344111,
+      "lower_coverage": 0.09999750318344111,
+      "upper_coverage": 0.10002247134902999,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.6376861682122158,
+      "fit_coverage": 0.19999500636688222,
+      "lower_coverage": 0.19999500636688222,
+      "upper_coverage": 0.2000199745324711,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.6212960551843478,
+      "fit_coverage": 0.25499987515917205,
+      "lower_coverage": 0.25499987515917205,
+      "upper_coverage": 0.25502484332476094,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.5537159362121303,
+      "fit_coverage": 0.39999001273376444,
+      "lower_coverage": 0.39999001273376444,
+      "upper_coverage": 0.40001498089935333,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.637837827205658,
+      "fit_coverage": 0.09796689296341833,
+      "lower_coverage": 0.09796689296341833,
+      "upper_coverage": 0.10304520589440673,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.10397177527128883,
+      "lower_coverage": 0.10397177527128883,
+      "upper_coverage": 0.9999643627162738,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.10397177527128883,
+      "lower_coverage": 0.10397177527128883,
+      "upper_coverage": 0.9999643627162738,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.10397177527128883,
+      "lower_coverage": 0.10397177527128883,
+      "upper_coverage": 0.9999643627162738,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.6084184464063959,
+      "fit_coverage": 0.0999982181358137,
+      "lower_coverage": 0.0999982181358137,
+      "upper_coverage": 0.1000160367776768,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.5526649978622605,
+      "fit_coverage": 0.1999964362716274,
+      "lower_coverage": 0.1999964362716274,
+      "upper_coverage": 0.20001425491349048,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.5491615576112504,
+      "fit_coverage": 0.25500258370307016,
+      "lower_coverage": 0.25498476506120704,
+      "upper_coverage": 0.25500258370307016,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.5406488389305726,
+      "fit_coverage": 0.3999928725432548,
+      "lower_coverage": 0.3999928725432548,
+      "upper_coverage": 0.4000106911851179,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.6289519415280079,
+      "fit_coverage": 0.0999982181358137,
+      "lower_coverage": 0.0999982181358137,
+      "upper_coverage": 0.1000160367776768,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.5631469990245903,
+      "fit_coverage": 0.1999964362716274,
+      "lower_coverage": 0.1999964362716274,
+      "upper_coverage": 0.20001425491349048,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.5613952788990852,
+      "fit_coverage": 0.25500258370307016,
+      "lower_coverage": 0.25498476506120704,
+      "upper_coverage": 0.25500258370307016,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.5571389195587464,
+      "fit_coverage": 0.3999928725432548,
+      "lower_coverage": 0.3999928725432548,
+      "upper_coverage": 0.4000106911851179,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.6289519415280079,
+      "fit_coverage": 0.0999982181358137,
+      "lower_coverage": 0.0999982181358137,
+      "upper_coverage": 0.1000160367776768,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.5631469990245903,
+      "fit_coverage": 0.1999964362716274,
+      "lower_coverage": 0.1999964362716274,
+      "upper_coverage": 0.20001425491349048,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.5613952788990852,
+      "fit_coverage": 0.25500258370307016,
+      "lower_coverage": 0.25498476506120704,
+      "upper_coverage": 0.25500258370307016,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.5571389195587464,
+      "fit_coverage": 0.3999928725432548,
+      "lower_coverage": 0.3999928725432548,
+      "upper_coverage": 0.4000106911851179,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.637837827205658,
+      "fit_coverage": 0.09796689296341833,
+      "lower_coverage": 0.09796689296341833,
+      "upper_coverage": 0.10304520589440673,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.10397177527128883,
+      "lower_coverage": 0.10397177527128883,
+      "upper_coverage": 0.9999643627162738,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.10397177527128883,
+      "lower_coverage": 0.10397177527128883,
+      "upper_coverage": 0.9999643627162738,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.10397177527128883,
+      "lower_coverage": 0.10397177527128883,
+      "upper_coverage": 0.9999643627162738,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.6179424860235844,
+      "fit_coverage": 0.0999982181358137,
+      "lower_coverage": 0.0999982181358137,
+      "upper_coverage": 0.1000160367776768,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.5545374956532113,
+      "fit_coverage": 0.1999964362716274,
+      "lower_coverage": 0.1999964362716274,
+      "upper_coverage": 0.20001425491349048,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.550859174270159,
+      "fit_coverage": 0.25500258370307016,
+      "lower_coverage": 0.25498476506120704,
+      "upper_coverage": 0.25500258370307016,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.5421802422948633,
+      "fit_coverage": 0.3999928725432548,
+      "lower_coverage": 0.3999928725432548,
+      "upper_coverage": 0.4000106911851179,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.06487426985376361,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.06487426985376361,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.06487426985376361,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.6276150627615062,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.6703676359405173,
+      "fit_coverage": 0.1000041426736816,
+      "lower_coverage": 0.09996271593686565,
+      "upper_coverage": 0.1000041426736816,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.6617829756501103,
+      "fit_coverage": 0.2000082853473632,
+      "lower_coverage": 0.19996685861054725,
+      "upper_coverage": 0.2000082853473632,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.6572809678046031,
+      "fit_coverage": 0.2549815651021169,
+      "lower_coverage": 0.2549815651021169,
+      "upper_coverage": 0.25502299183893284,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.6426041600181958,
+      "fit_coverage": 0.4000165706947264,
+      "lower_coverage": 0.39997514395791045,
+      "upper_coverage": 0.4000165706947264,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.6410657543777845,
+      "fit_coverage": 0.1000041426736816,
+      "lower_coverage": 0.09996271593686565,
+      "upper_coverage": 0.1000041426736816,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.6360734153607116,
+      "fit_coverage": 0.2000082853473632,
+      "lower_coverage": 0.19996685861054725,
+      "upper_coverage": 0.2000082853473632,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.6333446703859168,
+      "fit_coverage": 0.2549815651021169,
+      "lower_coverage": 0.2549815651021169,
+      "upper_coverage": 0.25502299183893284,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.6256542550064276,
+      "fit_coverage": 0.4000165706947264,
+      "lower_coverage": 0.39997514395791045,
+      "upper_coverage": 0.4000165706947264,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.6410657543777845,
+      "fit_coverage": 0.1000041426736816,
+      "lower_coverage": 0.09996271593686565,
+      "upper_coverage": 0.1000041426736816,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.6360734153607116,
+      "fit_coverage": 0.2000082853473632,
+      "lower_coverage": 0.19996685861054725,
+      "upper_coverage": 0.2000082853473632,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.6333446703859168,
+      "fit_coverage": 0.2549815651021169,
+      "lower_coverage": 0.2549815651021169,
+      "upper_coverage": 0.25502299183893284,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.6256542550064276,
+      "fit_coverage": 0.4000165706947264,
+      "lower_coverage": 0.39997514395791045,
+      "upper_coverage": 0.4000165706947264,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.06487426985376361,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.06487426985376361,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.06487426985376361,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.6276150627615062,
+      "lower_coverage": 0.06487426985376361,
+      "upper_coverage": 0.6276150627615062,
+      "attainable": false
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.6703676359405173,
+      "fit_coverage": 0.1000041426736816,
+      "lower_coverage": 0.09996271593686565,
+      "upper_coverage": 0.1000041426736816,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.6617829756501103,
+      "fit_coverage": 0.2000082853473632,
+      "lower_coverage": 0.19996685861054725,
+      "upper_coverage": 0.2000082853473632,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.6572809678046031,
+      "fit_coverage": 0.2549815651021169,
+      "lower_coverage": 0.2549815651021169,
+      "upper_coverage": 0.25502299183893284,
+      "attainable": true
+    },
+    {
+      "scope": "predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.6426041600181958,
+      "fit_coverage": 0.4000165706947264,
+      "lower_coverage": 0.39997514395791045,
+      "upper_coverage": 0.4000165706947264,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.7490842342376709,
+      "fit_coverage": 0.10654174334950645,
+      "lower_coverage": 0.05012548101054041,
+      "upper_coverage": 0.10654174334950645,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.14211142713735989,
+      "lower_coverage": 0.14211142713735989,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.14211142713735989,
+      "lower_coverage": 0.14211142713735989,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.14211142713735989,
+      "lower_coverage": 0.14211142713735989,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.7418505920112228,
+      "fit_coverage": 0.10001673080140538,
+      "lower_coverage": 0.09998326919859461,
+      "upper_coverage": 0.10001673080140538,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.5550646160400261,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.5510519687396591,
+      "fit_coverage": 0.2550108750209135,
+      "lower_coverage": 0.2549774134181027,
+      "upper_coverage": 0.2550108750209135,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.5424412110901419,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.7639713346283872,
+      "fit_coverage": 0.10001673080140538,
+      "lower_coverage": 0.09998326919859461,
+      "upper_coverage": 0.10001673080140538,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.5643468081134732,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.5623404844632897,
+      "fit_coverage": 0.2550108750209135,
+      "lower_coverage": 0.2549774134181027,
+      "upper_coverage": 0.2550108750209135,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.558035105638531,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.7639713346283872,
+      "fit_coverage": 0.10001673080140538,
+      "lower_coverage": 0.09998326919859461,
+      "upper_coverage": 0.10001673080140538,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.5643468081134732,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.5623404844632897,
+      "fit_coverage": 0.2550108750209135,
+      "lower_coverage": 0.2549774134181027,
+      "upper_coverage": 0.2550108750209135,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.558035105638531,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.7490842342376709,
+      "fit_coverage": 0.10654174334950645,
+      "lower_coverage": 0.05012548101054041,
+      "upper_coverage": 0.10654174334950645,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.14211142713735989,
+      "lower_coverage": 0.14211142713735989,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.14211142713735989,
+      "lower_coverage": 0.14211142713735989,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.14211142713735989,
+      "lower_coverage": 0.14211142713735989,
+      "upper_coverage": 1.0,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.7286887320417548,
+      "fit_coverage": 0.10001673080140538,
+      "lower_coverage": 0.09998326919859461,
+      "upper_coverage": 0.10001673080140538,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.5567891314223682,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.5531776948587687,
+      "fit_coverage": 0.2550108750209135,
+      "lower_coverage": 0.2549774134181027,
+      "upper_coverage": 0.2550108750209135,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.5434618604728746,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.07448663308795041,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.07448663308795041,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.07448663308795041,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.5940526927547463,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.6697574684699873,
+      "fit_coverage": 0.09996125532739249,
+      "lower_coverage": 0.09996125532739249,
+      "upper_coverage": 0.10005811700891128,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.6611449472148417,
+      "fit_coverage": 0.20001937233630376,
+      "lower_coverage": 0.19992251065478497,
+      "upper_coverage": 0.20001937233630376,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.655943348747699,
+      "fit_coverage": 0.25503680743897716,
+      "lower_coverage": 0.2549399457574584,
+      "upper_coverage": 0.25503680743897716,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.6401915047357939,
+      "fit_coverage": 0.4000387446726075,
+      "lower_coverage": 0.39994188299108874,
+      "upper_coverage": 0.4000387446726075,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.6413341940699684,
+      "fit_coverage": 0.09996125532739249,
+      "lower_coverage": 0.09996125532739249,
+      "upper_coverage": 0.10005811700891128,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.6356441088843041,
+      "fit_coverage": 0.20001937233630376,
+      "lower_coverage": 0.19992251065478497,
+      "upper_coverage": 0.20001937233630376,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.6323699596520153,
+      "fit_coverage": 0.25503680743897716,
+      "lower_coverage": 0.2549399457574584,
+      "upper_coverage": 0.25503680743897716,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.6244479273652266,
+      "fit_coverage": 0.4000387446726075,
+      "lower_coverage": 0.39994188299108874,
+      "upper_coverage": 0.4000387446726075,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.6413341940699684,
+      "fit_coverage": 0.09996125532739249,
+      "lower_coverage": 0.09996125532739249,
+      "upper_coverage": 0.10005811700891128,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.6356441088843041,
+      "fit_coverage": 0.20001937233630376,
+      "lower_coverage": 0.19992251065478497,
+      "upper_coverage": 0.20001937233630376,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.6323699596520153,
+      "fit_coverage": 0.25503680743897716,
+      "lower_coverage": 0.2549399457574584,
+      "upper_coverage": 0.25503680743897716,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.6244479273652266,
+      "fit_coverage": 0.4000387446726075,
+      "lower_coverage": 0.39994188299108874,
+      "upper_coverage": 0.4000387446726075,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.07448663308795041,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.07448663308795041,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.07448663308795041,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.5940526927547463,
+      "lower_coverage": 0.07448663308795041,
+      "upper_coverage": 0.5940526927547463,
+      "attainable": false
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.6697574684699873,
+      "fit_coverage": 0.09996125532739249,
+      "lower_coverage": 0.09996125532739249,
+      "upper_coverage": 0.10005811700891128,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.6611449472148417,
+      "fit_coverage": 0.20001937233630376,
+      "lower_coverage": 0.19992251065478497,
+      "upper_coverage": 0.20001937233630376,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.655943348747699,
+      "fit_coverage": 0.25503680743897716,
+      "lower_coverage": 0.2549399457574584,
+      "upper_coverage": 0.25503680743897716,
+      "attainable": true
+    },
+    {
+      "scope": "BTC_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.6401915047357939,
+      "fit_coverage": 0.4000387446726075,
+      "lower_coverage": 0.39994188299108874,
+      "upper_coverage": 0.4000387446726075,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.5595764472556846,
+      "fit_coverage": 0.10001524622655893,
+      "lower_coverage": 0.0999771306601616,
+      "upper_coverage": 0.10001524622655893,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.5504451968718139,
+      "fit_coverage": 0.19999237688672053,
+      "lower_coverage": 0.19999237688672053,
+      "upper_coverage": 0.20003049245311785,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.5470697119725666,
+      "fit_coverage": 0.2549931391980485,
+      "lower_coverage": 0.2549931391980485,
+      "upper_coverage": 0.2550312547644458,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.5384772951123872,
+      "fit_coverage": 0.39998475377344106,
+      "lower_coverage": 0.39998475377344106,
+      "upper_coverage": 0.4000228693398384,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.5666027237213024,
+      "fit_coverage": 0.10001524622655893,
+      "lower_coverage": 0.0999771306601616,
+      "upper_coverage": 0.10001524622655893,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.562037098529367,
+      "fit_coverage": 0.19999237688672053,
+      "lower_coverage": 0.19999237688672053,
+      "upper_coverage": 0.20003049245311785,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.5603493560797433,
+      "fit_coverage": 0.2549931391980485,
+      "lower_coverage": 0.2549931391980485,
+      "upper_coverage": 0.2550312547644458,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.5560531476496536,
+      "fit_coverage": 0.39998475377344106,
+      "lower_coverage": 0.39998475377344106,
+      "upper_coverage": 0.4000228693398384,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.5666027237213024,
+      "fit_coverage": 0.10001524622655893,
+      "lower_coverage": 0.0999771306601616,
+      "upper_coverage": 0.10001524622655893,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.562037098529367,
+      "fit_coverage": 0.19999237688672053,
+      "lower_coverage": 0.19999237688672053,
+      "upper_coverage": 0.20003049245311785,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.5603493560797433,
+      "fit_coverage": 0.2549931391980485,
+      "lower_coverage": 0.2549931391980485,
+      "upper_coverage": 0.2550312547644458,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.5560531476496536,
+      "fit_coverage": 0.39998475377344106,
+      "lower_coverage": 0.39998475377344106,
+      "upper_coverage": 0.4000228693398384,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.5961538553237915,
+      "fit_coverage": 0.06052751943893886,
+      "lower_coverage": 0.06052751943893886,
+      "upper_coverage": 0.9999237688672054,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.5587811797776565,
+      "fit_coverage": 0.10001524622655893,
+      "lower_coverage": 0.0999771306601616,
+      "upper_coverage": 0.10001524622655893,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.5517243460315707,
+      "fit_coverage": 0.19999237688672053,
+      "lower_coverage": 0.19999237688672053,
+      "upper_coverage": 0.20003049245311785,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.5484161149983661,
+      "fit_coverage": 0.2549931391980485,
+      "lower_coverage": 0.2549931391980485,
+      "upper_coverage": 0.2550312547644458,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Down",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.5410595866155243,
+      "fit_coverage": 0.39998475377344106,
+      "lower_coverage": 0.39998475377344106,
+      "upper_coverage": 0.4000228693398384,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.0576909156713717,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.2,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.0576909156713717,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.255,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.0576909156713717,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "fixed_score",
+      "target": 0.4,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.6526963445530221,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.1,
+      "cutoff": 0.6708758159643282,
+      "fit_coverage": 0.10003619254433586,
+      "lower_coverage": 0.09996380745566413,
+      "upper_coverage": 0.10003619254433586,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.2,
+      "cutoff": 0.6621809553922888,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.255,
+      "cutoff": 0.6580765631142274,
+      "fit_coverage": 0.25501266739051753,
+      "lower_coverage": 0.25494028230184584,
+      "upper_coverage": 0.25501266739051753,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_a",
+      "target": 0.4,
+      "cutoff": 0.6445692304229941,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.1,
+      "cutoff": 0.6409409189821491,
+      "fit_coverage": 0.10003619254433586,
+      "lower_coverage": 0.09996380745566413,
+      "upper_coverage": 0.10003619254433586,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.2,
+      "cutoff": 0.6362882053929044,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.255,
+      "cutoff": 0.6339048467834444,
+      "fit_coverage": 0.25501266739051753,
+      "lower_coverage": 0.25494028230184584,
+      "upper_coverage": 0.25501266739051753,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "regime_b",
+      "target": 0.4,
+      "cutoff": 0.6266367902088268,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.1,
+      "cutoff": 0.6409409189821491,
+      "fit_coverage": 0.10003619254433586,
+      "lower_coverage": 0.09996380745566413,
+      "upper_coverage": 0.10003619254433586,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.2,
+      "cutoff": 0.6362882053929044,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.255,
+      "cutoff": 0.6339048467834444,
+      "fit_coverage": 0.25501266739051753,
+      "lower_coverage": 0.25494028230184584,
+      "upper_coverage": 0.25501266739051753,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_no_interaction",
+      "target": 0.4,
+      "cutoff": 0.6266367902088268,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.1,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.0576909156713717,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.2,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.0576909156713717,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.255,
+      "cutoff": 0.6734824180603027,
+      "fit_coverage": 0.0576909156713717,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_direction_only",
+      "target": 0.4,
+      "cutoff": 0.6487043499946594,
+      "fit_coverage": 0.6526963445530221,
+      "lower_coverage": 0.0576909156713717,
+      "upper_coverage": 0.6526963445530221,
+      "attainable": false
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.1,
+      "cutoff": 0.6708758159643282,
+      "fit_coverage": 0.10003619254433586,
+      "lower_coverage": 0.09996380745566413,
+      "upper_coverage": 0.10003619254433586,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.2,
+      "cutoff": 0.6621809553922888,
+      "fit_coverage": 0.2,
+      "lower_coverage": 0.2,
+      "upper_coverage": 0.2,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.255,
+      "cutoff": 0.6580765631142274,
+      "fit_coverage": 0.25501266739051753,
+      "lower_coverage": 0.25494028230184584,
+      "upper_coverage": 0.25501266739051753,
+      "attainable": true
+    },
+    {
+      "scope": "ETH_USDT_predicted_Up",
+      "method": "b_alignment_only",
+      "target": 0.4,
+      "cutoff": 0.6445692304229941,
+      "fit_coverage": 0.4,
+      "lower_coverage": 0.4,
+      "upper_coverage": 0.4,
+      "attainable": true
+    }
+  ],
+  "input_sha256": {
+    "research_regime_threshold\\method_a_20261103\\beta_grid_full_validation.csv": "d0e97c68a507020e9bb98ea87975f86c4b1c7129b684e5c960bbf05094c97836",
+    "research_regime_threshold\\method_a_20261103\\completion.json": "8943de50437fbc0a6fd12740a44a8d54dea42cd43f9dc15e2716b325cc70c38e",
+    "research_regime_threshold\\method_a_20261103\\coverage_matched_metrics.csv": "0f2a6fd866c479f713a799c958367ad3367115f2286bedbe77683ea66dbd62e1",
+    "research_regime_threshold\\method_a_20261103\\fixed_tau_grid_validation.csv": "d7062fe99e53adcc4cb3029f9eb4c50c937a7e0d97ea746ffafa352782b46b46",
+    "research_regime_threshold\\method_a_20261103\\locked_config_before_test.json": "10640bc77b075c35235a0e2961b4de994edd4c9c99d2a722ecbd8e6b347ddc96",
+    "research_regime_threshold\\method_a_20261103\\macro_average_metrics.csv": "a142fffc845abe78e3b6a477e4f3d75f96bc70184e10d6612485893b5854ef3f",
+    "research_regime_threshold\\method_a_20261103\\metrics_validation_test.csv": "df2ac9b0abfd86f9fa5a913b4699bf7f7e653628f5fd604a7cd637eaae5dd745",
+    "research_regime_threshold\\method_a_20261103\\REPORT.md": "d3b4da2b54ace7fce6e31ed7283a2b563088b6007e4414c04af76f47c941a253",
+    "research_regime_threshold\\method_a_20261103\\resources.jsonl": "34fa5ea00a75c92bbb23b1ae63c5fd19d44a9e14ba3ed786add647af0c7491dc",
+    "research_regime_threshold\\method_a_20261103\\selection_and_coverage.png": "a19809a8ba6edef89cd05422538d3209eb6f68bf4595a7f47b1ca17b43b6fee3",
+    "research_regime_threshold\\method_a_20261103\\test_decisions.parquet": "79a5c98e091ef3e5bb43390d9722f00327baa00d2dd459367236669f19dbab25",
+    "research_regime_threshold\\method_a_20261103\\threshold_distributions.csv": "10460ff06a982fa0beaa43ce8747dff55145349f1edc69a8081475ce47b6adf9",
+    "research_regime_threshold\\method_a_20261103\\validation_decisions.parquet": "0d1c1e03f62e05e97b7d690e6df8e140cdc799d9576c0e0f401147f2469f6445",
+    "research_regime_threshold\\method_a_20261103\\weekly_metrics.csv": "1f83f86cd107df233ad5d5b62aded4d828ad238ecfbbfeba5cfe650be24c6b9d",
+    "REGIME_METHOD_PROPOSALS.md": "0a2027de185461f9078cc58dd96b687490e753dee97cc2b8190ea594139129e6",
+    "centralized_training_two_classes.py": "cdd6bf69bead0aace15b438217f1a7f08b8704aec08e3f77ce5fa01947de1908",
+    "data_preprocessing.py": "e2f984e74ccd3e3c4659605a649a0baaf03e94327553f24460611d5d810ea49d",
+    "data\\btc_eth_1pct\\training\\classifier_complete.joblib": "f0508d1372d5dfe866f5f2f93dafb631d63b238ba34118e9724043b69832f178",
+    "data\\btc_eth_1pct\\training\\validation_predictions_complete.parquet": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+    "research_volatility_threshold\\method_b_benchmark_20261103\\metrics_validation_test.csv": "a6801ab65ef70e4b1e87c6174920275d118364e1bcaec32a0b317b3ea64c578e"
+  },
+  "test_predictions_not_read_at_lock": true,
+  "tie": "tolerance 1e-8 bps; smallest squared coefficient norm; lexicographic beta,gamma,eta"
+}

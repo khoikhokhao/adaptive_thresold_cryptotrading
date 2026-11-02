@@ -1,0 +1,14 @@
+{
+  "elapsed_sec": 1.4683190999785438,
+  "memory": {
+    "ws_gib": 0.25628662109375,
+    "peak_ws_gib": 0.3079414367675781,
+    "private_commit_gib": 0.8007926940917969,
+    "available_gib": 8.90423583984375,
+    "commit_headroom_gib": 8.77889633178711
+  },
+  "locked_config_sha256": "3f7004e1732891744b37d55ae5f0230e7d7e6d5124ee3474238c0a97065f4997",
+  "test_predictions_sha256": "98fdd46674f90b999eee090f611c2f506f173bf572516d5ea7bc9ef1ed528a68",
+  "test_fallback_count": 0,
+  "label": "retrospective/exploratory; oracle-filtered; overlapping returns, not portfolio PnL"
+}

@@ -1,0 +1,39 @@
+{
+  "n_train": 292338,
+  "n_validation": 80260,
+  "scores": [
+    "md128_l01",
+    "md128_l10",
+    "pca_md16",
+    "pca_md32",
+    "pca_re32",
+    "knn5_pc16",
+    "knn20_pc16",
+    "psi360_pc3",
+    "w1_360_pc1",
+    "tail_fraction",
+    "pooled_md128",
+    "rawspace_md128"
+  ],
+  "training_transform_rows_verified": 292338,
+  "validation_transform_rows_verified": 80260,
+  "exact_transform_equivalence": "PASS",
+  "direct_PSI_and_exact_W1_checks": "PASS",
+  "pooled_reference_audit": {
+    "train_end": "2024-06-25 19:40:00+00:00",
+    "early_val_rows": 1905,
+    "warning": "Pooled training reference contains ETH observations later than some early BTC validation timestamps; sensitivity only"
+  },
+  "elapsed_sec": 53.019771899911575,
+  "memory": {
+    "ws_gib": 1.3162994384765625,
+    "peak_ws_gib": 1.7756500244140625,
+    "private_commit_gib": 1.9405021667480469,
+    "available_gib": 8.70849609375,
+    "commit_headroom_gib": 8.020328521728516
+  },
+  "test_predictions_read": false,
+  "training_labels_used": false,
+  "MLP_retrained": false,
+  "inputs_unchanged": true
+}

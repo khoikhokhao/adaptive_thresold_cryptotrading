@@ -1,0 +1,58 @@
+{
+  "inputs": {
+    "data\\btc_eth_1pct\\prepared\\X_train.npy": {
+      "sha256": "07b779e7d8a80092fc9c1003cd4958782d2ba582d5bd8215ce96bb9ef09cdf9f",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\prepared\\X_validation.npy": {
+      "sha256": "bc0bb508cdcc0fb22f53e5dda58ba5932f8a22b5066ccb44f51a07a162be4e45",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\prepared\\imputer.joblib": {
+      "sha256": "392458c0fa0733661fafe5203ca7426ba63f87424bc15d682ad536765c02e327",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\prepared\\scaler.joblib": {
+      "sha256": "1368022723878e585400b38959e71fa9648ba34f5d72ad156fe9c83dc67afef8",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\prepared\\feature_schema.json": {
+      "sha256": "232f43c7857f2b4dcff44a4ceab177eaa341748d46168f73e64ffe7763f67d52",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\prepared\\train_metadata.parquet": {
+      "sha256": "2ecf4428fde39e1e458df3c52e00880a948e58483685f9dfcaa198a3dd98c71a",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\prepared\\validation_metadata.parquet": {
+      "sha256": "f22537935f12c74816d1e6cc66d6d86bfc3488f81ccc51c1ee0647a45ea7dfc2",
+      "unchanged": true
+    },
+    "data\\join_full_btc_eth_20261102\\unified_dataset.parquet": {
+      "sha256": "9b021ece5a7ae37b7c988c1d0a83e00329527127fe5ebda661d9986845238827",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\training\\validation_predictions_complete.parquet": {
+      "sha256": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+      "unchanged": true
+    },
+    "research_autocorrelation_analysis\\validation_20261103\\validation_features.parquet": {
+      "sha256": "f22073cdb0924d8570789c7ef20a2435493f813f92e28b2649d8941de20f36aa",
+      "unchanged": true
+    },
+    "centralized_training_two_classes.py": {
+      "sha256": "cdd6bf69bead0aace15b438217f1a7f08b8704aec08e3f77ce5fa01947de1908",
+      "unchanged": true
+    },
+    "data_preprocessing.py": {
+      "sha256": "e2f984e74ccd3e3c4659605a649a0baaf03e94327553f24460611d5d810ea49d",
+      "unchanged": true
+    },
+    "data\\btc_eth_1pct\\training\\classifier_complete.joblib": {
+      "sha256": "f0508d1372d5dfe866f5f2f93dafb631d63b238ba34118e9724043b69832f178",
+      "unchanged": true
+    }
+  },
+  "all_unchanged": true,
+  "test_predictions_read": false
+}

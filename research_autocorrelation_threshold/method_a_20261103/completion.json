@@ -1,0 +1,22 @@
+{
+  "beta": -0.08,
+  "tau_star": 0.64,
+  "elapsed_sec": 12.19902999990154,
+  "memory": {
+    "ws_gib": 0.3727302551269531,
+    "peak_ws_gib": 0.4124755859375,
+    "private_commit_gib": 0.9598960876464844,
+    "available_gib": 10.087234497070312,
+    "commit_headroom_gib": 9.214733123779297
+  },
+  "locked_config_sha256": "db86c5c035685a5e1c1277d745063e91f40857edfcaa4e853224f401e405b250",
+  "test_predictions_sha256": "98fdd46674f90b999eee090f611c2f506f173bf572516d5ea7bc9ef1ed528a68",
+  "baseline_equivalence": "PASS",
+  "exact_exploratory_feature_equivalence": "PASS",
+  "protected_inputs_unchanged": true,
+  "MLP_retrained": false,
+  "test_used_for_selection": false,
+  "validation_fallback": 0,
+  "test_fallback": 0,
+  "label": "retrospective/exploratory; oracle-filtered; overlapping sample returns, not portfolio PnL"
+}

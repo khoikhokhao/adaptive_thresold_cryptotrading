@@ -1,0 +1,21 @@
+{
+  "verified": {
+    "data/btc_eth_1pct/training/classifier_complete.joblib": {
+      "sha256": "f0508d1372d5dfe866f5f2f93dafb631d63b238ba34118e9724043b69832f178",
+      "unchanged_vs_previous_regime_b": true
+    },
+    "data/btc_eth_1pct/training/validation_predictions_complete.parquet": {
+      "sha256": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+      "unchanged_vs_previous_regime_b": true
+    },
+    "centralized_training_two_classes.py": {
+      "sha256": "cdd6bf69bead0aace15b438217f1a7f08b8704aec08e3f77ce5fa01947de1908",
+      "unchanged_vs_previous_regime_b": true
+    },
+    "data_preprocessing.py": {
+      "sha256": "e2f984e74ccd3e3c4659605a649a0baaf03e94327553f24460611d5d810ea49d",
+      "unchanged_vs_previous_regime_b": true
+    }
+  },
+  "test_predictions_read": false
+}

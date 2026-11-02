@@ -1,0 +1,42 @@
+{
+  "beta": -0.06,
+  "tau_fixed": 0.6400000000000001,
+  "normalization": {
+    "BTC_USDT": {
+      "median": 0.0005484452121891081,
+      "iqr": 0.0003821828795480542,
+      "n_fit": 19606
+    },
+    "ETH_USDT": {
+      "median": 0.0005848858854733407,
+      "iqr": 0.0004265461175236851,
+      "n_fit": 16805
+    }
+  },
+  "beta_grid": [
+    -0.1,
+    -0.08,
+    -0.06,
+    -0.04,
+    -0.02,
+    0.0,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.1
+  ],
+  "min_coverage_validation_pooled": 0.1,
+  "objective": "maximum mean net bps per selected sample",
+  "selection_n": 80260,
+  "cost_bps": 1,
+  "normalization_note": "Reuse already frozen symbol median/IQR from early validation; no test fitting.",
+  "input_sha256": {
+    "data\\btc_eth_1pct\\training\\validation_predictions_complete.parquet": "7851ca0d1b9ffc750c8c080ddb8e8d001a3e4cfce3c2ad77c66c5be6fa9dc158",
+    "research_volatility_threshold\\method_a_pooled_20261103\\validation_decisions.parquet": "be628fb2d70bbcc6634be494af6b2784bf955805a910c30f29e2c7b7134a72c5",
+    "data\\btc_eth_1pct\\coverage_10pct\\selection.json": "a5c6ec1a2d074e2f342c0e9be547f4ffe569ce0cb3255ec077214aa71a10830e",
+    "research_volatility_threshold\\method_a_pooled_20261103\\setup_manifest.json": "7830df0ff97e36b54c1f10f8e553a35ed60ebd1e6123744989bb70b691c813a2"
+  },
+  "test_not_loaded_at_lock": true,
+  "method": "clip(tau_fixed + beta*tanh((v-median)/IQR), 0.5, 0.95)"
+}
