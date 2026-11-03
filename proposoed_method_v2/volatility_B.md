@@ -41,6 +41,8 @@ L-BFGS-B từ zero. Sau đó chọn κ∈{0,50;0,52;…;0,94} tối đa mean net
 
 Fixed 0,64; Fixedτ*; B; symbol-only b=δ=0; bỏ từng b/δ để tách level/slope effects nếu kiểm chứng tiếp. Report n, coverage, selective accuracy, net/chọn, expected net/eligible; logloss/Brier/ECE của q. Coverage diagnostic score=q; cùng BTC/ETH, direction, tuần và cutoffs validation theo protocol chung.
 
+### Mục tiêu benchmark
+
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|
 | Validation | Fixed | 20.463 | 25,4959 | 68,93 | 99,181 | 25,287 |

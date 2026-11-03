@@ -39,6 +39,8 @@ $$
 
 Fixed 0,64; Fixedτ*; ACF-A; nullβ=0. Metrics n, coverage, selective accuracy, net/chọn, expected net/eligible; breakdown coin/direction/tuần. Matching score=c−βh không clip; cutoffs validation, không test top-k. **Within-asset matching và asset-mix decomposition bắt buộc** để phân biệt selection gain với allocation gain; xem protocol chung.
 
+### Mục tiêu benchmark
+
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|
 | Validation | Fixed | 20.463 | 25,4959 | 68,93 | 99,181 | 25,287 |

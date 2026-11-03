@@ -34,6 +34,8 @@ Mỗi coefficient grid−0,10…+0,10 bước 0,02:719 candidates sau constraint
 
 Fixed 0,64; Fixedτ*; B; γ=0; direction-only β=γ=0; alignment-only β=η=0; trend-only γ=η=0. Refit ablations bằng validation theo cùng objective. Metrics n/coverage/selective accuracy/net-chọn/expected-net-eligible; breakdown BTC/ETH, Up/Down và tuần. Matching diagnostic score=c−(βz+γuz+ηu), không clip; cutoff validation đóng băng, theo protocol chung.
 
+### Mục tiêu benchmark
+
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|
 | Validation | Fixed | 20.463 | 25,4959 | 68,93 | 99,181 | 25,287 |

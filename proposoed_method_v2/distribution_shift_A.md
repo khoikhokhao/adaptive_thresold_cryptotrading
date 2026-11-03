@@ -33,6 +33,8 @@ $$
 
 Fixed 0,64; Fixedτ*; Shift-A; nullβ=0. Metrics n, coverage, selective accuracy, net/chọn, expected net/eligible; coin/direction/tuần. Matching diagnostic score=c−βh không clip, cutoffs validation đóng băng. Kiểm tra asset mix, within-asset×direction và conditional validation volatility/trend/ACF strata theo protocol chung.
 
+### Mục tiêu benchmark
+
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|
 | Validation | Fixed | 20.463 | 25,4959 | 68,93 | 99,181 | 25,287 |

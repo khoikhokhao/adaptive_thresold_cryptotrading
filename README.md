@@ -36,4 +36,4 @@ python -m venv .venv
 
 Đọc Data & Labels rồi Running để chuẩn bị inputs và chạy từng stage. Môi trường đã dùng Windows/Python3.13.3; guard dùng Windows APIs. Bản repo hiện tại không tự chạy training hoặc benchmark khi đọc tài liệu.
 
-Upstream: [KuznetsovKarazin/crypto-confidence-execution](https://github.com/KuznetsovKarazin/crypto-confidence-execution), commit `21904283bb7631e1d9e9ec0d254ce318ae0861ab`. Paper DOI [10.3390/app152011145](https://doi.org/10.3390/app152011145); PDF CC BY4.0. Giữ [LICENSE](LICENSE). Bảng v2 có note cuối từng report; không coi là kết quả thực nghiệm. Chưa xác minh novelty hoặc confirmatory OOS.
+Upstream: [KuznetsovKarazin/crypto-confidence-execution](https://github.com/KuznetsovKarazin/crypto-confidence-execution), commit `21904283bb7631e1d9e9ec0d254ce318ae0861ab`. Paper DOI [10.3390/app152011145](https://doi.org/10.3390/app152011145); PDF CC BY4.0. Giữ [LICENSE](LICENSE). Các bảng proposed v2 là mục tiêu/kịch bản theo context, không phải kết quả thực nghiệm. Chưa xác minh novelty hoặc confirmatory OOS.
