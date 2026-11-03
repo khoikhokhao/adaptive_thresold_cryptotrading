@@ -49,4 +49,3 @@ Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên
 
 Kỳ vọng: tách trend effect, direction bias và alignment bằng nested ablations. Trong kết quả v1, γ=0; interaction chưa có evidence, nên cần giữ đối chứng bỏ interaction và direction-only. η có thể chỉ đổi allocation; trend có thể đại diện volatility hoặc một episode. Novelty/generalization chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 
-**Ghi chú: Các metrics proposed trong bảng benchmark là kịch bản minh họa, không phải kết quả thực nghiệm.**

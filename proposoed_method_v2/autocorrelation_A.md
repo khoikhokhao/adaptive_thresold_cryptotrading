@@ -54,4 +54,3 @@ Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên
 
 Kỳ vọng: dependence-aware selection tối giản với exact fixed null và attribution rõ. Absolute ACF bỏ dấu momentum/mean reversion; một β chung có thể sai dấu một coin. Cần tách pooled gain do asset mix khỏi within-asset selection; không thêm lags/VR/ER hậu nghiệm để cứu method. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 
-**Ghi chú: Các metrics proposed trong bảng benchmark là kịch bản minh họa, không phải kết quả thực nghiệm.**

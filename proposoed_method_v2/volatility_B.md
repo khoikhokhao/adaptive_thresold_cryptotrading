@@ -56,4 +56,3 @@ Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên
 
 Kỳ vọng: conditional-reliability threshold có dạng đảo giải tích, tách volatility khỏi symbol calibration. Correctness không phản ánh độ lớn lãi/lỗ; b/δ có thể học episode; fit reliability và chọn κ cùng V dễ overfit. Cần đối chiếu symbol-only ở comparable coverage và kiểm tra độ ổn định theo thời gian. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 
-**Ghi chú: Các metrics proposed trong bảng benchmark là kịch bản minh họa, không phải kết quả thực nghiệm.**
