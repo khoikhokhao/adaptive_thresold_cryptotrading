@@ -14,7 +14,7 @@ Theo từng coin s, P là mid-price; r̃_j=clip(P_j/P_{j−1}−1,−0,12,+0,12)
 
 ```math
 h_t=\tanh\frac{v_t-m_s}{I_s},\quad
-\ell_t=\operatorname{logit}(\operatorname{clip}(c_t,10^{-6},1-10^{-6})),\quad
+\ell_t=\mathrm{logit}(\mathrm{clip}(c_t,10^{-6},1-10^{-6})),\quad
 q_t=\sigma\left[(1+\delta h_t)\ell_t+a_s+b h_t\right].
 ```
 
@@ -23,7 +23,7 @@ m_s/I_s là median/IQR **early-validation V_fit đã purge**, tái sử dụng a
 Chọn khi q≥κ. Trên miền confidence không chạm clipping, threshold tương đương:
 
 ```math
-\tau_t=\max\left\{0.5,\sigma\left(\frac{\operatorname{logit}\kappa-a_s-bh_t}{1+\delta h_t}\right)\right\},\quad |\delta|\le0.25.
+\tau_t=\max\left\{0.5,\sigma\left(\frac{\mathrm{logit}\kappa-a_s-bh_t}{1+\delta h_t}\right)\right\},\quad |\delta|\le0.25.
 ```
 
 Cách đọc: cùng reliability requirement κ tạo confidence threshold khác theo volatility/coin. Bound giữ confidence slope dương; ở biên thực thi bằng q≥κ, không clip τ ở 0,95. Chọn+Up→Long, chọn+Down→Short, còn lại Abstain. Missing factor/IQR0: Fixed fallback, giữ cohort.

@@ -20,7 +20,7 @@ Theo từng coin, r_t=log(P_t/P_(t−1)) từ mid-price quan sát được; W=36
 Factor dùng full past unified history, không clip log returns hoặc rolling trên oracle-filtered cohort. Window theo dòng, không bảo đảm phút.
 
 ```math
-h_t=\tanh\frac{a_t-m_s}{I_s},\quad \tau_t=\operatorname{clip}(0.64+\beta h_t,0.50,0.95).
+h_t=\tanh\frac{a_t-m_s}{I_s},\quad \tau_t=\mathrm{clip}(0.64+\beta h_t,0.50,0.95).
 ```
 
 m_s/I_s là median/IQR **full validation** từng coin, đóng băng sang test; temporal diagnostics phải fit lại trên past prefix. β<0 hạ ngưỡng khi |ACF| cao; β>0 nâng ngưỡng; β=0 khôi phục Fixed. Không dùng dấu ACF để đổi hướng MLP.

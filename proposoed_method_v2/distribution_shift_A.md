@@ -14,7 +14,7 @@ x là 128 features đã impute/RobustScale của MLP. Theo coin s, reuse trainin
 
 ```math
 z_t=D_s^{-1}(x_t-\mu_s),\quad d_t=\sqrt{\frac1{96}\sum_{j=33}^{128}(u_{s,j}^{\top}z_t)^{2}},\quad
-h_t=\tanh\frac{d_t-m_s}{v_s-m_s},\quad \tau_t=\operatorname{clip}(0.64+\beta h_t,0.50,0.95).
+h_t=\tanh\frac{d_t-m_s}{v_s-m_s},\quad \tau_t=\mathrm{clip}(0.64+\beta h_t,0.50,0.95).
 ```
 
 d là RMS spectral residual ngoài 32 PCs, không phải direction; m_s/v_s là **training residual Q50/Q95**. Reference dùng toàn bộ 292.338 train rows, không labels; không refit bằng validation/test. Extra geometry chỉ phục vụ factor, không đổi inputs của MLP. Giữ spectral-tail calculation đã kiểm chứng.

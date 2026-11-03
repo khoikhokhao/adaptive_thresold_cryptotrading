@@ -14,7 +14,7 @@ Theo từng symbol, P là mid-price, r_t=log(P_t/P_(t−1)) không clip. Tính t
 
 ```math
 T_t=\frac{\log P_t-\log P_{t-360}}{\sqrt{\sum_{j=0}^{359}r_{t-j}^{2}}},\quad z_t=\tanh(T_t/2),\quad
-\tau_t=\operatorname{clip}(0.64+\beta z_t+\gamma u_tz_t+\eta u_t,0.50,0.95).
+\tau_t=\mathrm{clip}(0.64+\beta z_t+\gamma u_tz_t+\eta u_t,0.50,0.95).
 ```
 
 360 là dòng; scale 2 cố định. u=+1/−1 theo **predicted** Up/Down, tuyệt đối không dùng future label. β là trend effect chung; γ cho phép trend slope khác theo direction; η sửa baseline bias Up/Down. Cụ thể trước clip: Upτ=0,64+η+(β+γ)z; Downτ=0,64−η+(β−γ)z.
