@@ -60,12 +60,13 @@ Feature tính từ **toàn bộ lịch sử mid-price unified theo từng symbol
 
 ### 2.1. Rolling ACF có dấu và trị tuyệt đối
 
-$$
-\bar r_{t,W}=\frac1W\sum_{j=0}^{W-1}r_{t-j},\qquad
+```math
+\bar r_{t,W}=\frac{1}{W}\sum_{j=0}^{W-1}r_{t-j},\qquad
 \widehat\rho_{t,W}(k)=
 \frac{\sum_{j=0}^{W-k-1}(r_{t-j}-\bar r_{t,W})(r_{t-j-k}-\bar r_{t,W})}
-{\sum_{j=0}^{W-1}(r_{t-j}-\bar r_{t,W})^2}.
-$$
+{\sum_{j=0}^{W-1}(r_{t-j}-\bar r_{t,W})^{2}}.
+```
+
 
 Cách đọc: tích các returns cách nhau k dòng, trừ **cùng trung bình của W returns**, chia tổng bình phương returns đã trừ trung bình. Đây là finite-sample ACF dạng không điều chỉnh n−k, không phải Pearson rolling correlation dùng hai mean riêng. Kết quả denominator zero là missing. Cấu hình: k=1,5 với W=60,360,1440; thêm k=15,W=360. Phân tích cả ρ và |ρ|, không xem chúng là hai phép đo độc lập.
 
@@ -75,12 +76,13 @@ Tham khảo quy ước adjusted=False và các giới hạn inference trong [tà
 
 ### 2.2. Rolling Variance Ratio mô tả
 
-$$
+```math
 R^{(q)}_s=\sum_{i=0}^{q-1}r_{s-i},\qquad
 \widehat{VR}_{t,W}(q)=
-\frac{\operatorname{Var}_{ddof=1}\{R_s^{(q)}:s=t-W+q,\ldots,t\}}
-{q\operatorname{Var}_{ddof=1}\{r_s:s=t-W+1,\ldots,t\}}.
-$$
+\frac{\mathrm{Var}_{ddof=1}\{R_s^{(q)}:s=t-W+q,\ldots,t\}}
+{q\mathrm{Var}_{ddof=1}\{r_s:s=t-W+1,\ldots,t\}}.
+```
+
 
 Cách đọc: variance của tất cả W−q+1 overlapping q-return sums nằm **hoàn toàn trong cùng W returns**, chia q lần variance một-step. Cấu hình (W,q)=(360,5),(360,15),(1440,5). VR>1 phù hợp variance tăng nhanh hơn phép cộng variance không tương quan; VR<1 theo chiều ngược lại; VR≈1 gần tỷ lệ random-walk reference. Có finite-sample bias, overlap và heteroskedasticity; không coi lệch 1 là kiểm định bác bỏ random walk hoặc bằng chứng thị trường không hiệu quả.
 
@@ -88,9 +90,10 @@ Cách đọc: variance của tất cả W−q+1 overlapping q-return sums nằm 
 
 ### 2.3. Efficiency Ratio của log-price path
 
-$$
+```math
 ER_{t,W}=\frac{|x_t-x_{t-W}|}{\sum_{j=0}^{W-1}|r_{t-j}|},\qquad W\in\{60,360,1440\}.
-$$
+```
+
 
 Cách đọc: độ lớn dịch chuyển ròng chia tổng quãng đường log-price. ER trong [0,1], gần 1 khi đường đi cùng hướng hơn; gần 0 khi nhiều chuyển động bù nhau. **Không phải efficiency theo nghĩa efficient market hypothesis**, không có dấu và không mặc định ER cao thì MLP đáng tin hơn. Đây là log-price ER; không trình bày như một phiên bản dùng absolute dollar-price changes. ER_360 bằng trị tuyệt đối của efficiency feature đã nghiên cứu ở bước regime, không phải một nguồn dữ liệu mới độc lập.
 

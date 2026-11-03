@@ -62,20 +62,22 @@ Reference training cohort cũng đã được lọc Neutral theo future returns 
 
 Gọi x là vector 128 chiều **đã RobustScaled như MLP**. Với symbol s, fit mean/std từ X_train,s:
 
-$$
+```math
 z_s(x)=D_s^{-1}(x-\mu_s),\qquad
-S_s=\frac1{N_s-1}\sum_i z_s(x_i)z_s(x_i)^\top.
-$$
+S_s=\frac{1}{N_s-1}\sum_i z_s(x_i)z_s(x_i)^{\top}.
+```
+
 
 Cách đọc: thêm train-only standardization riêng coin để geometry không bị một feature có variance lớn áp đảo. Cột train std≤10⁻¹² đặt scale=1, vẫn giữ cột; thực tế không có cột constant ở reference này. **Đây là analysis geometry, không đổi input hoặc scaler của MLP.** Tính toán reference float64 trên đúng float32 cached values; không giảm precision dữ liệu. Sensitivity `rawspace_md128` bỏ bước standardization thứ hai, dùng nguyên MLP-scaled space; tên “rawspace” không có nghĩa là unscaled dollar-price space.
 
 ### 2.2. Mahalanobis có shrinkage, 128 chiều
 
-$$
+```math
 S_{s,\lambda}=(1-\lambda)S_s+\lambda\bar v_s I,\quad
-\bar v_s=\operatorname{tr}(S_s)/128,\quad
-MD_{s,\lambda}(x)=\sqrt{z_s(x)^\top S_{s,\lambda}^{-1}z_s(x)}.
-$$
+\bar v_s=\mathrm{tr}(S_s)/128,\quad
+MD_{s,\lambda}(x)=\sqrt{z_s(x)^{\top} S_{s,\lambda}^{-1}z_s(x)}.
+```
+
 
 Cách đọc: khoảng cách có điều chỉnh covariance; λ=0,01 primary và 0,10 sensitivity, không tune theo reliability. Tính qua eigenbasis, không invert plain covariance gần singular. Clamp eigenvalues âm rất nhỏ do numerical roundoff về 0 trước cộng shrinkage; không sửa giá trị X. [Scikit-learn covariance documentation](https://scikit-learn.org/stable/modules/covariance) mô tả shrinkage về scaled identity. Không gọi đây là Ledoit–Wolf tự ước lượng vì λ ở đây cố định.
 
@@ -85,19 +87,21 @@ Không giả định Gaussian đủ đúng để chuyển MD thành xác suất 
 
 Fit eigenvectors U và eigenvalues e từ **training covariance**. Với a=Uᵀz, r∈{16,32}:
 
-$$
-D_{PCA,r}(x)=\sqrt{\sum_{j=1}^r\frac{a_j^2}{0.99e_j+0.01\bar v}},\qquad
-RE_{32}(x)=\sqrt{\frac1{128-32}\sum_{j=33}^{128}a_j^2}.
-$$
+```math
+D_{PCA,r}(x)=\sqrt{\sum_{j=1}^r\frac{a_j^{2}}{0.99e_j+0.01\bar v}},\qquad
+RE_{32}(x)=\sqrt{\frac{1}{128-32}\sum_{j=33}^{128}a_j^{2}}.
+```
+
 
 Cách đọc: novelty trong retained subspace và residual RMS ngoài subspace là hai khái niệm khác nhau. PCA có thể bỏ hướng variance nhỏ nhưng quan trọng cho reliability; RE là complementary score, không phải confidence uncertainty được calibrated. Fit như covariance/eigendecomposition; projection r chiều O(Mdr).
 
 ### 2.4. kNN distance
 
-$$
-KNN_k(x)=\frac1k\sum_{j=1}^k\|a_{1:16}(x)-a_{1:16}(x^{train}_{NN_j})\|_2,
+```math
+KNN_k(x)=\frac{1}{k}\sum_{j=1}^k\|a_{1:16}(x)-a_{1:16}(x^{train}_{NN_j})\|_2,
 \qquad k\in\{5,20\}.
-$$
+```
+
 
 Cách đọc: mean distance đến k neighbours của cùng coin, **toàn bộ** 131.442/160.896 training points, PCA16 không whiten; query exact cKDTree, eps=0, hai workers. Không dựa vào nhãn train. Cùng query k=20 tính cả hai scores; query theo batch. Worst-case high-dimensional search có thể gần brute-force; PCA giảm chiều và training shape thấp-rank giúp bài toán này khả thi. Không gọi score này là LOF: không có local-density ratio như [novelty/outlier documentation](https://scikit-learn.org/stable/modules/outlier_detection).
 
@@ -109,18 +113,20 @@ Dùng 360 observations liên tiếp của full past unified stream, gồm cả c
 
 PSI trên từng PC1–PC3, bins là training deciles; outer edges ±∞, duplicate edges bỏ; pseudocount 0,5:
 
-$$
+```math
 p_{jb}=\frac{n^{train}_{jb}+0.5}{N_s+0.5B_j},\quad
 q_{tjb}=\frac{n^{past360}_{tjb}+0.5}{360+0.5B_j},\quad
-PSI_t=\frac13\sum_{j=1}^{3}\sum_{b=1}^{B_j}(q_{tjb}-p_{jb})\log(q_{tjb}/p_{jb}).
-$$
+PSI_t=\frac{1}{3}\sum_{j=1}^{3}\sum_{b=1}^{B_j}(q_{tjb}-p_{jb})\log(q_{tjb}/p_{jb}).
+```
+
 
 Cách đọc: khác biệt marginal histogram hiện tại và train, trung bình ba PCs; không đo toàn joint distribution. PC/bins/p đều chỉ fit trên training. Chi phí O(N_stream×3B), không fit model hoặc threshold. Không áp dụng các mốc PSI 0,1/0,25 như significance hoặc OOD ground truth.
 
-$$
-W_t=\frac{\int_0^1|Q^{train}_{PC1}(u)-Q^{past360}_{PC1,t}(u)|du}
+```math
+W_t=\frac{\int_0^{1}|Q^{train}_{PC1}(u)-Q^{past360}_{PC1,t}(u)|du}
 {IQR^{train}_{PC1}}.
-$$
+```
+
 
 Cách đọc: exact empirical one-dimensional Wasserstein-1 giữa toàn training PC1 và rolling PC1, chia training IQR. Không phải multidimensional Wasserstein hoặc quantile-grid approximation. Dùng integrated empirical training quantile và sorted 360-point windows, query batches 512; đối chiếu scipy trên actual windows PASS. Công thức empirical W1 tham khảo [SciPy documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wasserstein_distance.html). Chuẩn bị training O(N log N), mỗi window khoảng O(W log W + W log N), W=360; tránh sort lại toàn reference cho mỗi query.
 

@@ -18,25 +18,28 @@ Gọi P_t là mid-price, r_t=log(P_t/P_{t−1}); t và lookback micro là **ch�
 
 ### A. Trend chuẩn hóa theo độ biến động đường giá
 
-$$
-T_{t,W}=\frac{\log P_t-\log P_{t-W}}{\sqrt{\sum_{j=0}^{W-1}r_{t-j}^2}},\qquad W\in\{60,360,1440\},\quad a=1.
-$$
+```math
+T_{t,W}=\frac{\log P_t-\log P_{t-W}}{\sqrt{\sum_{j=0}^{W-1}r_{t-j}^{2}}},\qquad W\in\{60,360,1440\},\quad a=1.
+```
+
 
 Cách đọc: log-return quá khứ chia căn tổng bình phương log-return của cùng cửa sổ. Tách hướng và độ mạnh tương đối; không coi score này là thống kê kiểm định chuẩn do returns phụ thuộc. Ưu: causal, scale-free và so sánh hai coin thuận tiện. Nhược: denominator phụ thuộc volatility, nhạy cửa sổ và có thể đảo nhãn quanh ranh giới. 60/360/1.440 dòng gần 1 giờ/6 giờ/1 ngày, **không phải cửa sổ clock-time chính xác**. Đây là một họ định nghĩa với ba kiểm tra sensitivity, không chọn window bằng test.
 
 ### B. Directional efficiency, W=360
 
-$$
+```math
 E_{t,360}=\frac{\log P_t-\log P_{t-360}}{\sum_{j=0}^{359}|r_{t-j}|},\qquad a=0.20.
-$$
+```
+
 
 Cách đọc: dịch chuyển ròng có dấu chia tổng chiều dài đường giá. Trong [−1,1]; |E| cao thể hiện đường đi cùng hướng hơn, không chứng minh thị trường hiệu quả theo nghĩa kinh tế học. Ưu: dễ giải thích và bounded. Nhược: với dữ liệu nhiễu 360 dòng, ngưỡng 0,20 có thể làm trend regime cực hiếm; kết quả thực tế xác nhận điều đó. Không hạ ngưỡng hậu nghiệm để tạo nhóm đẹp hơn.
 
 ### C. Daily MA gap 5/20
 
-$$
+```math
 G_t=\frac{MA^{daily}_{5}(t)}{MA^{daily}_{20}(t)}-1,\qquad a=0.005.
-$$
+```
+
 
 Cách đọc: MA 5 ngày cao hơn MA 20 ngày trên 0,5% là Bull, thấp hơn trên 0,5% là Bear. Dùng hai MA đã có, trên daily Close từ macro dataset, rolling lag một daily row và join ngày D vào D+1. Ưu: ít switching, không cần thêm nguồn OHLCV. Nhược: trễ, rất ít trạng thái độc lập trong validation khoảng hai tháng, mất cân bằng; phụ thuộc chất lượng daily source sẵn có.
 

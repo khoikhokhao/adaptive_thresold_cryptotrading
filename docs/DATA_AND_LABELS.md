@@ -33,17 +33,19 @@ Chạy native entry point ghi `data/processed/unified_dataset.parquet`; đây l�
 
 Source: [TargetEncoder.create_targets](../centralized_training_two_classes.py#L158). Gọi P là midpoint `(best_bid+best_ask)/2`, H là số dòng tiếp theo trong **cùng symbol**:
 
-$$
+```math
 R_t=\frac{P_{t+H}}{P_t}-1,\qquad R_t^{bps}=10000R_t.
-$$
+```
 
-$$
+
+```math
 Y_t=\begin{cases}
 1\;(Up)&R_t^{bps}>\delta\\
 0\;(Down)&R_t^{bps}<-\delta\\
 2\;(Neutral)&-\delta\le R_t^{bps}\le\delta.
 \end{cases}
-$$
+```
+
 
 - Paper: H600 phút, δ10bps=0,1%. Implementation dùng H600 **dòng/symbol**, dù flag tên `--horizon_min`; gaps làm elapsed horizon khác600phút.
 - Cấu hình BTC/ETH của proposed research: δ100bps=1%, giữ H600 dòng. Đây là thay đổi label đã chọn, không phải exact paper setup.
