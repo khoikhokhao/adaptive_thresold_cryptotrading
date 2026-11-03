@@ -35,7 +35,7 @@ Chọn e=1{c≥τ}, c=max(p_up, p_down). Chọn+Up→Long, chọn+Down→Short; 
 
 1 supervised coefficient + 4 normalization stats; full validation selection; penalty đơn vị bps. Hòa 10⁻⁸ bps ưu tiên |β| nhỏ rồi β nhỏ. Không tune thêm lag/window/λ; không constraint test/từng coin. Infeasible phải báo, không nới coverage.
 
-## 3. Benchmark Plan + Kết quả kỳ vọng
+## 3. Benchmark Plan
 
 Fixed 0,64; Fixedτ*; ACF-A; nullβ=0. Metrics n, coverage, selective accuracy, net/chọn, expected net/eligible; breakdown coin/direction/tuần. Matching score=c−βh không clip; cutoffs validation, không test top-k. **Within-asset matching và asset-mix decomposition bắt buộc** để phân biệt selection gain với allocation gain; xem protocol chung.
 
@@ -50,7 +50,7 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-## 4. Limitations & Expected Contribution
+## 4. Limitations & Contribution
 
-Kỳ vọng: dependence-aware selection tối giản với exact fixed null và attribution rõ. Absolute ACF bỏ dấu momentum/mean reversion; một β chung có thể sai dấu một coin. Cần tách pooled gain do asset mix khỏi within-asset selection; không thêm lags/VR/ER hậu nghiệm để cứu method. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
+Đóng góp nghiên cứu: dependence-aware selection tối giản với exact fixed null và attribution rõ. Absolute ACF bỏ dấu momentum/mean reversion; một β chung có thể sai dấu một coin. Cần tách pooled gain do asset mix khỏi within-asset selection; không thêm lags/VR/ER hậu nghiệm để cứu method. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 

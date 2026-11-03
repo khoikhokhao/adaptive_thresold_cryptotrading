@@ -37,7 +37,7 @@ Cách đọc: cùng reliability requirement κ tạo confidence threshold khác 
 
 L-BFGS-B từ zero. Sau đó chọn κ∈{0,50;0,52;…;0,94} tối đa mean net/chọn với **validation pooled coverage≥10%**; hòa ưu tiên gần 0,64 rồi nhỏ hơn. 4 coefficients + κ; normalization vẫn early V_fit dù fit θ/chọn κ dùng full V. Null θ=0, κ=0,64 khôi phục Fixed trên cohort hiện tại.
 
-## 3. Benchmark Plan + Kết quả kỳ vọng
+## 3. Benchmark Plan
 
 Fixed 0,64; Fixedτ*; B; symbol-only b=δ=0; bỏ từng b/δ để tách level/slope effects nếu kiểm chứng tiếp. Report n, coverage, selective accuracy, net/chọn, expected net/eligible; logloss/Brier/ECE của q. Coverage diagnostic score=q; cùng BTC/ETH, direction, tuần và cutoffs validation theo protocol chung.
 
@@ -52,7 +52,7 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-## 4. Limitations & Expected Contribution
+## 4. Limitations & Contribution
 
-Kỳ vọng: conditional-reliability threshold có dạng đảo giải tích, tách volatility khỏi symbol calibration. Correctness không phản ánh độ lớn lãi/lỗ; b/δ có thể học episode; fit reliability và chọn κ cùng V dễ overfit. Cần đối chiếu symbol-only ở comparable coverage và kiểm tra độ ổn định theo thời gian. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
+Đóng góp nghiên cứu: conditional-reliability threshold có dạng đảo giải tích, tách volatility khỏi symbol calibration. Correctness không phản ánh độ lớn lãi/lỗ; b/δ có thể học episode; fit reliability và chọn κ cùng V dễ overfit. Cần đối chiếu symbol-only ở comparable coverage và kiểm tra độ ổn định theo thời gian. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 

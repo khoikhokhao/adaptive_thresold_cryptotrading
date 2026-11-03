@@ -29,7 +29,7 @@ d là RMS spectral residual ngoài 32 PCs, không phải direction; m_s/v_s là 
 
 1 supervised coefficient, ngoài unsupervised geometry/stats. Full validation selection; λ 100 bps, grid bước 0,02; hòa10⁻⁸bps ưu tiên |β| nhỏ rồi β nhỏ. PCA32, normalization và λ giữ nguyên. Không constraint từng coin/test; infeasible phải báo, không thay dimension để cứu utility.
 
-## 3. Benchmark Plan + Kết quả kỳ vọng
+## 3. Benchmark Plan
 
 Fixed 0,64; Fixedτ*; Shift-A; nullβ=0. Metrics n, coverage, selective accuracy, net/chọn, expected net/eligible; coin/direction/tuần. Matching diagnostic score=c−βh không clip, cutoffs validation đóng băng. Kiểm tra asset mix, within-asset×direction và conditional validation volatility/trend/ACF strata theo protocol chung.
 
@@ -44,7 +44,7 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-## 4. Limitations & Expected Contribution
+## 4. Limitations & Contribution
 
-Kỳ vọng: training-reference-aware selection đơn giản và có kiểm soát numerical quality. Reference rank≈31/32, giữ gần 100% variance ở 32 PCs; residual chỉ≈2,5–2,9×10⁻⁵, có thể nhạy tick/float32/near-null geometry. Numeric equivalence không chứng minh economic factor; feature distance không phát hiện concept drift. Cần kiểm tra parameter stability và incremental value ngoài các factors khác. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
+Đóng góp nghiên cứu: training-reference-aware selection đơn giản và có kiểm soát numerical quality. Reference rank≈31/32, giữ gần 100% variance ở 32 PCs; residual chỉ≈2,5–2,9×10⁻⁵, có thể nhạy tick/float32/near-null geometry. Numeric equivalence không chứng minh economic factor; feature distance không phát hiện concept drift. Cần kiểm tra parameter stability và incremental value ngoài các factors khác. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 

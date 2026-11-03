@@ -153,4 +153,4 @@ Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validatio
 
 ## Phạm vi tái lập
 
-Các lệnh method tính metrics từ inputs được cung cấp. Report v2 trình bày riêng các kết quả kỳ vọng. Nhiều input paths/schema đang gắn với historical run; đây chưa phải clean-room, one-command reproduction package. Không chạy lại model hoặc sửa methodology chỉ để khớp bảng. Oracle filtering, horizon theo dòng, overlap/missing purge và validation reuse vẫn tồn tại; kết quả trên test đã xem là retrospective/exploratory.
+Các lệnh method tính metrics từ inputs được cung cấp. Nhiều input paths/schema đang gắn với historical run; đây chưa phải clean-room, one-command reproduction package. Không chạy lại model hoặc sửa methodology chỉ để khớp bảng. Oracle filtering, horizon theo dòng, overlap/missing purge và validation reuse vẫn tồn tại; kết quả trên test đã xem là retrospective/exploratory.

@@ -30,7 +30,7 @@ Chọn nếu c=max(p_up, p_down)≥τ. Chọn+Up→Long, chọn+Down→Short; c�
 
 Mỗi coefficient grid−0,10…+0,10 bước 0,02:719 candidates sau constraint. Chọn trên full validation, penalty đơn vị bps; không tune lại window/scale/λ. Hòa 10⁻⁸ bps: norm nhỏ rồi lexicographic. 3 parameters chung hai coin; không bắt coverage từng coin/direction/test ≥10%.
 
-## 3. Benchmark Plan + Kết quả kỳ vọng
+## 3. Benchmark Plan
 
 Fixed 0,64; Fixedτ*; B; γ=0; direction-only β=γ=0; alignment-only β=η=0; trend-only γ=η=0. Refit ablations bằng validation theo cùng objective. Metrics n/coverage/selective accuracy/net-chọn/expected-net-eligible; breakdown BTC/ETH, Up/Down và tuần. Matching diagnostic score=c−(βz+γuz+ηu), không clip; cutoff validation đóng băng, theo protocol chung.
 
@@ -45,7 +45,7 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-## 4. Limitations & Expected Contribution
+## 4. Limitations & Contribution
 
-Kỳ vọng: tách trend effect, direction bias và alignment bằng nested ablations. Trong kết quả v1, γ=0; interaction chưa có evidence, nên cần giữ đối chứng bỏ interaction và direction-only. η có thể chỉ đổi allocation; trend có thể đại diện volatility hoặc một episode. Novelty/generalization chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
+Đóng góp nghiên cứu: tách trend effect, direction bias và alignment bằng nested ablations. Trong kết quả v1, γ=0; interaction chưa có evidence, nên cần giữ đối chứng bỏ interaction và direction-only. η có thể chỉ đổi allocation; trend có thể đại diện volatility hoặc một episode. Novelty/generalization chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 

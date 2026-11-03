@@ -9,7 +9,7 @@ Giữ báo cáo phân tích và 6 hình validation được chọn trong `figure
 | Autocorrelation | [Report](AUTOCORRELATION_EXPLORATORY_ANALYSIS.md) | [Source](../research_autocorrelation_analysis/explore.py) |
 | Distribution Shift | [Report](DISTRIBUTION_SHIFT_EXPLORATORY_ANALYSIS.md) | [Source](../research_distribution_shift/build_scores.py) |
 
-Các bảng analysis trình bày số liệu validation; đề xuất và kết quả kỳ vọng nằm riêng trong report v2. Những file CSV/cache được nhắc trong nội dung là artifacts local khi chạy analysis, không bundle vào repository. Correlation/logloss gain không tự chứng minh economic edge. Xem [context](../proposoed_method_v2/README.md) và [cách chạy](../docs/RUNNING.md).
+Các bảng analysis trình bày số liệu validation; đề xuất nghiên cứu nằm riêng trong report v2. Những file CSV/cache được nhắc trong nội dung là artifacts local khi chạy analysis, không bundle vào repository. Correlation/logloss gain không tự chứng minh economic edge. Xem [context](../proposoed_method_v2/README.md) và [cách chạy](../docs/RUNNING.md).
 
 ## Các hình được bổ sung
 

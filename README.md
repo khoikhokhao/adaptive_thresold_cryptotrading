@@ -2,6 +2,8 @@
 
 Source centralized của paper *Machine Learning Analytics for Blockchain-Based Financial Markets: A Confidence-Threshold Framework for Cryptocurrency Price Direction Prediction* (Applied Sciences, 2025), cùng bốn proposed methods: Volatility-B, Regime-B, ACF-A và Shift-A.
 
+**Benchmark kỳ vọng:** các số liệu benchmark của proposed methods trong report v2 chưa phải kết quả đo thực nghiệm.
+
 ## Nội dung repository
 
 | Nội dung | Tài liệu |
@@ -36,4 +38,4 @@ python -m venv .venv
 
 Đọc Data & Labels rồi Running để chuẩn bị inputs và chạy từng stage. Môi trường đã dùng Windows/Python3.13.3; guard dùng Windows APIs. Bản repo hiện tại không tự chạy training hoặc benchmark khi đọc tài liệu.
 
-Upstream: [KuznetsovKarazin/crypto-confidence-execution](https://github.com/KuznetsovKarazin/crypto-confidence-execution), commit `21904283bb7631e1d9e9ec0d254ce318ae0861ab`. Paper DOI [10.3390/app152011145](https://doi.org/10.3390/app152011145); PDF CC BY4.0. Giữ [LICENSE](LICENSE). Report v2 trình bày phương pháp, kế hoạch benchmark và kết quả kỳ vọng. Chưa xác minh novelty hoặc confirmatory OOS.
+Upstream: [KuznetsovKarazin/crypto-confidence-execution](https://github.com/KuznetsovKarazin/crypto-confidence-execution), commit `21904283bb7631e1d9e9ec0d254ce318ae0861ab`. Paper DOI [10.3390/app152011145](https://doi.org/10.3390/app152011145); PDF CC BY4.0. Giữ [LICENSE](LICENSE). Chưa xác minh novelty hoặc confirmatory OOS.
