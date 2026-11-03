@@ -1,6 +1,6 @@
 # Exploratory analysis — validation BTC/ETH
 
-Chỉ giữ báo cáo phân tích, không đính kèm output files hoặc benchmark lịch sử.
+Giữ báo cáo phân tích và 6 hình validation được chọn trong `figures/`; không đính kèm output CSV/JSON, predictions hoặc benchmark lịch sử.
 
 | Hướng | Analysis report | Source |
 |---|---|---|
@@ -10,3 +10,12 @@ Chỉ giữ báo cáo phân tích, không đính kèm output files hoặc benchm
 | Distribution Shift | [Report](DISTRIBUTION_SHIFT_EXPLORATORY_ANALYSIS.md) | [Source](../research_distribution_shift/build_scores.py) |
 
 Các bảng nằm trong report là evidence validation đã lưu; không dùng bảng kịch bản trong proposal làm evidence. Những file CSV/cache được nhắc trong nội dung là artifacts local khi chạy analysis, không bundle vào repository. Correlation/logloss gain không tự chứng minh economic edge. Xem [context](../proposoed_method_v2/README.md) và [cách chạy](../docs/RUNNING.md).
+
+## Các hình được bổ sung
+
+- Volatility: accuracy/coverage/net theo volatility quantiles.
+- Regime: performance theo Bull/Bear/Sideways và khác biệt predicted Up/Down, tách BTC/ETH.
+- ACF: performance theo absolute-ACF quintiles và độ ổn định theo tuần.
+- Distribution Shift: PCA-residual incremental gain qua folds, đi kèm kiểm tra comparator health.
+
+Ba hình phục hồi nguyên bản từ analysis đã lưu; ba hình tập trung dựng từ các CSV summary validation đã lưu. Không đọc test predictions, không fit thêm model hoặc chạy lại benchmark. Các số trên hình thuộc exploratory analysis thật; proposal v2 không thay đổi.

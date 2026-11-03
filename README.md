@@ -25,7 +25,7 @@ Mỗi method report chỉ giữ ba link: context, analysis và source. Hướng 
 - `reproduction_setup/`, `baseline_reproduction/`: source utilities dữ liệu/bộ nhớ, train wrapper và guard.
 - `analysis/`: chỉ báo cáo Markdown. `proposoed_method_v2/`: PDF/context và bốn report v2.
 
-Không đưa dataset, model, test/validation predictions, output CSV/JSON/plots, báo cáo benchmark cũ, test scripts hoặc nhánh federated/privacy lên bản hiện tại. Các artifacts phải được tạo hoặc cung cấp local trước khi chạy; fresh clone chưa có cached model/predictions.
+Không đưa dataset, model, test/validation predictions, output CSV/JSON/plots benchmark, báo cáo benchmark cũ, test scripts hoặc nhánh federated/privacy lên bản hiện tại. Analysis có 6 hình validation được chọn; không phục hồi các output benchmark. Các artifacts phải được tạo hoặc cung cấp local trước khi chạy; fresh clone chưa có cached model/predictions.
 
 ## Bắt đầu
 

@@ -38,6 +38,10 @@ Chọn `volatility_30m` làm ví dụ minh họa, không phải kết luận đ�
 
 Ví dụ confidence không đồng nghĩa cùng accuracy ở mọi regime: trong plateau calibrated phổ biến nhất, confidence **0,5336**, accuracy BTC Q1–Q5 lần lượt **44,66%, 55,94%, 52,82%, 55,07%, 42,54%**; ETH **51,34%, 60,81%, 61,39%, 53,49%, 51,30%**. Mỗi ô có 2.536–6.624 mẫu nhưng các mẫu phụ thuộc thời gian. Isotonic được fit ngay trên validation, nên đây không phải calibration độc lập.
 
+![Volatility: accuracy, coverage và net theo quantiles](figures/volatility_quantiles.png)
+
+*Hình 1 — Validation, quantiles riêng BTC/ETH, fixed τ=0,64. Đường liền ở panel accuracy là accuracy toàn nhóm; đường đứt là selective accuracy. Quan hệ raw không đồng nghĩa hiệu ứng độc lập sau confidence/day controls; ETH không đơn điệu ở mọi quantile. Nguồn: summary quantiles của volatility analysis đã lưu.*
+
 ## Volatility có thêm thông tin sau khi kiểm soát confidence?
 
 Dùng rank percentile volatility riêng theo symbol; với mỗi symbol và plateau confidence chính xác, trừ trung bình của rank, correctness và signed net return trong plateau đó. Tương quan của các phần dư được trình bày dưới đây. Đây là **liên hệ có điều kiện**, không chứng minh thông tin độc lập về nhân quả hay có thể tổng quát hóa; không có kiểm định IID vì horizon chồng lấn. Rank dùng toàn validation chỉ để mô tả. Mỗi symbol có 18 plateau confidence; gần như tất cả mẫu thuộc plateau lặp lại.

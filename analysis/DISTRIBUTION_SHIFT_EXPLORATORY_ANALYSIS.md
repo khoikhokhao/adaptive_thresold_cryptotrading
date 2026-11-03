@@ -289,6 +289,10 @@ Fold breakdown một số scores:
 | 3 | knn20_pc16 | -0.001219 | -0.000418 | 4.972826 |
 | 3 | w1_360_pc1 | -0.031934 | -0.010314 | -1.465348 |
 
+![PCA residual: comparator health và incremental log-loss gains qua validation folds](figures/shift_incremental_folds.png)
+
+*Hình 1 — Bên trái: controls và controls+PCA32 residual vẫn có log loss cao hơn confidence reference; thấp hơn là tốt hơn. Bên phải: gain=loss controls−loss augmented, dương ở cả ba folds và hai coin nhưng nhỏ; pooled weighted mean≈0,00453. Đây là proper-score evidence, không phải profit gain, calibration success hoặc independent OOS. Nguồn: temporal_incremental_metrics.csv (pca_re32) và control_model_health.csv đã lưu; không fit thêm model.*
+
 ### 6.4. Conditional strata và day robustness
 
 Kiểm tra riêng asset bằng fixed-effects demean trong confidence×direction×vol-quintile×trend-quintile×|ACF|-quintile strata; thêm day cho spec dưới. Partial out continuous log vol/trend/ACF còn dư, bỏ daily control khi đã bị day effects hấp thụ. Score dùng log1p. Effect theo **full-validation IQR**, không cùng estimator với prefix counterfactual ở trên. Global IQR có thể lớn hơn within-stratum variation; coefficients tuyến tính có thể phóng đại hypothetical change, nên báo partial correlation và không diễn giải probability forecast/causal effect.

@@ -123,6 +123,10 @@ Q1–Q5 tính riêng từng symbol bằng validation quantiles, chỉ phục v�
 
 Ví dụ: ETH |ACF_1_360| Q1 net −118,07 bps/mẫu chọn, Q5 +192,47 bps; BTC tương ứng +106,43 và +207,67. Nhưng raw accuracy ETH không tăng đơn điệu, và quan hệ có thể do các episode, direction hoặc volatility. Với signed ACF, BTC Q5 có **accuracy toàn nhóm 45,44%** nhưng selective accuracy 86,79%; selection thay đổi cohort rất mạnh. Không dùng accuracy toàn nhóm thay selective accuracy.
 
+![ACF: selective accuracy, coverage và net theo quintiles absolute ACF](figures/acf_quantiles.png)
+
+*Hình 1 — Tập trung candidate |ACF lag-1, W=360|, quantiles riêng BTC/ETH trên validation. Q1→Q5 khác cả coverage và thành phần mẫu; đây là raw association, không phải incremental gain sau controls. Nguồn: quantile_metrics.csv đã lưu, feature=abs_acf_1_360.*
+
 ### Dấu ACF lag-1,W=360
 
 | symbol | sign_band | n | share | confidence_mean | accuracy | selected_n | coverage | selective_accuracy | net_selected_bps | ece_10 |
@@ -293,6 +297,10 @@ Asset-interaction variant cũng có weighted gain logloss âm (−0,02206). Đâ
 - Weekly stability không đồng nhất. ETH |ACF_1_360| Q1 có tuần net khoảng −1.337,37 bps/mẫu chọn và tuần +207,13 bps (chỉ tính các tuần ≥200 selections). Signed ACF_1_360 ETH Q5 dao động −407,32 tới +241,36 bps. BTC signed Q1 −125,21 tới +253,91 bps. Mức gain có thể tập trung ở một số episode; không loại tuần xấu.
 - |ACF| Q5 ETH chỉ có hai tuần đạt ≥200 selections dù tổng nhóm có 1.801 selections; nhiều row không đồng nghĩa nhiều episode độc lập. Các ô Up/Down hiếm được gắn few_selected/few_samples, không dùng cực trị làm conclusion.
 - Sliding windows, labels 600 dòng overlap và autocorrelation của chính feature/outcomes làm số mẫu hiệu dụng nhỏ hơn count. Chưa tính HAC/block-bootstrap CIs; ba folds không đủ để khẳng định significance. Không báo IID p-values. Tất cả values/outliers vẫn giữ nguyên; Tukey flag chỉ mô tả, không sửa data.
+
+![ACF: net theo tuần ở quantiles thấp và cao](figures/acf_weekly_stability.png)
+
+*Hình 2 — Net/mẫu chọn của Q1/Q5 tại fixed τ=0,64, chỉ vẽ tuần×nhóm có ≥200 selections. Điểm không xuất hiện là nhóm không đủ count để vẽ, không phải return bằng 0. Chênh lệch tập trung vào một số episodes, nên không suy ra hiệu ứng bền vững từ kết quả gộp. Hình validation đã lưu từ analysis trước.*
 
 ## 8. Trả lời câu hỏi và quyết định nghiên cứu
 

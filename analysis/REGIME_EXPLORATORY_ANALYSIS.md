@@ -98,6 +98,10 @@ Trend 360 dòng được dùng làm ví dụ trọng tâm để đọc bảng, k
 
 ETH Bear trend_360 có selective accuracy 61,29% nhưng net **−93,87 bps/mẫu chọn**. Sai lầm có độ lớn return lớn hơn lợi nhuận khi đúng là một khả năng trực tiếp; accuracy không chứa thông tin về độ lớn thắng/thua. Không suy diễn rằng 61% correctness đủ để có edge.
 
+![Regime: selective accuracy, coverage và net của BTC/ETH](figures/regime_performance.png)
+
+*Hình 1 — Trend 360 dòng, validation tại fixed τ=0,64. ETH Bear có selective accuracy trên 60% nhưng net âm, cho thấy correctness và payoff không tương đương. Chênh lệch giữa regimes vẫn có thể chứa asset/time/volatility effects. Nguồn: regime_metrics.csv đã lưu, không tính lại predictions.*
+
 ## 4. Confidence và calibration theo regime
 
 Confidence là max(p_up,p_down). Calibration đang xét **top-label correctness**, không phải reliability diagram của riêng probability Up. `calibration_gap` = accuracy toàn nhóm − confidence trung bình, đơn vị điểm phần trăm; ECE dùng 10 bin cố định đều trên [0,1], weighted absolute gap. ECE và confidence min/median/P90/P95/max có đủ cho cả năm định nghĩa trong CSV; bảng dưới minh họa trend_360.
@@ -150,6 +154,10 @@ Class recall trước threshold:
 | ETH_USDT | Sideways | actual_Up | 14345 | 37.91 |
 
 Không có quy luật Up luôn tốt hơn Down. Ví dụ ETH Bull: precision trước threshold Down 69,18%, Up 53,45%; sau threshold Down 99,38% trên 324 selections, Up 58,00% trên 1.612 selections. ETH Bear: Up sau threshold 62,18% trên 1.621 selections nhưng net −106,06 bps; Down 54,00% trên 200 selections, net +4,94 bps. Các số cực đoan có thể do cụm thời gian và biến động lớn, không phải hàng trăm thử nghiệm độc lập. Label Down được recall cao hơn Up trước threshold ở cả ba regime của hai coin; MLP cũng dự đoán Down nhiều hơn, nên không nhầm precision với khả năng nhận diện toàn bộ Up events.
+
+![Regime: performance theo predicted Up và Down, tách BTC/ETH](figures/regime_direction.png)
+
+*Hình 2 — Cùng trend regime, tách hướng MLP dự đoán; n trên cột là số selections, không phải các vị thế độc lập. ETH Bull có predicted Down chính xác hơn rõ rệt nhưng số mẫu thấp hơn Up; đây là heterogeneity mô tả, chưa chứng minh interaction ổn định. Nguồn: direction_metrics.csv, definition=trend_360, chỉ predicted_Up/Down.*
 
 ## 6. Thông tin bổ sung sau confidence, symbol và volatility
 

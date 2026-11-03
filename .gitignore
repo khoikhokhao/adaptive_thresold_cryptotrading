@@ -56,3 +56,11 @@ temp/
 !/research_regime_threshold/*.py
 /research_volatility_threshold/*
 !/research_volatility_threshold/*.py
+
+# Selected validation figures embedded in analysis reports only.
+!/analysis/figures/acf_quantiles.png
+!/analysis/figures/acf_weekly_stability.png
+!/analysis/figures/regime_direction.png
+!/analysis/figures/regime_performance.png
+!/analysis/figures/shift_incremental_folds.png
+!/analysis/figures/volatility_quantiles.png
