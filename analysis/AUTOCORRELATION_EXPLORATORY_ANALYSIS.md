@@ -8,9 +8,9 @@ Giữ nguyên MLP, labels, calibrated probabilities, hướng dự đoán, fixed
 
 Feature tính từ **toàn bộ lịch sử mid-price unified theo từng symbol**, sau đó mới ghép validation một-một. Không tính rolling trên cohort đã lọc future return. Mỗi feature tại t chỉ dùng prices tới t, giả định minute aggregate t đã quan sát xong. Window/lag là **số quan sát**, không phải phút lịch chính xác: 360 dòng median khoảng 361 phút. Không resample, forward-fill, winsorize, hoặc clip returns để làm đẹp feature. Lấy log-return từ mid-price hiện có, khác với mid_return clip của volatility feature gốc.
 
-13 cấu hình feature cơ sở và 20 representations: 7 ACF signed, 7 |ACF| từ cùng tính toán, 3 VR, 3 ER. Các cấu hình chốt trước xem [feature_protocol.json](../research_autocorrelation_analysis/validation_20261103/feature_protocol.json). Hai interaction diagnostics thêm vào mô hình thống kê, không phải feature search rộng hoặc adaptive methods mới. Không chọn window/lag dựa vào test.
+13 cấu hình feature cơ sở và 20 representations: 7 ACF signed, 7 |ACF| từ cùng tính toán, 3 VR, 3 ER. Các cấu hình chốt trước xem `feature_protocol.json`. Hai interaction diagnostics thêm vào mô hình thống kê, không phải feature search rộng hoặc adaptive methods mới. Không chọn window/lag dựa vào test.
 
-**Kiểm chứng:** prefix-invariance PASS cho mọi cấu hình ở hai coin (bỏ phần tương lai không đổi feature quá khứ); direct finite-window ACF/VR trên các cửa sổ giá thật PASS; ER_360 trùng |signed efficiency_360| của bước regime; không missing trên toàn validation. Hash các inputs và source trước/sau phân tích không đổi. Xem [exploration_status.json](../research_autocorrelation_analysis/validation_20261103/exploration_status.json), [script](../research_autocorrelation_analysis/explore.py).
+**Kiểm chứng:** prefix-invariance PASS cho mọi cấu hình ở hai coin (bỏ phần tương lai không đổi feature quá khứ); direct finite-window ACF/VR trên các cửa sổ giá thật PASS; ER_360 trùng |signed efficiency_360| của bước regime; không missing trên toàn validation. Hash các inputs và source trước/sau phân tích không đổi. Xem `exploration_status.json`, [script](../research_autocorrelation_analysis/explore.py).
 
 Đây vẫn là oracle-filtered cohort |future return|>1%, không có Neutral; label horizon 600 dòng, overlap và các giới hạn cleaning/split/calibration gốc vẫn tồn tại. Causal trailing calculation trên stream đã preprocess không chứng minh raw pipeline hoàn toàn causal. Labels chỉ dùng đánh giá/fit các statistical controls trong validation, không dùng tính ACF/VR/ER.
 
@@ -56,7 +56,7 @@ Cách đọc: độ lớn dịch chuyển ròng chia tổng quãng đường log
 
 ## 3. Distribution, missing và outliers
 
-Bảng minh họa bốn representations chính; missing bằng 0 ở cả 20 representations. `tukey_outlier_share` là tỷ lệ ngoài Q25−1,5IQR/Q75+1,5IQR, không phải tỷ lệ dữ liệu sai. Giữ mọi giá trị. [distributions.csv](../research_autocorrelation_analysis/validation_20261103/distributions.csv) có p01/p99 và các window/lag còn lại.
+Bảng minh họa bốn representations chính; missing bằng 0 ở cả 20 representations. `tukey_outlier_share` là tỷ lệ ngoài Q25−1,5IQR/Q75+1,5IQR, không phải tỷ lệ dữ liệu sai. Giữ mọi giá trị. `distributions.csv` có p01/p99 và các window/lag còn lại.
 
 | feature | symbol | missing | minimum | q25 | median | q75 | maximum | tukey_outlier_share |
 |---|---|---|---|---|---|---|---|---|
@@ -71,11 +71,9 @@ Bảng minh họa bốn representations chính; missing bằng 0 ở cả 20 rep
 
 ACF lag-1,W=360 median gần zero (+0,0093 BTC; +0,0102 ETH), nhưng phân phối có cả hai dấu. VR(5,360) median 0,9554/0,9601; không suy ra mean reversion có lợi nhuận. ER_360 median chỉ 0,0465/0,0478, lý giải tại sao threshold ER>0,20 của bước trước tạo nhóm hiếm.
 
-![Feature distributions](../research_autocorrelation_analysis/validation_20261103/feature_distributions.png)
-
 ## 4. Quantiles và fixed-threshold performance trên toàn validation
 
-Q1–Q5 tính riêng từng symbol bằng validation quantiles, chỉ phục vụ mô tả; giữ ties cùng nhóm, không dùng test quantiles. Các cột accuracy/coverage/selective accuracy/ECE là %, confidence_mean là probability. Mẫu số accuracy/ECE là toàn nhóm; selective metrics chỉ trên mẫu confidence≥0,64. Net và expected net là bps; expected net = coverage × net/mẫu chọn. Có đầy đủ counts, confidence min/median/P90/P95/max và mọi cấu hình trong [quantile_metrics.csv](../research_autocorrelation_analysis/validation_20261103/quantile_metrics.csv).
+Q1–Q5 tính riêng từng symbol bằng validation quantiles, chỉ phục vụ mô tả; giữ ties cùng nhóm, không dùng test quantiles. Các cột accuracy/coverage/selective accuracy/ECE là %, confidence_mean là probability. Mẫu số accuracy/ECE là toàn nhóm; selective metrics chỉ trên mẫu confidence≥0,64. Net và expected net là bps; expected net = coverage × net/mẫu chọn. Có đầy đủ counts, confidence min/median/P90/P95/max và mọi cấu hình trong `quantile_metrics.csv`.
 
 | feature | symbol | quantile | n | confidence_mean | accuracy | selected_n | coverage | selective_accuracy | net_selected_bps | expected_net_bps | ece_10 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -150,15 +148,11 @@ direction=0 là dự đoán Down, direction=1 là Up. Quantiles vẫn dùng cùn
 
 ETH Q1 Down có accuracy 97,16% nhưng chỉ **141 selections**, dưới cờ 200; không coi đó là 141 thử nghiệm độc lập. ETH Q5 Down 33,33%/−30,81 bps, trong khi Up 66,85%/+104,86 bps. Raw dependence theo direction rõ nhưng chưa đủ chứng minh một interaction ổn định.
 
-![Quantile performance](../research_autocorrelation_analysis/validation_20261103/quantile_performance.png)
-
 ## 5. Confidence reliability
 
 ECE tính 10 bins cố định đều trên [0,1], weighted absolute difference giữa correctness và top-label confidence; không phải calibration riêng probability Up. Ví dụ signed ACF_1_360 BTC Q5 confidence trung bình 0,5782 nhưng accuracy toàn nhóm 45,44%, ECE 19,20%; ETH Q1 confidence 0,5556, accuracy 68,66%, ECE 13,16%. Confidence không đồng nghĩa cùng reliability ở mọi dependence state.
 
-Calibration gốc đã fit trên validation; các số này không phải independent calibration assessment. Diagram chỉ vẽ bins n≥100; dữ liệu tất cả bins giữ trong [reliability_bins.csv](../research_autocorrelation_analysis/validation_20261103/reliability_bins.csv).
-
-![Reliability by ACF](../research_autocorrelation_analysis/validation_20261103/reliability_by_acf.png)
+Calibration gốc đã fit trên validation; các số này không phải independent calibration assessment. Diagram chỉ vẽ bins n≥100; dữ liệu tất cả bins giữ trong `reliability_bins.csv`.
 
 ## 6. Incremental information: trước/sau thêm feature
 
@@ -237,8 +231,6 @@ Các candidates này dưới đây được trình bày để kiểm tra stabili
 
 ACF_1_360 signed có weighted Δlogloss −0,02955, VR_5_360 −0,03165. Raw group differences không chuyển thành temporal prediction gain ổn định. Dự đoán signed return tốt hơn cũng không đồng nghĩa expected trading utility đã tăng, vì không có selection rule mới được triển khai.
 
-![Incremental effects](../research_autocorrelation_analysis/validation_20261103/incremental_effects.png)
-
 ### 6.4. Conditional-strata robustness, thêm ngày
 
 Kiểm tra riêng từng asset bằng cách demean feature và outcomes trong exact confidence×predicted-direction×volatility-quintile×trend-quintile strata, sau đó partial out log micro/daily vol và continuous trend còn dư; thêm day strata cho spec thứ hai. Các quantiles chỉ dùng mô tả toàn validation. Không fit/đổi probabilities MLP. Singleton strata có residual zero, không tạo thông tin giả; số rows trong repeated strata ghi trong CSV. Daily log-vol hằng trong ngày bị bỏ khi không có variation còn lại.
@@ -299,8 +291,6 @@ Asset-interaction variant cũng có weighted gain logloss âm (−0,02206). Đâ
 - |ACF| Q5 ETH chỉ có hai tuần đạt ≥200 selections dù tổng nhóm có 1.801 selections; nhiều row không đồng nghĩa nhiều episode độc lập. Các ô Up/Down hiếm được gắn few_selected/few_samples, không dùng cực trị làm conclusion.
 - Sliding windows, labels 600 dòng overlap và autocorrelation của chính feature/outcomes làm số mẫu hiệu dụng nhỏ hơn count. Chưa tính HAC/block-bootstrap CIs; ba folds không đủ để khẳng định significance. Không báo IID p-values. Tất cả values/outliers vẫn giữ nguyên; Tukey flag chỉ mô tả, không sửa data.
 
-![Weekly stability](../research_autocorrelation_analysis/validation_20261103/weekly_stability.png)
-
 ## 8. Trả lời câu hỏi và quyết định nghiên cứu
 
 1. **Feature quan hệ mạnh nhất với correctness?** Không có winner ổn định. ACF_5_1440 có association/relative forward-model gain nổi bật nhưng Brier giảm và ETH conditional effect đảo dấu sau day control. |ACF_1_1440| có gain nhỏ hơn, vẫn không ổn định hoàn toàn. Không chọn chỉ dựa raw selective accuracy.
@@ -313,9 +303,9 @@ Asset-interaction variant cũng có weighted gain logloss âm (−0,02206). Đâ
 
 ## 9. Artifacts và tái lập
 
-- [Feature/distribution/quantile metrics](../research_autocorrelation_analysis/validation_20261103/quantile_metrics.csv), [direction breakdown](../research_autocorrelation_analysis/validation_20261103/direction_quantiles.csv), [weekly](../research_autocorrelation_analysis/validation_20261103/weekly_quantiles.csv), [correlations](../research_autocorrelation_analysis/validation_20261103/control_correlations.csv).
-- [Temporal incremental metrics](../research_autocorrelation_analysis/validation_20261103/temporal_incremental_metrics.csv), [summary](../research_autocorrelation_analysis/validation_20261103/incremental_summary.csv), [conditional strata](../research_autocorrelation_analysis/validation_20261103/conditional_strata_effects.csv), [comparator health](../research_autocorrelation_analysis/validation_20261103/control_model_health.csv).
-- validation_features.parquet giữ hàng/cột feature và labels gốc; statistical_validation_predictions.parquet chỉ giữ predictions của **statistical validation comparators**, không thay MLP predictions. Fold models/scalers trong statistical_controls/, protocol/coefficients/status JSON đầy đủ. MLP, dataset, original source và artifacts Volatility/Regime methods cũ giữ nguyên. [Integrity checks](../research_autocorrelation_analysis/validation_20261103/integrity_checks.json) đối chiếu hash classifier gốc, validation predictions và source với metadata lần Regime-B: PASS; không đọc test predictions để làm kiểm tra này.
+- `Feature/distribution/quantile metrics`, `direction breakdown`, `weekly`, `correlations`.
+- `Temporal incremental metrics`, `summary`, `conditional strata`, `comparator health`.
+- validation_features.parquet giữ hàng/cột feature và labels gốc; statistical_validation_predictions.parquet chỉ giữ predictions của **statistical validation comparators**, không thay MLP predictions. Fold models/scalers trong statistical_controls/, protocol/coefficients/status JSON đầy đủ. MLP, dataset, original source và artifacts Volatility/Regime methods cũ giữ nguyên. `Integrity checks` đối chiếu hash classifier gốc, validation predictions và source với metadata lần Regime-B: PASS; không đọc test predictions để làm kiểm tra này.
 - Chạy lần lượt `reproduction_setup/venv/Scripts/python.exe research_autocorrelation_analysis/explore.py`, `conditional_analysis.py`, `summarize.py`, `write_report.py` (ba lệnh sau cùng đường dẫn research_autocorrelation_analysis/). Hai script đầu từ chối overwrite output/stats-model directory hiện tại. Để tái lập, đổi OUT sang thư mục mới trong module explore; không xóa kết quả cũ. Không cài thư viện.
 
 Runtime exploration 27.13s, conditional comparators 61.22s; chưa gồm các bước tóm tắt/báo cáo. Peak working set lần lượt 1.064/0.791 GiB.

@@ -50,22 +50,6 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-### Cách chạy
-
-Cần unified BTC/ETH, saved predictions trong `data/btc_eth_1pct/training/`, threshold selection, cached ACF/folds trong `research_autocorrelation_analysis/validation_20261103/` và metrics tham chiếu Regime/Volatility.
-
-Dùng môi trường Python đã chuẩn bị, chạy PowerShell từ repository:
-
-```powershell
-Set-Location 'D:\crypto-confidence-execution'
-$methodRunOut = 'research_runs/acf_a_' + (Get-Date -Format yyyyMMdd_HHmmss_fff)
-& .\reproduction_setup\venv\Scripts\python.exe .\research_autocorrelation_threshold\run_acf_a.py --out $methodRunOut
-```
-
-`--out` trỏ đến thư mục có timestamp, chưa tồn tại; script từ chối ghi đè thư mục cũ. Lệnh fit/chọn threshold bằng validation rồi đánh giá test theo cấu hình script; không train lại MLP. Guard theo stage giữ peak working set≤9GiB và Available RAM≥2GiB.
-
-Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validation_test.csv`, decisions validation/test, coverage/weekly diagnostics và resource logs. Những input/model/reference paths khác vẫn lấy theo source, không đổi theo `--out`.
-
 ## 4. Limitations & Expected Contribution
 
 Kỳ vọng: dependence-aware selection tối giản với exact fixed null và attribution rõ. Absolute ACF bỏ dấu momentum/mean reversion; một β chung có thể sai dấu một coin. Cần tách pooled gain do asset mix khỏi within-asset selection; không thêm lags/VR/ER hậu nghiệm để cứu method. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.

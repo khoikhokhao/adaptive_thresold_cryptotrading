@@ -1,8 +1,0 @@
-{
-  "status": "infeasible",
-  "reason": "No beta meets predeclared coverage/count constraints",
-  "elapsed_sec": 8.078583,
-  "test_evaluated": false,
-  "check_evaluated": false,
-  "adaptive_selected": false
-}

@@ -10,7 +10,7 @@ Sử dụng đúng **292.338×128 X_train** và **80.260×128 X_validation** flo
 
 Full validation vẫn BTC 40.209, ETH 40.051. Fixed chọn 20.463 mẫu, coverage 25,50%, selective accuracy 68,93%, net 99,18 bps/mẫu chọn. Validation keys đối chiếu metadata/matrix order; train/validation keys không trùng. Model probabilities và labels lấy từ artifacts đã lưu.
 
-Nguồn: [original transform](../centralized_training_two_classes.py#L545), [preprocessor fit](../centralized_training_two_classes.py#L496), [training wrapper](../reproduction_setup/train_btc_eth_1pct.py), `matrix manifest` (`../data/btc_eth_1pct/prepared/matrix_manifest.json`, không bundle), `feature schema` (`../data/btc_eth_1pct/prepared/feature_schema.json`, không bundle).
+Nguồn: [original transform](../centralized_training_two_classes.py#L545), [preprocessor fit](../centralized_training_two_classes.py#L496), [training wrapper](../reproduction_setup/train_btc_eth_1pct.py), `matrix manifest` (`../data/btc_eth_1pct/prepared/matrix_manifest.json`), `feature schema` (`../data/btc_eth_1pct/prepared/feature_schema.json`).
 
 ### Reference riêng từng asset và thời gian
 
@@ -104,7 +104,7 @@ Score bổ sung đơn giản: fraction của 128 features ngoài train 1st–99t
 | BTC_USDT | 0 | 31 | 115.08621647 | 0.9997148 | 1.0 | 11394.44874956 |
 | ETH_USDT | 0 | 32 | 114.6212811 | 0.99922978 | 1.0 | 11348.4363021 |
 
-Numerical rank ở tolerance eigenvalue>10⁻¹⁰×largest eigenvalue chỉ 31 BTC/32 ETH, dù 128 cột đều có variance. PCA16 giữ 99,971%/99,923% variance; PCA32 gần 100%. Không khẳng định algebraic rank chỉ 31/32 ở mọi precision, nhưng **plain inverse covariance rất không ổn định**. First PC eigenvalue khoảng 115 trên trace khoảng 128, tức gần 90% reference variance. Top loadings đều là các orderbook price levels gần trùng nhau: xem [PCA_loadings.csv](../research_distribution_shift/validation_20261103/PCA_loadings.csv). Đây có thể chủ yếu là price-level geometry, không đại diện mọi risk factors thị trường.
+Numerical rank ở tolerance eigenvalue>10⁻¹⁰×largest eigenvalue chỉ 31 BTC/32 ETH, dù 128 cột đều có variance. PCA16 giữ 99,971%/99,923% variance; PCA32 gần 100%. Không khẳng định algebraic rank chỉ 31/32 ở mọi precision, nhưng **plain inverse covariance rất không ổn định**. First PC eigenvalue khoảng 115 trên trace khoảng 128, tức gần 90% reference variance. Top loadings đều là các orderbook price levels gần trùng nhau: xem `PCA_loadings.csv`. Đây có thể chủ yếu là price-level geometry, không đại diện mọi risk factors thị trường.
 
 RE32 validation median khoảng 2,5×10⁻⁵ BTC/2,9×10⁻⁵ ETH trong standardized units. Một score nhỏ không tự là noise; nhưng cần phân biệt residual cấu trúc orderbook, tick/float32 quantization và sensitivity của low-variance subspace. Chưa xác minh nó là lỗi numerical hoặc một signal tài chính thật.
 
@@ -112,7 +112,7 @@ RE32 validation median khoảng 2,5×10⁻⁵ BTC/2,9×10⁻⁵ ETH trong standa
 
 ### 4.1. Train-reference distances khác mức error
 
-Cột share_above_train99 là %, chỉ là diagnostic exceedance, không phải ground-truth OOD rate. Missing bằng 0 ở cả 12 scores. Train KNN/W1 Q99 dùng anchors như đã nêu. [score_distributions.csv](../research_distribution_shift/validation_20261103/score_distributions.csv) giữ min/p01/p90/p95/p99/max, outlier flags và tất cả scores.
+Cột share_above_train99 là %, chỉ là diagnostic exceedance, không phải ground-truth OOD rate. Missing bằng 0 ở cả 12 scores. Train KNN/W1 Q99 dùng anchors như đã nêu. `score_distributions.csv` giữ min/p01/p90/p95/p99/max, outlier flags và tất cả scores.
 
 | score | symbol | missing | median | p99 | max | train_q99 | share_above_train99 |
 |---|---|---|---|---|---|---|---|
@@ -195,15 +195,11 @@ Pooled groups gộp quantile riêng mỗi coin, không định nghĩa global sco
 | w1_360_pc1 | 1 | 16053 | 5780 | 36.01 | 70.97 | 21.566 | 7.765 |
 | w1_360_pc1 | 5 | 16052 | 2153 | 13.41 | 74.78 | 184.77 | 24.783 |
 
-![Quantile performance](../research_distribution_shift/validation_20261103/quantile_performance.png)
-
 ### 4.4. Confidence và calibration
 
 Confidence min/median/P90/P95/max và ECE10 đều lưu trong quantile_metrics.csv; ECE là weighted |correctness−confidence| ở 10 uniform bins [0,1], top-label calibration, không phải probability Up calibration. ETH MD Q5 mean confidence 0,6492 nhưng accuracy toàn nhóm 57,92%, selective accuracy 58,05%; BTC MD Q5 mean confidence 0,6310, accuracy 56,91%, selective 70,22%. Confidence distributions khác nhau giữa shift groups, nên cần controls, không chỉ nhìn error rates.
 
 Calibrator gốc đã fit trên validation; các reliability diagrams này không độc lập. Bins trong hình chỉ hiển thị khi n≥100; dữ liệu mọi bins được giữ lại.
-
-![Reliability by shift](../research_distribution_shift/validation_20261103/reliability_by_shift.png)
 
 ## 5. Counterexamples: shift lớn vẫn đúng, shift thấp vẫn sai
 
@@ -287,8 +283,6 @@ Fold breakdown một số scores:
 | 3 | knn20_pc16 | -0.001219 | -0.000418 | 4.972826 |
 | 3 | w1_360_pc1 | -0.031934 | -0.010314 | -1.465348 |
 
-![Incremental effects](../research_distribution_shift/validation_20261103/incremental_effects.png)
-
 ### 6.4. Conditional strata và day robustness
 
 Kiểm tra riêng asset bằng fixed-effects demean trong confidence×direction×vol-quintile×trend-quintile×|ACF|-quintile strata; thêm day cho spec dưới. Partial out continuous log vol/trend/ACF còn dư, bỏ daily control khi đã bị day effects hấp thụ. Score dùng log1p. Effect theo **full-validation IQR**, không cùng estimator với prefix counterfactual ở trên. Global IQR có thể lớn hơn within-stratum variation; coefficients tuyến tính có thể phóng đại hypothetical change, nên báo partial correlation và không diễn giải probability forecast/causal effect.
@@ -329,8 +323,6 @@ RE32 tương quan Spearman với micro volatility khoảng +0,421 BTC/+0,338 ETH
 
 weekly_quantiles.csv giữ mọi tuần có mẫu và flags cho selections<200; không bỏ episode xấu. Các forward metrics cho thấy MD kém 3/3 folds, kNN/rolling scores đổi dấu lợi ích; không kết luận stability từ pooled sample count. Các window overlaps 360 dòng, labels 600 dòng, neighbours/rows training phụ thuộc thời gian và quantile groups có thể tập trung một episode. Chưa làm IID significance hoặc coi 80.260 rows là số thử nghiệm độc lập; nếu cần CIs phải có paired time-block design và đủ episodes.
 
-![Temporal scores](../research_distribution_shift/validation_20261103/temporal_shift.png)
-
 ## 8. Novelty, covariate shift và concept drift
 
 | Khái niệm | Đã đo được gì | Không được kết luận |
@@ -354,9 +346,9 @@ Không chọn method/threshold hoặc đọc test để tìm winner ở bước 
 
 ## 10. Artifacts và tái lập
 
-- [Reference audit](../research_distribution_shift/validation_20261103/reference_audit.csv), [protocol](../research_distribution_shift/validation_20261103/protocol.json), [score status](../research_distribution_shift/validation_20261103/score_status.json): full train/validation transform equality và direct PSI/exact W1 checks PASS. [Integrity checks](../research_distribution_shift/validation_20261103/integrity_checks.json) xác minh lại cuối lượt toàn bộ hashes source/model/reference inputs không đổi; không đọc test predictions để kiểm tra.
-- [Distributions](../research_distribution_shift/validation_20261103/score_distributions.csv), [all quantile metrics](../research_distribution_shift/validation_20261103/quantile_metrics.csv), [direction](../research_distribution_shift/validation_20261103/direction_quantiles.csv), [weekly](../research_distribution_shift/validation_20261103/weekly_quantiles.csv), [train-Q99 cohorts](../research_distribution_shift/validation_20261103/training99_cohorts.csv).
-- [Incremental summary](../research_distribution_shift/validation_20261103/incremental_summary.csv), [per-fold metrics](../research_distribution_shift/validation_20261103/temporal_incremental_metrics.csv), [conditional-strata effects](../research_distribution_shift/validation_20261103/conditional_strata_effects.csv), [control health](../research_distribution_shift/validation_20261103/control_model_health.csv), [sensitivity](../research_distribution_shift/validation_20261103/sensitivity_correlations.csv).
+- `Reference audit`, `protocol`, `score status`: full train/validation transform equality và direct PSI/exact W1 checks PASS. `Integrity checks` xác minh lại cuối lượt toàn bộ hashes source/model/reference inputs không đổi; không đọc test predictions để kiểm tra.
+- `Distributions`, `all quantile metrics`, `direction`, `weekly`, `train-Q99 cohorts`.
+- `Incremental summary`, `per-fold metrics`, `conditional-strata effects`, `control health`, `sensitivity`.
 - training_references.joblib giữ geometry/PCA/full kNN coordinates từ train, không labels; validation_scores.parquet/validation_analysis_rows.parquet giữ scores ghép validation; past_PC_stream.parquet chỉ là projected feature stream, không test predictions. statistical_controls/ và statistical_validation_predictions.parquet thuộc các regression chẩn đoán validation, không thay MLP artifacts.
 - Chạy lần lượt `reproduction_setup/venv/Scripts/python.exe research_distribution_shift/build_scores.py`, rồi `describe.py`, `conditional_analysis.py`, `robustness.py`, `write_report.py` với cùng thư mục research_distribution_shift/. Script build và statistical model folder từ chối overwrite. Để tái lập vào thư mục khác, đổi OUT trong build_scores trước; không xóa outputs cũ. Không cài thư viện hoặc tải dữ liệu.
 

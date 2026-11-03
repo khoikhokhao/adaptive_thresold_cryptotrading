@@ -37,7 +37,7 @@ $$
 | Calibration | Isotonic, CV trong validation | Prefit isotonic fit toàn validation |
 | Threshold | τ*=0,8; grid bước 0,01 | τ*=0,64; grid 0,50–0,94 bước 0,02; pooled validation coverage≥10% |
 
-Nguồn repo: [labels C:158](../centralized_training_two_classes.py#L158), [split C:602](../centralized_training_two_classes.py#L602), [lọc Neutral C:633](../centralized_training_two_classes.py#L633), [MLP C:1835](../centralized_training_two_classes.py#L1835), [calibration C:860](../centralized_training_two_classes.py#L860), [threshold optimization C:894](../centralized_training_two_classes.py#L894). Counts/config lấy từ baseline BTC/ETH và threshold đã khóa của run hiện tại. Báo cáo baseline đầu tiên ghi τ0,94 khi chưa có coverage constraint; không nhầm với baseline0,64 sau đó. Root README/walkthrough có trạng thái lịch sử, không thay thế artifacts run hiện tại.
+Nguồn repo: [labels C:158](../centralized_training_two_classes.py#L158), [split C:602](../centralized_training_two_classes.py#L602), [lọc Neutral C:633](../centralized_training_two_classes.py#L633), [MLP C:1835](../centralized_training_two_classes.py#L1835), [calibration C:860](../centralized_training_two_classes.py#L860), [threshold optimization C:894](../centralized_training_two_classes.py#L894). Counts/config lấy từ baseline BTC/ETH và threshold đã khóa của run hiện tại. Báo cáo baseline đầu tiên ghi τ0,94 khi chưa có coverage constraint; không nhầm với baseline0,64 sau đó. Hướng dẫn dữ liệu, labels và lệnh chạy nằm riêng trong thư mục docs/.
 
 ## 3. Research gap: bốn methods muốn bổ sung điều gì?
 
@@ -82,15 +82,7 @@ So sánh với Fixed 0,64 trên cùng split và cùng coverage. Các mức tăng
 
 Số mẫu chọn: validation 20.463, test 7.984; coverage lần lượt 25,4959% và 12,2488%. Số đúng làm tròn integer rồi suy ra selective accuracy; U=C×net/chọn tính trước khi làm tròn bảng. Báo cáo từng method giữ cùng cấu trúc và định nghĩa metrics.
 
-Các kết quả, hệ số và artifacts v1 được giữ riêng trong repository. Chọn coefficients/thresholds bằng validation, không bằng test; breakdown BTC/ETH, direction, temporal stability và ablations vẫn là các kiểm tra cần thiết của benchmark plan. Test hiện tại đã được xem nên không dùng để claim confirmatory OOS.
-
-### Source code và cách chạy
-
-Mỗi method report giữ đúng ba link ở đầu: PDF/context, Analysis và Source code. Mục 3 của từng report có lệnh PowerShell cụ thể; không cần train lại MLP. Các script dùng validation để fit/chọn tham số, khóa cấu hình rồi mới đánh giá test và xuất metrics từ predictions đã lưu.
-
-Điều kiện: chạy trong repository đầy đủ `D:\crypto-confidence-execution`, dùng `reproduction_setup/venv/Scripts/python.exe`; giữ nguyên thư mục `data/`, các exploratory caches, helper modules và kết quả tham chiếu. Không thể chạy chỉ bằng thư mục v2. Không cài thư viện hoặc tải dữ liệu khi đọc hướng dẫn.
-
-Ba script Regime-B, ACF-A, Shift-A hỗ trợ `--out`; Volatility-B dùng biến module `OUT`, nên lệnh import module và đặt output path trong process mới. Tất cả lệnh dùng `research_runs/<method>_<timestamp>` để không ghi đè artifacts. Guard kiểm tra theo stage: peak working set≤9GiB, Available RAM≥2GiB. Các lệnh chỉ được ghi làm hướng dẫn, chưa chạy trong lượt cập nhật tài liệu này.
+Các kết quả, hệ số và artifacts v1 được lưu local, không bundle trong repository. Chọn coefficients/thresholds bằng validation, không bằng test; breakdown BTC/ETH, direction, temporal stability và ablations vẫn là các kiểm tra cần thiết của benchmark plan. Test hiện tại đã được xem nên không dùng để claim confirmatory OOS.
 
 PDF tải nguyên bản từ [MDPI](https://mdpi-res.com/d_attachment/applsci/applsci-15-11145/article_deploy/applsci-15-11145.pdf), 3.639.532 bytes; SHA256 `2c1e01333ea967ad7de9fb36157ebef094c4b3f248045f71c1a1fb8b6216378a`. Bài báo công bố CC BY4.0; giữ attribution tác giả/DOI.
 

@@ -45,22 +45,6 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-### Cách chạy
-
-Cần artifacts Regime-A tại `research_regime_threshold/method_a_20261103/`, model/predictions BTC/ETH và các báo cáo/config gốc được script kiểm tra hash.
-
-Dùng môi trường Python đã chuẩn bị, chạy PowerShell từ repository:
-
-```powershell
-Set-Location 'D:\crypto-confidence-execution'
-$methodRunOut = 'research_runs/regime_b_' + (Get-Date -Format yyyyMMdd_HHmmss_fff)
-& .\reproduction_setup\venv\Scripts\python.exe .\research_regime_threshold\run_regime_b.py --out $methodRunOut
-```
-
-`--out` trỏ đến thư mục có timestamp, chưa tồn tại; script từ chối ghi đè thư mục cũ. Lệnh fit/chọn threshold bằng validation rồi đánh giá test theo cấu hình script; không train lại MLP. Guard theo stage giữ peak working set≤9GiB và Available RAM≥2GiB.
-
-Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validation_test.csv`, decisions validation/test, coverage/weekly diagnostics và resource logs. Những input/model/reference paths khác vẫn lấy theo source, không đổi theo `--out`.
-
 ## 4. Limitations & Expected Contribution
 
 Kỳ vọng: tách trend effect, direction bias và alignment bằng nested ablations. Trong kết quả v1, γ=0; interaction chưa có evidence, nên cần giữ đối chứng bỏ interaction và direction-only. η có thể chỉ đổi allocation; trend có thể đại diện volatility hoặc một episode. Novelty/generalization chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.

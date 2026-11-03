@@ -108,7 +108,7 @@ Confidence là max(p_up,p_down). Calibration đang xét **top-label correctness*
 | ETH_USDT | Bull | 0.5863 | 0.5336 | 0.6487 | 4.39 | 8.52 | 19 |
 | ETH_USDT | Sideways | 0.5696 | 0.5336 | 0.6487 | -1.49 | 2.3 | 31 |
 
-ETH Bear có confidence trung bình 0,5747 nhưng accuracy toàn nhóm 64,49% (gap +7,02 điểm phần trăm); ECE 10,21 điểm phần trăm cho thấy sai lệch giữa các confidence bins có thể bù nhau ở mean gap. BTC Sideways gap −1,99 điểm phần trăm. Cùng confidence không thể mặc định có cùng reliability giữa regime; tuy nhiên calibration fit ngay validation nên các con số này không phải chất lượng calibration trên dữ liệu độc lập. [Reliability diagram](../research_regime_analysis/validation_20261103/reliability_by_regime.png) chỉ vẽ bin n≥100, bảng CSV giữ mọi bin.
+ETH Bear có confidence trung bình 0,5747 nhưng accuracy toàn nhóm 64,49% (gap +7,02 điểm phần trăm); ECE 10,21 điểm phần trăm cho thấy sai lệch giữa các confidence bins có thể bù nhau ở mean gap. BTC Sideways gap −1,99 điểm phần trăm. Cùng confidence không thể mặc định có cùng reliability giữa regime; tuy nhiên calibration fit ngay validation nên các con số này không phải chất lượng calibration trên dữ liệu độc lập. `Reliability diagram` chỉ vẽ bin n≥100, bảng CSV giữ mọi bin.
 
 ## 5. Up có dễ dự đoán hơn Down không?
 
@@ -167,7 +167,7 @@ Ba mức kiểm soát: confidence; confidence + quintile volatility_30m theo sym
 
 BTC Bear có +5,49 điểm phần trăm khi chỉ kiểm soát confidence, nhưng −7,91 khi thêm vol-quintile/day; với continuous vol/day là −9,90. ETH Bull giữ dấu dương qua các đặc tả, từ +7,00 đến +9,51 điểm phần trăm; ETH Bear vẫn dương nhưng mức thay đổi đáng kể. Đây là bằng chứng heterogeneity, **chưa phải tín hiệu độc lập ổn định đủ để giao dịch**.
 
-Với continuous vol/day controls, adjusted net trên **toàn bộ cohort, chưa threshold** của Bull so với Sideways chỉ +4,60 bps BTC, +8,06 ETH; Bear −67,62 BTC và −23,90 ETH. Hệ số correctness dương không đảm bảo hiệu ứng return dương. Xem [conditional effects](../research_regime_analysis/validation_20261103/controlled_effects.csv) và [continuous controls](../research_regime_analysis/validation_20261103/continuous_volatility_controls.csv). Không dùng các hồi quy này để thay probability hoặc threshold.
+Với continuous vol/day controls, adjusted net trên **toàn bộ cohort, chưa threshold** của Bull so với Sideways chỉ +4,60 bps BTC, +8,06 ETH; Bear −67,62 BTC và −23,90 ETH. Hệ số correctness dương không đảm bảo hiệu ứng return dương. Xem `conditional effects` và `continuous controls`. Không dùng các hồi quy này để thay probability hoặc threshold.
 
 ### Tương quan regime score với volatility
 
@@ -221,13 +221,8 @@ Trend_360 có switch rate khoảng 3%/row và median run 3–4 dòng; trend_60 k
 
 ## 9. Artifacts, biểu đồ và tái lập
 
-![Performance theo trend 360](../research_regime_analysis/validation_20261103/trend_360_performance.png)
-
-![Reliability theo regime](../research_regime_analysis/validation_20261103/reliability_by_regime.png)
-
-![Tỷ trọng regime từng ngày](../research_regime_analysis/validation_20261103/daily_regime_shares.png)
-- [Regime metrics, đầy đủ confidence distribution](../research_regime_analysis/validation_20261103/regime_metrics.csv), [direction metrics](../research_regime_analysis/validation_20261103/direction_metrics.csv), [weekly metrics](../research_regime_analysis/validation_20261103/weekly_metrics.csv).
-- [Metadata/checksums](../research_regime_analysis/validation_20261103/metadata.json): input hashes trước/sau không đổi, không đọc test predictions, không fit threshold.
+- `Regime metrics, đầy đủ confidence distribution`, `direction metrics`, `weekly metrics`.
+- `Metadata/checksums`: input hashes trước/sau không đổi, không đọc test predictions, không fit threshold.
 - Script [analyze_validation.py](../research_regime_analysis/analyze_validation.py) và [robustness.py](../research_regime_analysis/robustness.py), [write_report.py](../research_regime_analysis/write_report.py). Lệnh lần lượt: `reproduction_setup/venv/Scripts/python.exe research_regime_analysis/analyze_validation.py`, rồi tương tự với `robustness.py` và `write_report.py`. Script đầu từ chối overwrite output hiện tại; để tái lập vào thư mục mới cần đổi hằng OUT trước khi chạy, không xóa kết quả cũ.
 
 Runtime phân tích chính: 13.72 giây; chưa tính bước robustness và dựng báo cáo. Không cài thư viện, không train lại MLP, không thay source tác giả, dataset hay kết quả Fixed/A/B cũ.

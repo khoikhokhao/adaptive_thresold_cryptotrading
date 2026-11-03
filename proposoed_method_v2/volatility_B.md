@@ -52,21 +52,6 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-### Cách chạy
-
-Cần `validation_decisions.parquet`, `test_decisions.parquet`, `locked_config_before_test.json` và metrics tham chiếu trong `research_volatility_threshold/full_validation_test_20261103/`.
-
-Dùng môi trường Python đã chuẩn bị, chạy PowerShell từ repository:
-
-```powershell
-Set-Location 'D:\crypto-confidence-execution'
-& .\reproduction_setup\venv\Scripts\python.exe -c "import sys; from pathlib import Path; from datetime import datetime; sys.path.insert(0, 'research_volatility_threshold'); import method_b_benchmark as m; m.OUT=Path('research_runs') / ('volatility_b_' + datetime.now().strftime('%Y%m%d_%H%M%S_%f')); m.main()"
-```
-
-Script không có `--out`; lệnh chỉ đặt biến output `OUT` trong process mới rồi gọi `main()`, không sửa file hoặc hyperparameters. Lệnh fit/chọn threshold bằng validation rồi đánh giá test theo cấu hình script; không train lại MLP. Guard theo stage giữ peak working set≤9GiB và Available RAM≥2GiB.
-
-Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validation_test.csv`, decisions validation/test, coverage/weekly diagnostics và resource logs. Những input/model/reference paths khác vẫn lấy theo source, không đổi theo `--out`.
-
 ## 4. Limitations & Expected Contribution
 
 Kỳ vọng: conditional-reliability threshold có dạng đảo giải tích, tách volatility khỏi symbol calibration. Correctness không phản ánh độ lớn lãi/lỗ; b/δ có thể học episode; fit reliability và chọn κ cùng V dễ overfit. Cần đối chiếu symbol-only ở comparable coverage và kiểm tra độ ổn định theo thời gian. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.

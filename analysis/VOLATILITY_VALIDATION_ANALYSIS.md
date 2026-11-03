@@ -17,7 +17,7 @@ Chỉ đọc predictions validation của model BTC/ETH hiện tại và các c�
 | `atr_14` | Daily true range là max của `High-Low`, `|High-prev_close|`, `|Low-prev_close|`; trung bình rolling 14 daily rows, tối thiểu 7, sau đó join sang ngày D+1. Đơn vị giá, không chuẩn hóa theo giá. | Có |
 | `volatility_regime` | Cờ `volatility_15d` lớn hơn phân vị 75% theo symbol trên toàn bộ macro history; là indicator, không phải độ lớn volatility. | Không |
 
-Ngoài ra có `spread_bps_std5/std20`, `imbalance_std5/std20`, và `depth_imbalance_{1,5}_std5/std20`: standard deviation của spread/imbalance, không phải volatility của return; shift một dòng, rolling 5 hoặc 20 dòng, không có cột nào trong 128 features. Tính toán và join xem [macro features](../data_preprocessing.py#L1054), [micro features](../data_preprocessing.py#L1690), [rolling statistics](../data_preprocessing.py#L1708), [macro join](../data_preprocessing.py#L1852), [cấu hình](../data_preprocessing.py#L2257); danh sách MLP xem `feature schema` (`../data/btc_eth_1pct/training/feature_schema.json`, không bundle).
+Ngoài ra có `spread_bps_std5/std20`, `imbalance_std5/std20`, và `depth_imbalance_{1,5}_std5/std20`: standard deviation của spread/imbalance, không phải volatility của return; shift một dòng, rolling 5 hoặc 20 dòng, không có cột nào trong 128 features. Tính toán và join xem [macro features](../data_preprocessing.py#L1054), [micro features](../data_preprocessing.py#L1690), [rolling statistics](../data_preprocessing.py#L1708), [macro join](../data_preprocessing.py#L1852), [cấu hình](../data_preprocessing.py#L2257); danh sách MLP xem `feature schema` (`../data/btc_eth_1pct/training/feature_schema.json`).
 
 ## Volatility 30 dòng: quantile riêng theo symbol
 
@@ -62,4 +62,4 @@ Nên chốt metric và quy trình trước khi thử, dùng cùng dự đoán/ph
 ## Artifacts và tái lập
 
 - Script phân tích: [volatility_validation_analysis.py](../reproduction_setup/volatility_validation_analysis.py). Chạy `reproduction_setup/venv/Scripts/python.exe reproduction_setup/volatility_validation_analysis.py`.
-- [Bảng quantiles](volatility/quantiles.csv), [tương quan có điều kiện](volatility/controlled_associations.csv), [accuracy theo plateau](volatility/most_common_confidence_plateau.csv), [biểu đồ](volatility/volatility_30m_groups.png).
+- `Bảng quantiles`, `tương quan có điều kiện`, `accuracy theo plateau`, `biểu đồ`.

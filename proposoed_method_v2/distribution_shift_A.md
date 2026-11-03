@@ -44,22 +44,6 @@ So sánh trên cùng số mẫu được chọn với Fixed 0,64; coverage valid
 
 Hyperparameters, normalization và quy tắc tối ưu ở mục 2 giữ nguyên; không chọn tham số bằng test.
 
-### Cách chạy
-
-Cần matrices/metadata/manifests trong `data/btc_eth_1pct/prepared/`, saved predictions, training PCA reference và cached analysis/folds trong `research_distribution_shift/validation_20261103/`, cùng config/metrics ACF tham chiếu.
-
-Dùng môi trường Python đã chuẩn bị, chạy PowerShell từ repository:
-
-```powershell
-Set-Location 'D:\crypto-confidence-execution'
-$methodRunOut = 'research_runs/shift_a_' + (Get-Date -Format yyyyMMdd_HHmmss_fff)
-& .\reproduction_setup\venv\Scripts\python.exe .\research_distribution_shift_threshold\run_shift_a.py --out $methodRunOut
-```
-
-`--out` trỏ đến thư mục có timestamp, chưa tồn tại; script từ chối ghi đè thư mục cũ. Lệnh fit/chọn threshold bằng validation rồi đánh giá test theo cấu hình script; không train lại MLP. Guard theo stage giữ peak working set≤9GiB và Available RAM≥2GiB.
-
-Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validation_test.csv`, decisions validation/test, coverage/weekly diagnostics và resource logs. Những input/model/reference paths khác vẫn lấy theo source, không đổi theo `--out`.
-
 ## 4. Limitations & Expected Contribution
 
 Kỳ vọng: training-reference-aware selection đơn giản và có kiểm soát numerical quality. Reference rank≈31/32, giữ gần 100% variance ở 32 PCs; residual chỉ≈2,5–2,9×10⁻⁵, có thể nhạy tick/float32/near-null geometry. Numeric equivalence không chứng minh economic factor; feature distance không phát hiện concept drift. Cần kiểm tra parameter stability và incremental value ngoài các factors khác. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
