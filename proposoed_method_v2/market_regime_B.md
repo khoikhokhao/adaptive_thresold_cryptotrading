@@ -30,11 +30,9 @@ Chọn nếu c=max(p_up, p_down)≥τ. Chọn+Up→Long, chọn+Down→Short; c�
 
 Mỗi coefficient grid−0,10…+0,10 bước 0,02:719 candidates sau constraint. Chọn trên full validation, penalty đơn vị bps; không tune lại window/scale/λ. Hòa 10⁻⁸ bps: norm nhỏ rồi lexicographic. 3 parameters chung hai coin; không bắt coverage từng coin/direction/test ≥10%.
 
-## 3. Benchmark Plan + Result
+## 3. Benchmark Plan + Kết quả kỳ vọng
 
 Fixed 0,64; Fixedτ*; B; γ=0; direction-only β=γ=0; alignment-only β=η=0; trend-only γ=η=0. Refit ablations bằng validation theo cùng objective. Metrics n/coverage/selective accuracy/net-chọn/expected-net-eligible; breakdown BTC/ETH, Up/Down và tuần. Matching diagnostic score=c−(βz+γuz+ηu), không clip; cutoff validation đóng băng, theo protocol chung.
-
-### Mục tiêu benchmark
 
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|

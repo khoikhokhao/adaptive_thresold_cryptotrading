@@ -83,7 +83,7 @@ Chỉ chạy sau khi unified, baseline predictions và các input caches theo so
 & .\.venv\Scripts\python.exe .\research_distribution_shift\robustness.py
 ```
 
-Các `write_report.py` tạo lại Markdown analysis từ outputs local, không cần chạy để đọc report đã có. Chuỗi commands không tự dựng các historical A/reference caches của threshold methods; cần chuẩn bị riêng các inputs được liệt kê bên dưới, không giả định analysis outputs đã đủ cho mọi script.
+Các `write_report.py` tạo lại Markdown analysis từ outputs local, không cần chạy để đọc report đã có. Chuỗi commands không tự dựng các historical A/reference caches của threshold methods; cần chuẩn bị riêng các inputs được liệt kê bên dưới, không xem analysis outputs là đầy đủ inputs cho mọi script.
 
 ## Volatility-B
 
@@ -153,4 +153,4 @@ Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validatio
 
 ## Phạm vi tái lập
 
-Các lệnh method ghi metrics thật từ inputs được cung cấp; không sinh lại bảng kịch bản trong report. Nhiều input paths/schema đang gắn với historical run; đây chưa phải clean-room, one-command reproduction package. Không chạy lại model hoặc sửa methodology chỉ để khớp bảng. Oracle filtering, horizon theo dòng, overlap/missing purge và validation reuse vẫn tồn tại; kết quả trên test đã xem là retrospective/exploratory.
+Các lệnh method tính metrics từ inputs được cung cấp. Report v2 trình bày riêng các kết quả kỳ vọng. Nhiều input paths/schema đang gắn với historical run; đây chưa phải clean-room, one-command reproduction package. Không chạy lại model hoặc sửa methodology chỉ để khớp bảng. Oracle filtering, horizon theo dòng, overlap/missing purge và validation reuse vẫn tồn tại; kết quả trên test đã xem là retrospective/exploratory.

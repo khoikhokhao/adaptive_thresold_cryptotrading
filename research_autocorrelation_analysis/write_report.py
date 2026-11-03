@@ -46,7 +46,7 @@ Ngày 03/11/2026. **Kết luận: CONDITIONAL GO cho nghiên cứu tiếp; chưa
 
 Giữ nguyên MLP, labels, calibrated probabilities, hướng dự đoán, fixed τ=0,64 và phí 1 bps. Cùng **80.260 validation samples** (BTC 40.209; ETH 40.051). Fixed chọn 20.463 mẫu: coverage 25,50%, selective accuracy 68,93%, net 99,18 bps/mẫu chọn. Không đọc test predictions; không thay dataset, artifacts cũ hoặc source tác giả.
 
-Feature tính từ **toàn bộ lịch sử mid-price unified theo từng symbol**, sau đó mới ghép validation một-một. Không tính rolling trên cohort đã lọc future return. Mỗi feature tại t chỉ dùng prices tới t, giả định minute aggregate t đã quan sát xong. Window/lag là **số quan sát**, không phải phút lịch chính xác: 360 dòng median khoảng 361 phút. Không resample, forward-fill, winsorize, hoặc clip returns để làm đẹp feature. Lấy log-return từ mid-price hiện có, khác với mid_return clip của volatility feature gốc.
+Feature tính từ **toàn bộ lịch sử mid-price unified theo từng symbol**, sau đó mới ghép validation một-một. Không tính rolling trên cohort đã lọc future return. Mỗi feature tại t chỉ dùng prices tới t, với quyết định diễn ra sau khi minute aggregate t đã quan sát xong. Window/lag là **số quan sát**, không phải phút lịch chính xác: 360 dòng median khoảng 361 phút. Không resample, forward-fill, winsorize, hoặc clip returns để làm đẹp feature. Lấy log-return từ mid-price hiện có, khác với mid_return clip của volatility feature gốc.
 
 13 cấu hình feature cơ sở và 20 representations: 7 ACF signed, 7 |ACF| từ cùng tính toán, 3 VR, 3 ER. Các cấu hình chốt trước xem [feature_protocol.json](research_autocorrelation_analysis/validation_20261103/feature_protocol.json). Hai interaction diagnostics thêm vào mô hình thống kê, không phải feature search rộng hoặc adaptive methods mới. Không chọn window/lag dựa vào test.
 
@@ -99,7 +99,7 @@ Cách đọc: độ lớn dịch chuyển ròng chia tổng quãng đường log
 
 ## 3. Distribution, missing và outliers
 
-Bảng minh họa bốn representations chính; missing bằng 0 ở cả 20 representations. `tukey_outlier_share` là tỷ lệ ngoài Q25−1,5IQR/Q75+1,5IQR, không phải tỷ lệ dữ liệu sai. Giữ mọi giá trị. [distributions.csv](research_autocorrelation_analysis/validation_20261103/distributions.csv) có p01/p99 và các window/lag còn lại.
+Bảng trình bày bốn representations chính; missing bằng 0 ở cả 20 representations. `tukey_outlier_share` là tỷ lệ ngoài Q25−1,5IQR/Q75+1,5IQR, không phải tỷ lệ dữ liệu sai. Giữ mọi giá trị. [distributions.csv](research_autocorrelation_analysis/validation_20261103/distributions.csv) có p01/p99 và các window/lag còn lại.
 
 '''+table(dist)+r'''
 
@@ -145,7 +145,7 @@ Fit **mô hình thống kê chẩn đoán**, không train lại MLP và không d
 
 M1 thêm từng representation; thêm hai diagnostics riêng cho ACF_1_360: (i) main + ACF×confidence-logit + ACF×predicted-direction; (ii) main + ACF×ETH. Không stack nhiều features để tìm combination thắng. Numeric scalers và categorical encoder fit **chỉ trên train prefix của fold**; C/alpha không tune. Logistic convergence warnings được coi lỗi; tất cả fits hoàn tất. Parameters/models lưu trong thư mục `statistical_controls/`, không thay classifier MLP gốc.
 
-Chia validation thành bốn khoảng lịch bằng nhau theo ranh giới chung BTC/ETH; ba expanding folds: train quá khứ, evaluate khoảng kế tiếp. Purge train khi future label endpoint vượt eval-start, purge eval khi endpoint vượt eval-end; endpoint phục hồi bằng shift −600 trên unified timestamp, không giả định 600 phút. Không bỏ bớt mẫu vì feature khó hoặc vì return xấu. Common finite cohort vẫn đủ 80.260 mẫu; 62.696 rows thuộc ba evaluation folds sau purge.
+Chia validation thành bốn khoảng lịch bằng nhau theo ranh giới chung BTC/ETH; ba expanding folds: train quá khứ, evaluate khoảng kế tiếp. Purge train khi future label endpoint vượt eval-start, purge eval khi endpoint vượt eval-end; endpoint phục hồi bằng shift −600 trên unified timestamp, không thay endpoint bằng 600 phút lịch. Không bỏ bớt mẫu vì feature khó hoặc vì return xấu. Common finite cohort vẫn đủ 80.260 mẫu; 62.696 rows thuộc ba evaluation folds sau purge.
 
 '''+table(folders.round(5))+r'''
 

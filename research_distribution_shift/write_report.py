@@ -79,9 +79,9 @@ MD_{s,\lambda}(x)=\sqrt{z_s(x)^{\top} S_{s,\lambda}^{-1}z_s(x)}.
 ```
 
 
-Cách đọc: khoảng cách có điều chỉnh covariance; λ=0,01 primary và 0,10 sensitivity, không tune theo reliability. Tính qua eigenbasis, không invert plain covariance gần singular. Clamp eigenvalues âm rất nhỏ do numerical roundoff về 0 trước cộng shrinkage; không sửa giá trị X. [Scikit-learn covariance documentation](https://scikit-learn.org/stable/modules/covariance) mô tả shrinkage về scaled identity. Không gọi đây là Ledoit–Wolf tự ước lượng vì λ ở đây cố định.
+Cách đọc: khoảng cách có điều chỉnh covariance; λ=0,01 primary và 0,10 sensitivity, không tune theo reliability. Tính qua eigenbasis, không invert plain covariance gần singular. Clamp eigenvalues âm rất nhỏ do numerical roundoff về 0 trước cộng shrinkage; không sửa giá trị X. [Scikit-learn covariance documentation](https://scikit-learn.org/stable/modules/covariance) mô tả shrinkage về scaled identity. λ được cố định, không chọn bằng quy trình Ledoit–Wolf.
 
-Không giả định Gaussian đủ đúng để chuyển MD thành xác suất OOD hoặc p-value chi-square. Fit covariance O(Nd²), scoring O(Md²) qua full eigenbasis; d=128 vừa với máy hiện tại, reference fit theo coin để kiểm soát RAM. RobustScaler không loại mọi influence của extreme reference points lên sample covariance.
+Không chuyển MD thành xác suất OOD hoặc p-value chi-square khi chưa xác minh điều kiện Gaussian. Fit covariance O(Nd²), scoring O(Md²) qua full eigenbasis; d=128 vừa với máy hiện tại, reference fit theo coin để kiểm soát RAM. RobustScaler không loại mọi influence của extreme reference points lên sample covariance.
 
 ### 2.3. PCA distances và residual
 
@@ -224,7 +224,7 @@ Fold breakdown một số scores:
 
 ### 6.4. Conditional strata và day robustness
 
-Kiểm tra riêng asset bằng fixed-effects demean trong confidence×direction×vol-quintile×trend-quintile×|ACF|-quintile strata; thêm day cho spec dưới. Partial out continuous log vol/trend/ACF còn dư, bỏ daily control khi đã bị day effects hấp thụ. Score dùng log1p. Effect theo **full-validation IQR**, không cùng estimator với prefix counterfactual ở trên. Global IQR có thể lớn hơn within-stratum variation; coefficients tuyến tính có thể phóng đại hypothetical change, nên báo partial correlation và không diễn giải probability forecast/causal effect.
+Kiểm tra riêng asset bằng fixed-effects demean trong confidence×direction×vol-quintile×trend-quintile×|ACF|-quintile strata; thêm day cho spec dưới. Partial out continuous log vol/trend/ACF còn dư, bỏ daily control khi đã bị day effects hấp thụ. Score dùng log1p. Effect theo **full-validation IQR**, không cùng estimator với prefix counterfactual ở trên. Global IQR có thể lớn hơn within-stratum variation; coefficients tuyến tính có thể phóng đại thay đổi phản thực, nên báo partial correlation và không diễn giải probability forecast/causal effect.
 
 '''+table(partial)+r'''
 

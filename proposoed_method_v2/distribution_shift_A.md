@@ -29,11 +29,9 @@ d là RMS spectral residual ngoài 32 PCs, không phải direction; m_s/v_s là 
 
 1 supervised coefficient, ngoài unsupervised geometry/stats. Full validation selection; λ 100 bps, grid bước 0,02; hòa10⁻⁸bps ưu tiên |β| nhỏ rồi β nhỏ. PCA32, normalization và λ giữ nguyên. Không constraint từng coin/test; infeasible phải báo, không thay dimension để cứu utility.
 
-## 3. Benchmark Plan + Result
+## 3. Benchmark Plan + Kết quả kỳ vọng
 
 Fixed 0,64; Fixedτ*; Shift-A; nullβ=0. Metrics n, coverage, selective accuracy, net/chọn, expected net/eligible; coin/direction/tuần. Matching diagnostic score=c−βh không clip, cutoffs validation đóng băng. Kiểm tra asset mix, within-asset×direction và conditional validation volatility/trend/ACF strata theo protocol chung.
-
-### Mục tiêu benchmark
 
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|

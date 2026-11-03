@@ -18,7 +18,7 @@ h_t=\tanh\frac{v_t-m_s}{I_s},\quad
 q_t=\sigma\left[(1+\delta h_t)\ell_t+a_s+b h_t\right].
 ```
 
-m_s/I_s là median/IQR **early-validation V_fit đã purge**, tái sử dụng artifact đã khóa; c=max(p_up, p_down); σ là sigmoid. q ước lượng probability **prediction đúng**, không thay probability Up hoặc hướng MLP. a_s sửa reliability riêng coin; b là volatility effect; δ là confidence×volatility interaction.
+m_s/I_s là median/IQR **early-validation V_fit đã purge**, tái sử dụng artifact đã khóa; c=max(p_up, p_down); σ là sigmoid. q dự báo xác suất **prediction đúng**, không thay probability Up hoặc hướng MLP. a_s sửa reliability riêng coin; b là volatility effect; δ là confidence×volatility interaction.
 
 Chọn khi q≥κ. Trên miền confidence không chạm clipping, threshold tương đương:
 
@@ -37,11 +37,9 @@ Cách đọc: cùng reliability requirement κ tạo confidence threshold khác 
 
 L-BFGS-B từ zero. Sau đó chọn κ∈{0,50;0,52;…;0,94} tối đa mean net/chọn với **validation pooled coverage≥10%**; hòa ưu tiên gần 0,64 rồi nhỏ hơn. 4 coefficients + κ; normalization vẫn early V_fit dù fit θ/chọn κ dùng full V. Null θ=0, κ=0,64 khôi phục Fixed trên cohort hiện tại.
 
-## 3. Benchmark Plan + Result
+## 3. Benchmark Plan + Kết quả kỳ vọng
 
 Fixed 0,64; Fixedτ*; B; symbol-only b=δ=0; bỏ từng b/δ để tách level/slope effects nếu kiểm chứng tiếp. Report n, coverage, selective accuracy, net/chọn, expected net/eligible; logloss/Brier/ECE của q. Coverage diagnostic score=q; cùng BTC/ETH, direction, tuần và cutoffs validation theo protocol chung.
-
-### Mục tiêu benchmark
 
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|

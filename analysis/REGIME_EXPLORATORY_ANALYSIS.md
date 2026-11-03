@@ -8,7 +8,7 @@ Toàn bộ validation gốc **80.260 mẫu** (BTC 40.209; ETH 40.051), ghép m�
 
 Cohort đã oracle-filter theo |future return|>1%; horizon 600 dòng, không chắc 600 phút. Không có Neutral trong các mẫu đang phân tích. Tỷ trọng regime/labels trong báo cáo là trên cohort đã lọc này, không phải phân phối mọi thời điểm thị trường. MLP và calibration đã sử dụng validation; toàn validation từng được xem, nên đây là retrospective/exploratory. Các hàng, labels và returns chồng lấn: số selections không phải vị thế độc lập. Không cộng returns thành portfolio PnL hoặc annualized Sharpe.
 
-Regime được xây từ giá/feature quá khứ trên **toàn bộ lịch sử unified**, rồi mới ghép validation; không tính rolling trên cohort oracle-filtered. Prefix-invariance của trend 60/360/1.440 dòng: PASS cho cả coin. Đây là causal construction theo dòng dữ liệu đã preprocess; không khắc phục các giới hạn cleaning/timestamp/availability từ upstream. Khi nói thông tin ở t, giả định quyết định diễn ra sau khi minute aggregate tại t đã quan sát xong. Không dùng future label/return để định nghĩa regime.
+Regime được xây từ giá/feature quá khứ trên **toàn bộ lịch sử unified**, rồi mới ghép validation; không tính rolling trên cohort oracle-filtered. Prefix-invariance của trend 60/360/1.440 dòng: PASS cho cả coin. Đây là causal construction theo dòng dữ liệu đã preprocess; không khắc phục các giới hạn cleaning/timestamp/availability từ upstream. Khi nói thông tin ở t, quy ước quyết định diễn ra sau khi minute aggregate tại t đã quan sát xong. Không dùng future label/return để định nghĩa regime.
 
 ## 2. Định nghĩa nhỏ được chốt trước phân tích kết quả
 
@@ -104,7 +104,7 @@ ETH Bear trend_360 có selective accuracy 61,29% nhưng net **−93,87 bps/mẫu
 
 ## 4. Confidence và calibration theo regime
 
-Confidence là max(p_up,p_down). Calibration đang xét **top-label correctness**, không phải reliability diagram của riêng probability Up. `calibration_gap` = accuracy toàn nhóm − confidence trung bình, đơn vị điểm phần trăm; ECE dùng 10 bin cố định đều trên [0,1], weighted absolute gap. ECE và confidence min/median/P90/P95/max có đủ cho cả năm định nghĩa trong CSV; bảng dưới minh họa trend_360.
+Confidence là max(p_up,p_down). Calibration đang xét **top-label correctness**, không phải reliability diagram của riêng probability Up. `calibration_gap` = accuracy toàn nhóm − confidence trung bình, đơn vị điểm phần trăm; ECE dùng 10 bin cố định đều trên [0,1], weighted absolute gap. ECE và confidence min/median/P90/P95/max có đủ cho cả năm định nghĩa trong CSV; bảng dưới trình bày trend_360.
 
 | symbol | regime | confidence_mean | confidence_median | confidence_p90 | calibration_gap | ece_10 | selected_days |
 |---|---|---|---|---|---|---|---|
@@ -165,7 +165,7 @@ Không có quy luật Up luôn tốt hơn Down. Ví dụ ETH Bull: precision tr�
 
 Hồi quy tuyến tính mô tả với fixed effects của confidence chính xác, làm riêng từng symbol. Dùng hai dummy Bull và Bear, Sideways làm mốc. Trừ trung bình các biến trong từng stratum rồi least squares; hệ số correctness là chênh lệch xác suất đúng điều chỉnh, đơn vị điểm phần trăm. Đây là linear probability association, không phải probability model dùng thực thi và không có diễn giải nhân quả. Không báo p-value IID.
 
-Ba mức kiểm soát: confidence; confidence + quintile volatility_30m theo symbol; thêm ngày UTC. Quintile dùng toàn validation chỉ phục vụ mô tả. Robustness thứ hai dùng log(volatility_30m) và log(volatility_15d) liên tục, kèm confidence hoặc confidence+day. Daily volatility hằng theo symbol/day nên bị hấp thụ bởi day fixed effects, không cố ước lượng một hệ số daily độc lập. Tính log/control bằng float64 tránh rounding tạo ra variation giả trong daily covariate. Các tương quan/hiệu ứng vẫn có thể còn confounding phi tuyến, direction hoặc cấu trúc thời gian chưa mô hình hóa.
+Ba mức kiểm soát: confidence; confidence + quintile volatility_30m theo symbol; thêm ngày UTC. Quintile dùng toàn validation chỉ phục vụ mô tả. Robustness thứ hai dùng log(volatility_30m) và log(volatility_15d) liên tục, kèm confidence hoặc confidence+day. Daily volatility hằng theo symbol/day nên bị hấp thụ bởi day fixed effects, không fit thêm một hệ số daily độc lập. Tính log/control bằng float64 tránh rounding tạo ra variation giả trong daily covariate. Các tương quan/hiệu ứng vẫn có thể còn confounding phi tuyến, direction hoặc cấu trúc thời gian chưa mô hình hóa.
 
 ### Effect sizes trend_360: adjusted correctness, điểm phần trăm
 

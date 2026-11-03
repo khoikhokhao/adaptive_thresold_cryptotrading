@@ -106,7 +106,7 @@ def finish_infeasible(out):
 
 Volatility 30 dòng đã lưu, chuẩn hóa bằng median/IQR theo coin chỉ trên V_fit. h = tanh((v−median)/IQR); threshold = clip(τ_fixed + βh, 0,50, 0,95). Dùng chính xác τ_fixed trong selection.json (0.6400000000000001). Grid β từ −0,10 đến +0,10, bước 0,02. Objective: mean net bps/mẫu chọn; phí 1 bps. Coverage tổng và **từng coin** phải ≥10%; ít nhất 200 mẫu chọn/coin. Mọi hệ số dùng chung BTC/ETH.
 
-Ranh giới theo timestamp chung, 50%/25%/25% khoảng lịch validation. Phục hồi future timestamp bằng shift −600 dòng riêng từng symbol trên unified; kiểm tra future price khớp tuyệt đối float32 với predictions và ret_bps khớp tới 1e−10 bps. Purge mẫu có endpoint label vượt ranh giới đoạn, không giả định horizon đúng 600 phút.
+Ranh giới theo timestamp chung, 50%/25%/25% khoảng lịch validation. Phục hồi future timestamp bằng shift −600 dòng riêng từng symbol trên unified; kiểm tra future price khớp tuyệt đối float32 với predictions và ret_bps khớp tới 1e−10 bps. Purge mẫu có endpoint label vượt ranh giới đoạn, không thay horizon theo dòng bằng 600 phút lịch.
 
 ## Chia dữ liệu và purge
 

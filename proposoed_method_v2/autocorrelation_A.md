@@ -35,11 +35,9 @@ Chọn e=1{c≥τ}, c=max(p_up, p_down). Chọn+Up→Long, chọn+Down→Short; 
 
 1 supervised coefficient + 4 normalization stats; full validation selection; penalty đơn vị bps. Hòa 10⁻⁸ bps ưu tiên |β| nhỏ rồi β nhỏ. Không tune thêm lag/window/λ; không constraint test/từng coin. Infeasible phải báo, không nới coverage.
 
-## 3. Benchmark Plan + Result
+## 3. Benchmark Plan + Kết quả kỳ vọng
 
 Fixed 0,64; Fixedτ*; ACF-A; nullβ=0. Metrics n, coverage, selective accuracy, net/chọn, expected net/eligible; breakdown coin/direction/tuần. Matching score=c−βh không clip; cutoffs validation, không test top-k. **Within-asset matching và asset-mix decomposition bắt buộc** để phân biệt selection gain với allocation gain; xem protocol chung.
-
-### Mục tiêu benchmark
 
 | Split | Method | n chọn | Coverage % | Selective accuracy % | Net/chọn, bps | Expected net/eligible, bps |
 |---|---|---:|---:|---:|---:|---:|

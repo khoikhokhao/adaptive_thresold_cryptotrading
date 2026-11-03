@@ -21,7 +21,7 @@ Ngoài ra có `spread_bps_std5/std20`, `imbalance_std5/std20`, và `depth_imbala
 
 ## Volatility 30 dòng: quantile riêng theo symbol
 
-Chọn `volatility_30m` làm ví dụ minh họa, không phải kết luận đó là feature tối ưu. `qcut` theo từng symbol trên validation; không chia các giá trị bằng nhau giữa nhóm. Khoảng phân vị này chỉ để mô tả, không thể dùng trực tiếp như ngưỡng thời gian thực. Bảng gồm accuracy toàn bộ cohort, số mẫu được chọn, coverage, accuracy và net trên mẫu chọn; median/P90 là phân vị confidence của **toàn bộ** nhóm. Bảng CSV có đủ min, median, P90, P95, max và kết quả cho cả sáu volatility features.
+Chọn `volatility_30m` để trình bày chi tiết, không phải kết luận đó là feature tối ưu. `qcut` theo từng symbol trên validation; không chia các giá trị bằng nhau giữa nhóm. Khoảng phân vị này chỉ để mô tả, không thể dùng trực tiếp như ngưỡng thời gian thực. Bảng gồm accuracy toàn bộ cohort, số mẫu được chọn, coverage, accuracy và net trên mẫu chọn; median/P90 là phân vị confidence của **toàn bộ** nhóm. Bảng CSV có đủ min, median, P90, P95, max và kết quả cho cả sáu volatility features.
 
 | Symbol | Nhóm | N | Accuracy | N chọn | Coverage | Accuracy chọn | Net chọn (bps) | Confidence median / P90 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -57,11 +57,11 @@ Khi kiểm soát thêm ngày UTC, tương quan 30 dòng đổi dấu cho correct
 
 ## Hướng adaptive đề xuất — chưa triển khai
 
-1. **Ngưỡng đối xứng quanh fixed, một tham số:** với `z_t = (v_t-m)/s`, `m` và `s` là median và IQR của `volatility_30m` theo symbol, fit trước trên train, đặt `τ_t = clip(0,64 + β·tanh(z_t), 0,50, 0,95)`. Với β = 0 khôi phục fixed. Khi chọn β sau này, cho phép cả dấu dương và âm, so sánh cùng objective và ràng buộc coverage ≥10% trên validation; không giả định volatility cao luôn tốt hoặc xấu. Đây là phương án khuyến nghị để benchmark đầu tiên: có một tham số và điều chỉnh mượt, song chưa có bằng chứng nó sẽ thắng.
+1. **Ngưỡng đối xứng quanh fixed, một tham số:** với `z_t = (v_t-m)/s`, `m` và `s` là median và IQR của `volatility_30m` theo symbol, fit trước trên train, đặt `τ_t = clip(0,64 + β·tanh(z_t), 0,50, 0,95)`. Với β = 0 khôi phục fixed. Khi chọn β sau này, cho phép cả dấu dương và âm, so sánh cùng objective và ràng buộc coverage ≥10% trên validation; không áp đặt volatility cao luôn tốt hoặc xấu. Đây là phương án khuyến nghị để benchmark đầu tiên: có một tham số và điều chỉnh mượt, song chưa có bằng chứng nó sẽ thắng.
 2. **Hai regime, một tham số:** `τ_t = clip(0,64 + δ·sign(v_t-m), 0,50, 0,95)`, median `m` fit trên train; δ được chọn trên validation. Trực quan và dễ kiểm tra, nhưng ranh giới cứng và dễ nhạy quanh median.
 3. **Hai chế độ không đối xứng:** tách hai ngưỡng `τ_low`, `τ_high` theo median fit trên train; tối đa hai tham số, có phương án cố định `(0,64; 0,64)`. Linh hoạt hơn nhưng nguy cơ overfit lớn hơn, đặc biệt với validation phụ thuộc theo thời gian.
 
-Nên chốt metric và quy trình trước khi thử, dùng cùng dự đoán/phí/cohort; với mục tiêu ước lượng đáng tin cậy cần thêm validation theo thời gian độc lập với calibration và threshold selection, có purge theo horizon. Với artifacts hiện tại mọi kết quả vẫn là retrospective; không dùng test hiện có để chọn tham số hoặc tuyên bố confirmatory.
+Nên chốt metric và quy trình trước khi thử, dùng cùng dự đoán/phí/cohort; để đánh giá độ tin cậy cần thêm validation theo thời gian độc lập với calibration và threshold selection, có purge theo horizon. Với artifacts hiện tại mọi kết quả vẫn là retrospective; không dùng test hiện có để chọn tham số hoặc tuyên bố confirmatory.
 
 ## Artifacts và tái lập
 

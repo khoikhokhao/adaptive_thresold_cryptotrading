@@ -22,7 +22,7 @@ data/
 Source: [data_preprocessing.py](../data_preprocessing.py).
 
 1. Parse timestamps, normalize symbols, sort và aggregate last observation theo symbol/minute; không tự tạo missing minute rows.
-2. Kiểm tra giá/book, crossed market, spread và gaps theo config tác giả. Rolling windows trên những dòng thực có, không giả định phút liên tục.
+2. Kiểm tra giá/book, crossed market, spread và gaps theo config tác giả. Rolling windows trên những dòng thực có, không xem các phút là liên tục khi dữ liệu có gaps.
 3. Macro indicators: daily MA5/10/20, volatility5/15/30, RSI/ATR14 và momentum. Micro: mid-price, spread, imbalance, depth/liquidity, lag và rolling features5/15/30 dòng. Giữ công thức/precision nguồn khi tái lập.
 4. Macro date cộng1ngày rồi left-join theo symbol/ngày micro. Indicator có thể có lag riêng trước join; không dùng daily close chưa kết thúc tại thời điểm prediction.
 5. Rolling warmup có thể NaN; median imputer và RobustScaler được fit trên train sau split, không fit toàn dataset.
