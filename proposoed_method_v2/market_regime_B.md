@@ -12,10 +12,10 @@ Validation: ETH Bear/Bull net/chọn−93,87/+98,68 bps tại Fixed 0,64; ETH Bu
 
 Theo từng symbol, P là mid-price, r_t=log(P_t/P_(t−1)) không clip. Tính từ full observed history, không từ cohort đã lọc Neutral:
 
-$$
-T_t=\frac{\log P_t-\log P_{t-360}}{\sqrt{\sum_{j=0}^{359}r_{t-j}^2}},\quad z_t=\tanh(T_t/2),\quad
+```math
+T_t=\frac{\log P_t-\log P_{t-360}}{\sqrt{\sum_{j=0}^{359}r_{t-j}^{2}}},\quad z_t=\tanh(T_t/2),\quad
 \tau_t=\operatorname{clip}(0.64+\beta z_t+\gamma u_tz_t+\eta u_t,0.50,0.95).
-$$
+```
 
 360 là dòng; scale 2 cố định. u=+1/−1 theo **predicted** Up/Down, tuyệt đối không dùng future label. β là trend effect chung; γ cho phép trend slope khác theo direction; η sửa baseline bias Up/Down. Cụ thể trước clip: Upτ=0,64+η+(β+γ)z; Downτ=0,64−η+(β−γ)z.
 
@@ -23,10 +23,10 @@ Chọn nếu c=max(p_up, p_down)≥τ. Chọn+Up→Long, chọn+Down→Short; c�
 
 **Học tham số:** θ=(β,γ,η), e là selection, g=uR_bps−1:
 
-$$
-\widehat\theta=\arg\max_{\theta}\left[\frac{\sum_{V}e_t(\theta)g_t}{\sum_{V}e_t(\theta)}-100\|\theta\|_2^2\right],\quad
+```math
+\widehat\theta=\arg\max_{\theta}\left[\frac{\sum_{V}e_t(\theta)g_t}{\sum_{V}e_t(\theta)}-100\|\theta\|_2^{2}\right],\quad
 \frac{\sum_Ve_t}{N_V}\ge0.10,\quad |\beta|+|\gamma|+|\eta|\le0.16.
-$$
+```
 
 Mỗi coefficient grid−0,10…+0,10 bước 0,02:719 candidates sau constraint. Chọn trên full validation, penalty đơn vị bps; không tune lại window/scale/λ. Hòa 10⁻⁸ bps: norm nhỏ rồi lexicographic. 3 parameters chung hai coin; không bắt coverage từng coin/direction/test ≥10%.
 

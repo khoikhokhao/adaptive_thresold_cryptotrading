@@ -20,9 +20,9 @@ Paper: *Machine Learning Analytics for Blockchain-Based Financial Markets: A Con
 4. **Model:** MLP 128→256→128→64, ReLU, dropout 0,2, balanced BCE, Adam LR 0,001, batch 4096, budget 80 epochs, patience 10; chronological 70/15/15 riêng từng symbol. Paper mô tả isotonic calibration với 10-fold CV trong validation (Table 4; §4.2, tr.19).
 5. **Selection:** p là calibrated probability Up, c=max(p,1−p). Model giữ hướng dự đoán; chỉ cho phép thực hiện khi c≥τ. τ được tối ưu **trên validation rồi đóng băng**, không phải số 0,8 đặt tùy ý. Grid paper 0,50–0,95 bước 0,01, tối đa mean net return/mẫu được chọn sau cost1 bps; paper báo nghiệm0,8 (Eq.6, tr.14; §3.4, tr.15).
 
-$$
-\tau^*=\arg\max_{\tau}\frac{\sum_{t\in V}\mathbf1(c_t\ge\tau)\,[u_tR_t^{bps}-1]}{\sum_{t\in V}\mathbf1(c_t\ge\tau)},\qquad \tau_t=\tau^*.
-$$
+```math
+\tau^{\ast}=\arg\max_{\tau}\frac{\sum_{t\in V}\mathbf{1}(c_t\ge\tau)\,[u_tR_t^{bps}-1]}{\sum_{t\in V}\mathbf{1}(c_t\ge\tau)},\qquad \tau_t=\tau^{\ast}.
+```
 
 Ở đây u=+1/−1 theo **predicted** Up/Down; V là validation. “Fixed” nghĩa là threshold không đổi theo thời điểm sau khi chọn, **vẫn có thể được tối ưu offline**. Chọn+Up→Long, chọn+Down→Short; không chọn→Abstain. Neutral là future label, không đồng nghĩa Abstain. Paper báo accuracy 82,68%, coverage 11,99%, mean net 151,11 bps trên executions (Table 11, tr.26); không gán các số đó cho reproduction BTC/ETH.
 
@@ -58,10 +58,10 @@ Paper **đã dùng features thị trường và calibration**; không được n
 
 Giữ nguyên predictions/calibration/labels, cohort và phí 1 bps. Với e là selection mask, k=1 nếu predicted direction đúng, N là eligible samples và n=Σe:
 
-$$
-g_t=u_tR_t^{bps}-1,\quad C=\frac nN,\quad A_{sel}=\frac{\sum e_tk_t}{n},\quad
+```math
+g_t=u_tR_t^{bps}-1,\quad C=\frac{n}{N},\quad A_{sel}=\frac{\sum e_tk_t}{n},\quad
 \bar g=\frac{\sum e_tg_t}{n},\quad U=\frac{\sum e_tg_t}{N}=C\bar g.
-$$
+```
 
 Cách đọc: coverage, selective accuracy, net/mẫu chọn và expected net/mẫu đủ điều kiện. n=0: accuracy và net/chọn undefined, U=0 nếu N>0. Counts là signals, không phải vị thế độc lập. Không cộng overlapping returns thành portfolio PnL hoặc annualized Sharpe.
 

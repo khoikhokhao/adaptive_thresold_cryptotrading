@@ -12,10 +12,10 @@ Exploration: RE32 thêm vào controls confidence/symbol/volatility/trend/ACF/dir
 
 x là 128 features đã impute/RobustScale của MLP. Theo coin s, reuse training-only mean μ_s, diagonal std D_s và covariance eigenvectors u_(s,j), eigenvalues giảm dần:
 
-$$
-z_t=D_s^{-1}(x_t-\mu_s),\quad d_t=\sqrt{\frac1{96}\sum_{j=33}^{128}(u_{s,j}^{\top}z_t)^2},\quad
+```math
+z_t=D_s^{-1}(x_t-\mu_s),\quad d_t=\sqrt{\frac1{96}\sum_{j=33}^{128}(u_{s,j}^{\top}z_t)^{2}},\quad
 h_t=\tanh\frac{d_t-m_s}{v_s-m_s},\quad \tau_t=\operatorname{clip}(0.64+\beta h_t,0.50,0.95).
-$$
+```
 
 d là RMS spectral residual ngoài 32 PCs, không phải direction; m_s/v_s là **training residual Q50/Q95**. Reference dùng toàn bộ 292.338 train rows, không labels; không refit bằng validation/test. Extra geometry chỉ phục vụ factor, không đổi inputs của MLP. Giữ spectral-tail calculation đã kiểm chứng.
 
@@ -23,9 +23,9 @@ d là RMS spectral residual ngoài 32 PCs, không phải direction; m_s/v_s là 
 
 **Học tham số:** g=uR_bps−1, u là predicted direction±1:
 
-$$
-\widehat\beta=\arg\max_{\beta\in\{-0.10,-0.08,\ldots,0.10\}}\left[\frac{\sum_Ve_t(\beta)g_t}{\sum_Ve_t(\beta)}-100\beta^2\right],\quad \frac{\sum_Ve_t}{N_V}\ge0.10.
-$$
+```math
+\widehat\beta=\arg\max_{\beta\in\{-0.10,-0.08,\ldots,0.10\}}\left[\frac{\sum_Ve_t(\beta)g_t}{\sum_Ve_t(\beta)}-100\beta^{2}\right],\quad \frac{\sum_Ve_t}{N_V}\ge0.10.
+```
 
 1 supervised coefficient, ngoài unsupervised geometry/stats. Full validation selection; λ 100 bps, grid bước 0,02; hòa10⁻⁸bps ưu tiên |β| nhỏ rồi β nhỏ. PCA32, normalization và λ giữ nguyên. Không constraint từng coin/test; infeasible phải báo, không thay dimension để cứu utility.
 

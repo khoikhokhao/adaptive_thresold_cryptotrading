@@ -12,16 +12,16 @@ Validation |ACF lag-1, W=360| Q1→Q5: selective accuracy BTC 62,46→83,55%, ET
 
 Theo từng coin, r_t=log(P_t/P_(t−1)) từ mid-price quan sát được; W=360, k=1. Dùng common window mean, không phải Pearson với hai mean riêng:
 
-$$
-\bar r_t=\frac1W\sum_{j=0}^{W-1}r_{t-j},\quad
-\rho_t(k)=\frac{\sum_{j=0}^{W-k-1}(r_{t-j}-\bar r_t)(r_{t-j-k}-\bar r_t)}{\sum_{j=0}^{W-1}(r_{t-j}-\bar r_t)^2},\quad a_t=|\rho_t(1)|.
-$$
+```math
+\bar r_t=\frac{1}{W}\sum_{j=0}^{W-1}r_{t-j},\quad
+\rho_t(k)=\frac{\sum_{j=0}^{W-k-1}(r_{t-j}-\bar r_t)(r_{t-j-k}-\bar r_t)}{\sum_{j=0}^{W-1}(r_{t-j}-\bar r_t)^{2}},\quad a_t=|\rho_t(1)|.
+```
 
 Factor dùng full past unified history, không clip log returns hoặc rolling trên oracle-filtered cohort. Window theo dòng, không bảo đảm phút.
 
-$$
+```math
 h_t=\tanh\frac{a_t-m_s}{I_s},\quad \tau_t=\operatorname{clip}(0.64+\beta h_t,0.50,0.95).
-$$
+```
 
 m_s/I_s là median/IQR **full validation** từng coin, đóng băng sang test; temporal diagnostics phải fit lại trên past prefix. β<0 hạ ngưỡng khi |ACF| cao; β>0 nâng ngưỡng; β=0 khôi phục Fixed. Không dùng dấu ACF để đổi hướng MLP.
 
@@ -29,9 +29,9 @@ Chọn e=1{c≥τ}, c=max(p_up, p_down). Chọn+Up→Long, chọn+Down→Short; 
 
 **Học tham số:** g=uR_bps−1, u là predicted direction±1:
 
-$$
-\widehat\beta=\arg\max_{\beta\in\{-0.10,-0.08,\ldots,0.10\}}\left[\frac{\sum_Ve_t(\beta)g_t}{\sum_Ve_t(\beta)}-100\beta^2\right],\quad \frac{\sum_Ve_t}{N_V}\ge0.10.
-$$
+```math
+\widehat\beta=\arg\max_{\beta\in\{-0.10,-0.08,\ldots,0.10\}}\left[\frac{\sum_Ve_t(\beta)g_t}{\sum_Ve_t(\beta)}-100\beta^{2}\right],\quad \frac{\sum_Ve_t}{N_V}\ge0.10.
+```
 
 1 supervised coefficient + 4 normalization stats; full validation selection; penalty đơn vị bps. Hòa 10⁻⁸ bps ưu tiên |β| nhỏ rồi β nhỏ. Không tune thêm lag/window/λ; không constraint test/từng coin. Infeasible phải báo, không nới coverage.
 

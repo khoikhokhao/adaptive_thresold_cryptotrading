@@ -12,28 +12,28 @@ Validation: volatility30 dòng Q1→Q5 có selective accuracy BTC 53,74→84,10%
 
 Theo từng coin s, P là mid-price; r̃_j=clip(P_j/P_{j−1}−1,−0,12,+0,12). v_t là sample std(ddof1) của r̃_(t−30)…r̃_(t−1), min15 quan sát. Dùng đúng `volatility_30m` gốc; 30 là dòng, không bảo đảm phút.
 
-$$
+```math
 h_t=\tanh\frac{v_t-m_s}{I_s},\quad
 \ell_t=\operatorname{logit}(\operatorname{clip}(c_t,10^{-6},1-10^{-6})),\quad
 q_t=\sigma\left[(1+\delta h_t)\ell_t+a_s+b h_t\right].
-$$
+```
 
 m_s/I_s là median/IQR **early-validation V_fit đã purge**, tái sử dụng artifact đã khóa; c=max(p_up, p_down); σ là sigmoid. q ước lượng probability **prediction đúng**, không thay probability Up hoặc hướng MLP. a_s sửa reliability riêng coin; b là volatility effect; δ là confidence×volatility interaction.
 
 Chọn khi q≥κ. Trên miền confidence không chạm clipping, threshold tương đương:
 
-$$
+```math
 \tau_t=\max\left\{0.5,\sigma\left(\frac{\operatorname{logit}\kappa-a_s-bh_t}{1+\delta h_t}\right)\right\},\quad |\delta|\le0.25.
-$$
+```
 
 Cách đọc: cùng reliability requirement κ tạo confidence threshold khác theo volatility/coin. Bound giữ confidence slope dương; ở biên thực thi bằng q≥κ, không clip τ ở 0,95. Chọn+Up→Long, chọn+Down→Short, còn lại Abstain. Missing factor/IQR0: Fixed fallback, giữ cohort.
 
 **Học tham số:** θ=(a_BTC,a_ETH,b,δ), k=indicator đúng; trên full validation V:
 
-$$
+```math
 \widehat\theta=\arg\min_{|\delta|\le0.25}\left\{\frac12\sum_s\frac1{N_s}\sum_{V_s}
-[-k_t\log q_t-(1-k_t)\log(1-q_t)]+0.01\|\theta\|_2^2\right\}.
-$$
+[-k_t\log q_t-(1-k_t)\log(1-q_t)]+0.01\|\theta\|_2^{2}\right\}.
+```
 
 L-BFGS-B từ zero. Sau đó chọn κ∈{0,50;0,52;…;0,94} tối đa mean net/chọn với **validation pooled coverage≥10%**; hòa ưu tiên gần 0,64 rồi nhỏ hơn. 4 coefficients + κ; normalization vẫn early V_fit dù fit θ/chọn κ dùng full V. Null θ=0, κ=0,64 khôi phục Fixed trên cohort hiện tại.
 
