@@ -69,21 +69,4 @@ Cách đọc: coverage, selective accuracy, net/mẫu chọn và expected net/m�
 - **Coverage control:** ngoài native results, chọn cutoffs bằng validation counts cho targets10%,20%,25,50%,40%, đóng băng sang test; không dùng test quantiles/top-k. Confidence plateaus có thể làm target infeasible. Báo actual coverage/drift; chỉ gọi near-matched nếu actual coverages thực sự gần nhau, không lấy target thay actual.
 - **Attribution:** BTC/ETH, predicted Up/Down, asset×direction và tuần; matching trong asset×direction; ablation factor-free. Temporal diagnostics fit/chọn trên past prefixes, purge theo label endpoint thật, báo infeasible. Validation đã dùng bởi model/calibrator nên đây không phải independent holdout.
 
-### Mục tiêu benchmark
-
-So sánh với Fixed 0,64 trên cùng split và cùng coverage. Các mức tăng dưới đây là tương đối, không phải điểm phần trăm.
-
-| Method | Selective accuracy | Net/chọn | Expected net/eligible |
-|---|---:|---:|---:|
-| Volatility-B | +10% | +12% | +12% |
-| Regime-B | +12% | +14% | +14% |
-| ACF-A | +14% | +16% | +16% |
-| Shift-A | +16% | +18% | +18% |
-
-Số mẫu chọn: validation 20.463, test 7.984; coverage lần lượt 25,4959% và 12,2488%. Số đúng làm tròn integer rồi suy ra selective accuracy; U=C×net/chọn tính trước khi làm tròn bảng. Báo cáo từng method giữ cùng cấu trúc và định nghĩa metrics.
-
-Các kết quả, hệ số và artifacts v1 được lưu local, không bundle trong repository. Chọn coefficients/thresholds bằng validation, không bằng test; breakdown BTC/ETH, direction, temporal stability và ablations vẫn là các kiểm tra cần thiết của benchmark plan. Test hiện tại đã được xem nên không dùng để claim confirmatory OOS.
-
-PDF tải nguyên bản từ [MDPI](https://mdpi-res.com/d_attachment/applsci/applsci-15-11145/article_deploy/applsci-15-11145.pdf), 3.639.532 bytes; SHA256 `2c1e01333ea967ad7de9fb36157ebef094c4b3f248045f71c1a1fb8b6216378a`. Bài báo công bố CC BY4.0; giữ attribution tác giả/DOI.
-
-**Ghi chú: Các metrics proposed trong bảng benchmark là kịch bản minh họa, không phải kết quả thực nghiệm.**
+Nguồn paper: [MDPI](https://mdpi-res.com/d_attachment/applsci/applsci-15-11145/article_deploy/applsci-15-11145.pdf), DOI [10.3390/app152011145](https://doi.org/10.3390/app152011145). Kuznetsov et al., Applied Sciences 2025. PDF công bố theo CC BY4.0.
