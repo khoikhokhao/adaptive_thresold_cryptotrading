@@ -5,7 +5,7 @@ Ngày 03/11/2026. Bộ tài liệu đọc theo thứ tự: bản context này �
 | Tài liệu | Nội dung |
 |---|---|
 | [PDF paper gốc](applsci-15-11145.pdf) | Kuznetsov et al., Applied Sciences 2025, 15, 11145 |
-| [Volatility-B](volatility_B.md) | Ước lượng reliability theo confidence và volatility |
+| [Volatility-B](volatility_B.md) | Dự báo reliability theo confidence và volatility |
 | [Regime-B](market_regime_B.md) | Threshold theo trend và predicted direction |
 | [ACF-A](autocorrelation_A.md) | Threshold theo độ mạnh autocorrelation |
 | [Shift-A](distribution_shift_A.md) | Threshold theo khoảng cách khỏi training PCA subspace |
