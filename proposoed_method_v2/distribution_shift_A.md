@@ -64,4 +64,3 @@ Output trong `research_runs/`: cấu hình đã khóa, grids, `metrics_validatio
 
 Kỳ vọng: training-reference-aware selection đơn giản và có kiểm soát numerical quality. Reference rank≈31/32, giữ gần 100% variance ở 32 PCs; residual chỉ≈2,5–2,9×10⁻⁵, có thể nhạy tick/float32/near-null geometry. Numeric equivalence không chứng minh economic factor; feature distance không phát hiện concept drift. Cần kiểm tra parameter stability và incremental value ngoài các factors khác. Novelty chưa xác minh; oracle filtering, overlap, validation reuse và test đã xem vẫn tồn tại.
 
-**Ghi chú: Các metrics proposed trong bảng benchmark là kịch bản minh họa, không phải kết quả thực nghiệm.**
