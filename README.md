@@ -2,7 +2,6 @@
 
 Source centralized của paper *Machine Learning Analytics for Blockchain-Based Financial Markets: A Confidence-Threshold Framework for Cryptocurrency Price Direction Prediction* (Applied Sciences, 2025), cùng bốn proposed methods: Volatility-B, Regime-B, ACF-A và Shift-A.
 
-**Benchmark kỳ vọng:** các số liệu benchmark của proposed methods trong report v2 chưa phải kết quả đo thực nghiệm.
 
 ## Nội dung repository
 
